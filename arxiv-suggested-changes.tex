@@ -1,0 +1,231 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amssymb}
+\usepackage{verbatim}
+\usepackage{xcolor}
+\definecolor{oldred}{rgb}{0.6,0,0}
+\definecolor{newgreen}{rgb}{0,0.45,0}
+\newenvironment{old}{\par\noindent\textcolor{oldred}{\textbf{OLD:}}\small\color{oldred}\verbatim}{\endverbatim\normalsize\color{black}}
+\newenvironment{new}{\par\noindent\textcolor{newgreen}{\textbf{NEW:}}\small\color{newgreen}\verbatim}{\endverbatim\normalsize\color{black}}
+
+\title{Suggested changes: \texttt{typeD\_decoupling-draft-rev2.tex}\\
+$\to$ \texttt{typeD\_decoupling-arxiv-suggested.tex}}
+\author{}
+\date{3 July 2026}
+
+\begin{document}
+\maketitle
+
+\noindent Each item shows the exact source text replaced. Everything not listed is
+byte-identical to rev2.
+
+\section*{Abstract}
+
+\subsection*{1. Macro for $\mathfrak{so}$ (consistency with body)}
+\begin{old}
+was constructed using the representation theory of $U_q(so_{2n})$.
+\end{old}
+\begin{new}
+was constructed using the representation theory of $U_q(\so_{2n})$.
+\end{new}
+Note: I did \emph{not} touch the index. The abstract's $2n$ vs.\ the body's
+$2n+2$ (\S1.1: ``$n=2,3$ in $\mathfrak{so}_{2n+2}$'') use different $n$'s ---
+your call whether to reconcile.
+
+\subsection*{2. Broken sentence}
+\begin{old}
+In the fixed--$q$ regime an exact current--decoupling identity, we prove
+\end{old}
+\begin{new}
+In the fixed--$q$ regime, using an exact current--decoupling identity, we prove
+\end{new}
+
+\section*{Section 1: Introduction}
+
+\subsection*{3. Subject--verb agreement and typo}
+\begin{old}
+models have received attention in the mathematical and physics liteature.
+\end{old}
+\begin{new}
+models has received attention in the mathematical and physics literature.
+\end{new}
+
+\subsection*{4. Missing hyphen}
+\begin{old}
+Kardar--Parisi Zhang (KPZ)
+\end{old}
+\begin{new}
+Kardar--Parisi--Zhang (KPZ)
+\end{new}
+
+\subsection*{5. Wrong part of speech}
+\begin{old}
+two species of particles hop asymmetry on a one--dimensional lattice
+\end{old}
+\begin{new}
+two species of particles hop asymmetrically on a one--dimensional lattice
+\end{new}
+
+\subsection*{6. Stray space before comma}
+\begin{old}
+when $q\rightarrow 1$ , one is
+\end{old}
+\begin{new}
+when $q\rightarrow 1$, one is
+\end{new}
+
+\subsection*{7. \S1.3: \texttt{prop:sym} labels a Corollary, not a Proposition}
+\begin{old}
+the species current at all (Proposition~\ref{prop:sym}).
+\end{old}
+\begin{new}
+the species current at all (Corollary~\ref{prop:sym}).
+\end{new}
+
+\section*{Section 1.6: Acknowledgements}
+
+\subsection*{8. Typo}
+\begin{old}
+Digital nnovation
+\end{old}
+\begin{new}
+Digital Innovation
+\end{new}
+
+\subsection*{9--11. Straight quotes to LaTeX quotes (3 places)}
+\begin{old}
+occurred at "Recent Developments in Stochastic Duality" in Eindhoven
+NWO grant 613.001.753 "Duality for interacting particle systems."
+at the workshop "Universality in the Kardar-Parisi-Zhang class and random
+matrix theory."
+\end{old}
+\begin{new}
+occurred at ``Recent Developments in Stochastic Duality'' in Eindhoven
+NWO grant 613.001.753 ``Duality for interacting particle systems.''
+at the workshop ``Universality in the Kardar-Parisi-Zhang class and random
+matrix theory.''
+\end{new}
+
+\section*{Section 2}
+
+\subsection*{12. Forward reference to Proposition \texttt{prop:orth} (stated later)}
+\begin{old}
+sector--reweighted $\varpi\ne\nu$ of Proposition~\ref{prop:orth}. The proof
+\end{old}
+\begin{new}
+sector--reweighted $\varpi\ne\nu$ of Proposition~\ref{prop:orth} below. The proof
+\end{new}
+
+\subsection*{13. Remark \texttt{rem:orthstatus}: draft language}
+\begin{old}
+is deferred to the final version. In regime (B)
+\end{old}
+\begin{new}
+is deferred to future work. In regime (B)
+\end{new}
+
+\section*{Section 4}
+
+\subsection*{14. Lemma \texttt{lem:free}: forward references to later lemmas}
+\begin{old}
+walk on $\Z\setminus\{0\}$ of Lemmas~\ref{lem:Rlclt} and \ref{lem:occ} is
+reversible
+\end{old}
+\begin{new}
+walk on $\Z\setminus\{0\}$ of Lemma~\ref{lem:Rlclt} below and of
+Lemma~\ref{lem:occ} in \S\ref{sec:cross} is reversible
+\end{new}
+
+\section*{Section 5}
+
+\subsection*{15. Remark \texttt{rem:boundstate}: Corollary, not Proposition}
+\begin{old}
+By Proposition~\ref{prop:sym} below it enters the species fields
+\end{old}
+\begin{new}
+By Corollary~\ref{prop:sym} below it enters the species fields
+\end{new}
+
+\section*{Section 6}
+
+\subsection*{16. Aldous's criterion is a Proposition, not a Theorem}
+\begin{old}
+Theorems~\ref{thm:mitoma}--\ref{prop:aldous}) and uniqueness of the linear
+\end{old}
+\begin{new}
+Theorem~\ref{thm:mitoma} and Proposition~\ref{prop:aldous}) and uniqueness of
+the linear
+\end{new}
+
+\subsection*{17. Lemma \texttt{lem:sector} proof: $h_i$ was never defined}
+\begin{old}
+The two measures differ by the factor $h_1(N_1)h_2(N_2)$ of \eqref{eq:omegadef}
+(times constants), so the conditionals agree,
+\end{old}
+\begin{new}
+The two measures differ by the factor $h_1(N_1)h_2(N_2)$ (times constants), where
+$h_i(N):=q^{N(N-1)}\big(\alpha_i q^{2N-2|\Lambda|};q^2\big)_\infty$ is the sector
+reweighting of \eqref{eq:omegadef}, so the conditionals agree,
+\end{new}
+
+\section*{Section 7}
+
+\subsection*{18. Moved Lemma \texttt{lem:price} (Price/Sheppard)}
+The lemma was stated just before Theorem \texttt{thm:closed}, but it is used
+only in the proof of Proposition \texttt{prop:struve}, which comes
+$\sim$180 lines \emph{earlier}. The lemma block is moved (text unchanged) to
+just before Proposition \texttt{prop:struve}, with the lead-in sentence changed:
+\begin{old}
+The positive parts of the limiting mixture carry a second closed form.
+\end{old}
+\begin{new}
+The positive parts of the limiting mixture carry a second closed form. Its proof
+uses two classical facts about the standard bivariate normal.
+\end{new}
+and the sentence ``We use two classical facts about the standard bivariate
+normal.'' deleted from the old location.
+
+\subsection*{19. Lemma \texttt{lem:crossbridge} proof: internal script path}
+\begin{old}
+precision for $L\le6$ (\texttt{revision\_checks/check\_crossbridge.py}).
+\end{old}
+\begin{new}
+precision for $L\le6$ (script included among the ancillary files).
+\end{new}
+
+\section*{Section 8}
+
+\subsection*{20. Draft-revision language before Proposition \texttt{prop:occ}}
+\begin{old}
+$a_{\pm1}-c_{\pm1}=-4q^2$. Two corrections to an earlier version of this draft are
+required here, and we record them precisely.
+\end{old}
+\begin{new}
+$a_{\pm1}-c_{\pm1}=-4q^2$. Two points require care here --- the sticky bound state is
+overweighted in the occupation measure, and the combination supplies the $\sqrt s$
+scaling but not the measured constant (\S\ref{sec:numerics}) --- and we record the
+occupation asymptotics precisely.
+\end{new}
+Please check this rephrasing says what you mean.
+
+\section*{Section 9: Status paragraph}
+
+\subsection*{21. Ancillary files}
+\begin{old}
+are reproduced by scripts to be included as ancillary files.
+\end{old}
+\begin{new}
+are reproduced by scripts included as ancillary files with the arXiv submission.
+\end{new}
+This (and item 19) commit you to actually attaching the
+\texttt{revision\_checks} scripts at submission --- revert both if you won't.
+
+\section*{Noticed but left unchanged}
+\begin{itemize}
+\item The AI-authorship paragraph appears in both the abstract and \S1.5;
+arXiv indexes abstracts. Kept as is.
+\item Lemma \texttt{lem:eps} is a proof sketch and Remark \texttt{rem:orthstatus}
+defers the infinite-volume step; the Status paragraph discloses both. Kept as is.
+\end{itemize}
+
+\end{document}

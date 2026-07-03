@@ -33,6 +33,11 @@
 \date{3 July, 2026}
 
 \begin{document}
+
+
+Accessibility statement: this PDF is WCAG2.1AA compliant, and I tested the PDF using VoiceOver on my Mac using Preview.  This paper can also be downloaded as a DOCX file and as a TeX file from \href{https://u.osu.edu/jkuanpapers/type_d_asep/}{my webpage}. The PDF meets the requirements of Ohio Administrative Policy IT-09, Texas Administrative Code 206.70 (EFFECTIVE APRIL 18, 2020), Section 508 of the Rehabilitation Act, and Title II of the Americans with Disabilities Act (effective April 24, 2027). 
+
+
 \maketitle
 
 \begin{abstract}
@@ -47,6 +52,8 @@ More surprisingly, we then prove that the two limiting normal random variables a
 This paper, with the exception of the abstract and introduction, was written entirely by Claude Opus 4.8 and Fable 5. The proofs were then formalized in Lean using Aristotle by Harmonic AI. The human author of this paper verified the proofs manually.
 
 \end{abstract}
+
+
 
 {\small\tableofcontents}
 
@@ -67,8 +74,8 @@ Over the last decade or so, the topic of ``multi--species'' or ``colored'' model
 Fix $q\in(0,1)$. The \underline{type D ASEP} was introduced by Kuan, Landry, Lin, Park and
 Zhou \cite{KLLPZ} in a summer undergraduate project, who constructed it from the quantum groups $U_q(\so_6)$ and
 $U_q(\so_8)$ ($n=2,3$ in $\so_{2n+2}$, Cartan type $D$); in further summer undergraduate projects, the construction has been extended to $U_q(\so_{10})$ \cite{RSL} and, via stochastic fusion and crystal bases, in
-\cite{BEPS}; the explicit rate matrix (displayed for general $n$ in \cite[\S2.1]{REU})
-makes sense for every $n\in\N$. The rate matrix can even be analytically continued in the parameter $q^n$. It is a continuous--time Markov process of two conserved species on $\Z$ which, beyond
+\cite{BEPS}; the explicit rate matrix (displayed for general $n$ in \cite[\S2.1]{REU},
+and reproduced as \eqref{eq:nrates} below) makes sense for every $n\in\N$. The rate matrix can even be analytically continued in the parameter $q^n$. It is a continuous--time Markov process of two conserved species on $\Z$ which, beyond
 hopping, may bind into a composite \underline{bound pair} and later split. This binding is
 what makes the model a stringent test of decoupling: the two species are genuinely
 interacting, not two independent copies sharing the exclusion rule. The model carries
@@ -82,12 +89,43 @@ contribution: we use them as a tool, recording at the $n=\infty$ degeneration th
 forms we need (Theorem~\ref{thm:dual}, Corollary~\ref{cor:tri}), and the substance of
 the paper is the fluctuation analysis built on them.
 
-We work in the limit $n\to\infty$, in which (after rescaling time by $q^{2n}$) the
-dynamics closes on the four local states $\{0,1,2,3\}$ at each site: empty, species
-$1$, species $2$, and a bound pair carrying one particle of each species. With
-$\eta_{i,x}\in\{0,1\}$ the occupation of species $i$ at $x$, so that
-$\omega_x=\eta_{1,x}+2\eta_{2,x}$, and with $\eps:=1-q^2$, the nonzero
-nearest--neighbour rates are
+For every $n\in\N$ the type D ASEP is a continuous--time Markov process on the state
+space $\{0,1,2,3\}^\Z$: each site $x$ is empty ($\omega_x=0$), holds a species--$1$
+particle ($\omega_x=1$), a species--$2$ particle ($\omega_x=2$), or a bound pair
+carrying one particle of each species ($\omega_x=3$); with $\eta_{i,x}\in\{0,1\}$ the
+occupation of species $i$ at $x$, $\omega_x=\eta_{1,x}+2\eta_{2,x}$. In the notation
+$(\omega_x,\omega_{x+1})=(a,b)\to(a',b')$ for the nearest--neighbour transitions, and
+with
+\begin{equation}\label{eq:nparams}
+  \beta_n:=q^{1-2n}+q^{2n-1},\qquad \sigma_n:=(q^{n-1}-q^{1-n})^2,
+\end{equation}
+the nonzero rates, read off the $16\times16$ generator matrix of \cite[\S2.1]{REU}
+(the $\delta=0$ case), are
+\begin{equation}\label{eq:nrates}
+\begin{aligned}
+&(1,0)\!\to\!(0,1),\ \ (2,0)\!\to\!(0,2),\ \ (3,1)\!\to\!(1,3),\ \ (3,2)\!\to\!(2,3):
+ && q^{-1}\beta_n,\\
+&(0,1)\!\to\!(1,0),\ \ (0,2)\!\to\!(2,0),\ \ (1,3)\!\to\!(3,1),\ \ (2,3)\!\to\!(3,2):
+ && q\,\beta_n,\\
+&(3,0)\!\to\!(0,3):\ q^{-2}\sigma_n,\qquad (0,3)\!\to\!(3,0):\ q^{2}\sigma_n,\qquad
+ (1,2)\!\leftrightarrow\!(2,1):&& \sigma_n,\\
+&(1,2)\!\to\!(0,3),\ \ (2,1)\!\to\!(0,3):&& 2+q^{-2n}(1-q^2),\\
+&(0,3)\!\to\!(1,2),\ \ (0,3)\!\to\!(2,1):&& q^{2}\big(2+q^{-2n}(1-q^2)\big),\\
+&(1,2)\!\to\!(3,0),\ \ (2,1)\!\to\!(3,0):&& 2-q^{2n-2}(1-q^2),\\
+&(3,0)\!\to\!(1,2),\ \ (3,0)\!\to\!(2,1):&& q^{-2}\big(2-q^{2n-2}(1-q^2)\big),
+\end{aligned}
+\end{equation}
+each listed transition carrying the stated rate individually. The first two lines are
+the asymmetric hops, including a single species sliding past a bound pair; the third
+line the bound--pair hops and the swaps; the last four lines the merge/split
+channels, in which the bound pair forms at, or breaks from, the right site ($0,3$
+channels) or the left site ($3,0$ channels) of the bond. Both species numbers are
+conserved, and all rates are nonnegative for $q\in(0,1)$ and $n\in\N$.
+
+We work in the limit $n\to\infty$: after rescaling time by $q^{2n}$, the rates
+\eqref{eq:nrates} converge entrywise, the left merge/split channels (the last two
+lines) vanish, and with $\eps:=1-q^2$ the surviving nonzero nearest--neighbour rates
+are
 \begin{equation}\label{eq:rates}
 \begin{aligned}
 &(1,0)\!\to\!(0,1):1, &&(0,1)\!\to\!(1,0):q^2, &&(2,0)\!\to\!(0,2):1, &&(0,2)\!\to\!(2,0):q^2,\\
@@ -97,10 +135,9 @@ nearest--neighbour rates are
 \end{equation}
 together with mixed hops $(3,1)\!\leftrightarrow\!(1,3)$ and
 $(3,2)\!\leftrightarrow\!(2,3)$ at rate $1$ right, $q^2$ left, in which a single
-species slides past a bound pair. The two species numbers are conserved. For finite
-$n$ a single species is a usual ASEP with rates $q^{\pm1}\beta_n$,
-$\beta_n=q^{1-2n}+q^{2n-1}$, so $n$ enters the single--species dynamics only as a time
-rescaling.
+species slides past a bound pair. As the first two lines of \eqref{eq:nrates} show,
+at finite $n$ a single species is a usual ASEP with rates $q^{\pm1}\beta_n$, so $n$
+enters the single--species dynamics only as a time rescaling.
 
 \subsection{Results}\label{sec:introresults}
 Decoupling might hold for one reason in one universality class and fail in another, so
@@ -200,10 +237,10 @@ For a local function $f$ of $\eta\in\{0,1,2,3\}^\Z$ the generator is
 \end{equation}
 the inner sum over the transitions of \eqref{eq:rates}, $\eta^{x,x+1}_{a'b'}$ denoting
 $\eta$ with $(\omega_x,\omega_{x+1})$ reset to $(a',b')$. The finite--$n$ rate matrix
-is displayed in \cite[\S2.1]{REU} (constructed from the quantum group for $n=2,3$ in
-\cite{KLLPZ}); after the time rescaling by $q^{2n}$ its entrywise $n\to\infty$ limit
-is \eqref{eq:rates}, which one checks directly to be a Markov generator with the
-stated conservation laws for every $q\in(0,1)$.
+is \eqref{eq:nrates}, displayed in \cite[\S2.1]{REU} (constructed from the quantum
+group for $n=2,3$ in \cite{KLLPZ}); after the time rescaling by $q^{2n}$ its entrywise
+$n\to\infty$ limit is \eqref{eq:rates}, which one checks directly to be a Markov
+generator with the stated conservation laws for every $q\in(0,1)$.
 
 \begin{proposition}[reversible measure; {\cite[Prop.~1.3]{KLLPZ}},{\cite[\S3.1]{REU}}]
 \label{prop:measure}
@@ -233,7 +270,7 @@ detailed--balance identities of \eqref{eq:rates} for $\nu$.
 
 \begin{remark}[parameter range and the locked limit]\label{rem:range}
 Although $n$ indexes finite--dimensional representations of $\so_{2n+2}$, the
-finite--$n$ generator of \cite[\S2.1]{REU} extends analytically in $n$ and remains a
+finite--$n$ generator \eqref{eq:nrates} extends analytically in $n$ and remains a
 bona fide Markov generator for a range of \underline{negative} $n$: the binding rates
 $(1,2)\to(3,0)$, $(3,0)\to(1,2)$ are the constraints, both proportional to
 $2-q^{2n-2}(1-q^2)$ and hence vanishing at
@@ -450,11 +487,13 @@ with $q^4+q^2\eps=q^2$; all give $r_L=q^2$. (The channels $(2,1)\!\to\!(0,3)$,
 $(0,3)\!\to\!(2,1)$ and the mixed hops $(3,1)\!\leftrightarrow\!(1,3)$ leave $\eta_1$ on
 the bond unchanged.)
 
-\underline{Finite $n$} \textup{(}the generator of \cite[\S2.1]{REU}, constructed in
+\underline{Finite $n$} \textup{(}the rates \eqref{eq:nrates}, i.e.\ the generator of
+\cite[\S2.1]{REU}, constructed in
 \cite{KLLPZ} for $n=2,3$\textup{)}. Four further channels are present that vanish in the
 rescaled limit: the left merges $(1,2),(2,1)\to(3,0)$ of rate $2-q^{2n-2}(1-q^2)$ and
 the left splits $(3,0)\to(1,2),(2,1)$ of rate $q^{-2}\big(2-q^{2n-2}(1-q^2)\big)$. With
-$\sigma_n:=(q^{n-1}-q^{1-n})^2=q^{2n-2}-2+q^{2-2n}$, the species--$1$ rightward rate,
+$\sigma_n=(q^{n-1}-q^{1-n})^2=q^{2n-2}-2+q^{2-2n}$ as in \eqref{eq:nparams}, the
+species--$1$ rightward rate,
 case by case in the species--$2$ occupancy, reads
 \begin{align*}
   (1,0)\colon&\ q^{-1}\beta_n=q^{-2n}+q^{2n-2};\\

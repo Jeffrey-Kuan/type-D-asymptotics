@@ -28,59 +28,87 @@
 \newcommand{\cC}{\mathcal C}\newcommand{\cS}{\mathcal S}\newcommand{\cF}{\mathcal F}
 \newcommand{\cL}{\mathcal L}\newcommand{\cO}{\mathcal O}\newcommand{\cE}{\mathcal E}
 
-\title{\bf Correlated and uncorrelated long--time asymptotics of type D ASEP}
-\author{Jeffrey Kuan}
-\date{3 July, 2026}
+\title{\bf Fluctuations of the type D ASEP:\\
+decoupling in two universality classes}
+\author{(working draft --- full version)}
+\date{\today}
 
 \begin{document}
 \maketitle
 
 \begin{abstract}
-The type D ASEP is an asymmetric  two--species interacting particle system on $\Z$, in which two separately conserved species hop, bind into a composite ``bound pair'', and split. The model, along with its reversible measures and orthogonal polynomial duality, was constructed using the representation theory of $U_q(so_{2n})$. The reversible measures and orthogonal polynomial duality are each a product of two copies of the single-species ASEP reversible measures and orthogonal polynomial duality. In this paper, we study the long-time asymptotics of the type D ASEP. 
+The type D ASEP is a two--species interacting particle system on $\Z$, the
+$n\to\infty$ degeneration of the $U_q(\so_{2n+2})$ exclusion process of Kuan, Landry,
+Lin, Park and Zhou, in which two separately conserved species hop, bind into a
+composite ``bound pair'', and split. The binding interaction couples the two species
+at the microscopic level as directly as a conservative dynamics can; the question we
+ask is whether that coupling survives to the scale of the fluctuations. We analyse the
+density and current fluctuations in two scaling regimes and prove that in both the two
+species \emph{decouple} --- but for two different reasons.
 
-In the fixed--$q$ regime, using an exact current--decoupling identity, we prove that the asymptotic hydrodynamic limit and Tracy--Widom fluctuations decouple, as predicted from the duality. In the weak--asymmetry (Edwards--Wilkinson) regime, when $q=1-c/N^2$, we prove
-that the two density fluctuation fields \underline{decouple}: each converges to a linear
+In the critically weak--asymmetry (Edwards--Wilkinson) regime $q=1-c/N^2$ we prove
+that the two density fluctuation fields \emph{decouple}: each converges to a linear
 stochastic heat equation, with no cross--coupling in either the drift or the noise,
 the limiting noises having vanishing cross--correlation (Theorem~\ref{thm:ewmain}).
-More surprisingly, we then prove that the two limiting normal random variables are \underline{correlated} with a seemingly new correlation function. The correlation is exactly equal to $(1-e^{-4c})/(4c)$, with the positive parts of the normal random variables having correlations expressed by the Bessel--Struve function. 
+The proof is self--contained modulo the classical single--species fluctuation result:
+the drift reduces, via the exact current decoupling (Proposition~\ref{prop:decouple}),
+to an autonomous single--species WASEP, while the cross--noise cancellation is controlled
+by a two--particle dual kernel bound
+(Theorem~\ref{thm:kernel}) proved here in full, including the underlying
+one--dimensional local limit estimates (\S\ref{sec:lclt}). The inter--species coupling the model nonetheless exhibits is
+shown to be purely an initial--condition effect, computed in closed form through the
+two--particle dual (Theorem~\ref{thm:closed}): a position correlation
+$(1-e^{-4c})/(4c)$ and a Bessel--Struve form for the $q$--Krawtchouk observable, both
+with $1/c$ tails.
 
-This paper, with the exception of the abstract and introduction, was written entirely by Claude Opus 4.8 and Fable 5. The proofs were then formalized in Lean using Aristotle by Harmonic AI. The human author of this paper verified the proofs manually.
-
+In the fixed--$q$ (Kardar--Parisi--Zhang) regime an exact current--decoupling identity,
+valid at every $n$ (Propositions~\ref{prop:decouple}, \ref{prop:decouplen}), makes each
+species' current an autonomous single--species ASEP, hence Tracy--Widom for every $n$
+--- proving a conjecture of \cite{REU}. Here too the species decouple: we prove an
+exact contact representation for the joint $q$--Laplace observable ---
+$\Cov(q^{2N_1},q^{2N_2})$ is a weighted sum of connected two--particle dual hitting
+probabilities, vanishing identically without the binding (Theorem~\ref{thm:cov}) ---
+while for the linear currents simulations give
+$\Cov(N_1,N_2)=(0.099\pm0.003)\sqrt s$ at $q=\tfrac12$, so that
+$\Corr(N_1,N_2)\asymp s^{-1/6}\to0$ (Conjecture~\ref{conj:cov}). The common engine is the $q$--Krawtchouk orthogonal
+self--duality, together with the fact --- which we make precise --- that the
+inter--species coupling is invisible to every equilibrium transport coefficient, so
+that in both regimes what remains of it is a transient, initial--condition--driven
+correlation rather than a feature of the limiting law.
 \end{abstract}
 
 {\small\tableofcontents}
 
 \section{Introduction}\label{sec:intro}
 
-Over the last decade or so, the topic of ``multi--species'' or ``colored'' models has received attention in the mathematical and physics liteature. For example,    \cite{Spohn14, FSS, PSSS, SpohnStoltz, PSS, MendlSpohn, vanBeijeren, DDSMS, SpohnReview, FunakiHoshino, KupiainenMarcozzi, ButelmannMF,
-  CdGHSU, NejjarMixing, FerrariNejjar, NejjarHard, ACH, BalazsSeppalainen, FerrariMartin, ANP, BorodinWheeler, AggarwalBorodin, FerrariKipnis,
-  CasiniGR, FKZ, CGMO, KuanZhou, GroeneveltWagenaar, Wagenaar, AyalaZimmer, DaCunhaSasada, CCGO, CasiniFG, dNBD, Doyon, DPSY, DEHP,
-  CorteelWilliams, CdGW, KMO, Martin, RDKKS, SKP, WCS} have all touched on the topic. For these models, when there is one ``species'', the model reduces to a previously studied model. There are many natural questions to ask for such models; for this paper, we focus on hydrodynamic limits and fluctuations within the Edwards--Wilkinson (EW) and Kardar--Parisi--Zhang (KPZ) universality classes. A priori, multi--species models may not demonstrate universality. 
-  
-  The model considered here is called the type D ASEP, in which two species of particles hop asymmetrically on a one--dimensional lattice. In contrast to the two--species ASEP, the two species of particles do not demonstrate a preference for ``priority.'' While the two species interact nontrivially, the reversible measures and orthogonal polynomial duality are a product of two copies of their single-species counterparts.  As such, one would naturally predict decoupled hydrodynamics and Tracy--Widom $F_2$ with $t^{1/3}$ fluctuations in the KPZ universality class. Indeed, this paper proves this result with relatively ``standard'' methods. 
-  
- In the weak asymmetry limit when $q\rightarrow 1$, one is in the EW universality class, whose single species asymptotics consists of the normal distribution with $t^{1/4}$ fluctuations. Although these asymptotics are not proved via duality, one may still expect to obtain two uncorrelated normal random variables. However, one actually obtains two correlated normal random variables with a seemingly new correlation function. The positive parts of the normal random variables have correlation given by a Bessel--Struve function, which appears to be new. The rigorous proofs are also backed up with numerical simulations.
-  
-  
+When several conserved species share one exclusion dynamics, the basic question is
+whether they interact at the scale of their fluctuations: do the density and current
+fields couple in the scaling limit, or does each species behave as an autonomous
+single--species process? Coupling is the generic expectation, and it is what produces
+the rich behaviour of multi--species models --- off--diagonal transport coefficients,
+distinct characteristic speeds, and the non--Gaussian or non--Tracy--Widom joint laws
+that come with them. This paper studies a model in which the answer runs the other way.
+The two species are not merely placed on a common lattice: they are dynamically
+\emph{fused} into composite pairs and later \emph{split}, so any inter--species
+coupling has a direct microscopic channel through which to act. Yet in two distinct
+scaling limits the two components decouple completely, and our aim is to locate exactly
+where the interaction goes --- and why it never reaches the limiting law.
 
 \subsection{The model}\label{sec:intromodel}
-Fix $q\in(0,1)$. The \underline{type D ASEP} was introduced by Kuan, Landry, Lin, Park and
-Zhou \cite{KLLPZ} in a summer undergraduate project, who constructed it from the quantum groups $U_q(\so_6)$ and
-$U_q(\so_8)$ ($n=2,3$ in $\so_{2n+2}$, Cartan type $D$); in further summer undergraduate projects, the construction has been extended to $U_q(\so_{10})$ \cite{RSL} and, via stochastic fusion and crystal bases, in
-\cite{BEPS}; the explicit rate matrix (displayed for general $n$ in \cite[\S2.1]{REU})
-makes sense for every $n\in\N$. The rate matrix can even be analytically continued in the parameter $q^n$. It is a continuous--time Markov process of two conserved species on $\Z$ which, beyond
-hopping, may bind into a composite \underline{bound pair} and later split. This binding is
+Fix $q\in(0,1)$. The \emph{type D ASEP} was introduced by Kuan, Landry, Lin, Park and
+Zhou \cite{KLLPZ}, who constructed it from the quantum groups $U_q(\so_6)$ and
+$U_q(\so_8)$ ($n=2,3$ in $\so_{2n+2}$, Cartan type $D$); the construction has been
+extended to $U_q(\so_{10})$ \cite{RSL}, and the explicit rate matrix (displayed for
+general $n$ in \cite[\S2.1]{REU}) makes sense for every $n\in\N$. It is a
+continuous--time Markov process of two conserved species on $\Z$ which, beyond
+hopping, may bind into a composite \emph{bound pair} and later split. This binding is
 what makes the model a stringent test of decoupling: the two species are genuinely
-interacting, not two independent copies sharing the exclusion rule. The model carries
-two self--dualities, both from prior work: a \underline{triangular} duality --- the
-original one of \cite{KLLPZ}, after Sch\"utz \cite{SchutzDual} --- and the orthogonal
-$q$--Krawtchouk self--duality of Blyschak, Burke, Kuan, Li, Ustilovsky and Zhou
-\cite{REU} (established there for $n=2,3$, conjectured for all $n$). These dualities
-are the analytic engine of this paper --- they reduce every fluctuation question to a
-computation with a handful of dual particles --- but they are not themselves our
-contribution: we use them as a tool, recording at the $n=\infty$ degeneration the
-forms we need (Theorem~\ref{thm:dual}, Corollary~\ref{cor:tri}), and the substance of
-the paper is the fluctuation analysis built on them.
+interacting, not two independent copies sharing the exclusion rule. Blyschak, Burke,
+Kuan, Li, Ustilovsky and Zhou \cite{REU} established an orthogonal $q$--Krawtchouk
+self--duality for $n=2,3$ and conjectured it for all $n$; we verify it at the
+$n=\infty$ degeneration used here (Theorem~\ref{thm:dual}(ii)). The duality is the
+analytic engine of this paper: it reduces every fluctuation question to a computation
+with a handful of dual particles.
 
 We work in the limit $n\to\infty$, in which (after rescaling time by $q^{2n}$) the
 dynamics closes on the four local states $\{0,1,2,3\}$ at each site: empty, species
@@ -105,14 +133,10 @@ rescaling.
 \subsection{Results}\label{sec:introresults}
 Decoupling might hold for one reason in one universality class and fail in another, so
 we test it in the two canonical fluctuation classes of driven diffusive systems. We
-treat two scalings. 
-
-\underline{(A) The Edwards--Wilkinson regime} \cite{EW}: asymmetry tuned to
+treat two scalings. \emph{(A) The Edwards--Wilkinson regime}: asymmetry tuned to
 the diffusive rate $q=q_N=1-c/N^2$, under diffusive space--time scaling, at any pair of
-densities $(\rho_1,\rho_2)$. 
-
-\underline{(B) The Kardar--Parisi--Zhang
-regime} \cite{KPZ}: $q\in(0,1)$ fixed, the integrated currents $N_1(s),N_2(s)$ across the origin
+densities $(\rho_1,\rho_2)$. \emph{(B) The Kardar--Parisi--Zhang
+regime}: $q\in(0,1)$ fixed, the integrated currents $N_1(s),N_2(s)$ across the origin
 from the step initial condition, at a single time $s$. Our principal theorems are
 Theorems~\ref{thm:ewmain}, \ref{thm:closed} (regime A) and \ref{thm:marg},
 \ref{thm:cov} (regime B), proved in \S\S\ref{sec:ew}--\ref{sec:tw}. The logical
@@ -124,15 +148,15 @@ coefficients (\S\ref{sec:decouple}), and a local CLT for the dual coordinates
 \subsection{Relation to previous work}\label{sec:introlit}
 Regime~(A) belongs to the nonlinear fluctuation theory of weakly asymmetric systems and
 the passage to stochastic Burgers/KPZ, due to Gon\c{c}alves and Jara \cite{GJ}, with
-uniqueness by Gubinelli and Perkowski \cite{GP} and spectral--gap--free refinements by
+uniqueness by Gubinelli and Perkowski and spectral--gap--free refinements by
 Gon\c{c}alves, Jara and Simon \cite{GJS}. The few--body estimates we need we obtain
-through the \underline{orthogonal polynomial duality} method of Ayala, Carinci and Redig
+through the \emph{orthogonal polynomial duality} method of Ayala, Carinci and Redig
 \cite{ACR,ACR2}, which reduces them to a decay bound on the few--particle dual kernel. In
 our setting the exact current decoupling (Proposition~\ref{prop:decouple}) makes the
 drift an autonomous single--species WASEP, so the duality enters only for the
 inter--species cross--noise, controlled by the type D two--particle kernel bound of
 \S\ref{sec:kernel}; the would--be slow internal mode of the bound pair never couples to
-the species current at all (Corollary~\ref{prop:sym}).
+the species current at all (Proposition~\ref{prop:sym}).
 
 For regime~(B), the single--species Tracy--Widom asymptotics are
 Borodin--Corwin--Sasamoto \cite{BCS}; the exact $q$--Laplace decoupling identity
@@ -145,14 +169,14 @@ mobility, so what remains of it is a transient, initial--condition--driven corre
 rather than a transport effect. This sets type D apart from the multi--species models
 with genuine off--diagonal transport coefficients (e.g.\ multi--species stirring, with
 multinomial mobility) and from the distinct--velocity two--species KPZ decouplings:
-type D sits instead at the \underline{umbilic point}, where the characteristic velocities
+type D sits instead at the \emph{umbilic point}, where the characteristic velocities
 coincide and both of those mechanisms are unavailable. We are not aware of another
 model combining diffusive (EW) class, diagonal compressibility, vanishing
 cross--mobility, and a nonzero shared--source inter--species correlation with a
 $\rho(c)\sim1/c$ crossover.
 
 \subsection{Organisation}\label{sec:introorg}
-Section~\ref{sec:model} defines the generator, reversible measure, and orthogonal
+Section~\ref{sec:model} fixes the generator, reversible measure, and orthogonal
 self--duality. Section~\ref{sec:decouple} proves the exact current decoupling and the
 vanishing static/dynamic cross coefficients. Section~\ref{sec:lclt} proves the
 random--walk local CLTs used throughout. Section~\ref{sec:kernel} proves the
@@ -160,29 +184,10 @@ two--particle dual kernel bound. Section~\ref{sec:ew} proves the decoupled
 Edwards--Wilkinson limit. Section~\ref{sec:cross} proves the initial--condition
 crossover. Section~\ref{sec:tw} proves the Tracy--Widom marginals at every $n$ and
 the exact $q$--Laplace decoupling of the two currents, and states the linear
-covariance asymptotics as a conjecture. A concluding Section~\ref{sec:summary} places the
-results in the asymmetry--exponent phase picture (\S\ref{sec:phase}), corroborates them
-by simulation (\S\ref{sec:numerics}), and discusses scope and open problems
-(\S\ref{sec:disc}). Physical interpretation is confined to remarks.
-
-\subsection{Generative AI statement}
-The entirety of this paper, except the abstract and introduction and alternative text, was written by Claude Code. More specifically, I used Opus 4.8 during the dates June 2--6 in Edinburgh, then Fable 5 during June 10--12, then Opus 4.8 during June 12--14 when Fable 5 was under export control. After that, during the dates of June 18--24, I used Aristotle (by Harmonic) and Opus 4.8 to formalize the proof of the paper in Lean 4. On July 3rd, a few days after Fable 5 was re--released for the public, I used Fable 5 for citation checks and exposition. To the extend possible, all files related to AI and Lean are posted on a GitHub repository: \url{https://github.com/Jeffrey-Kuan/type-D-asymptotics}
-
-The entire paper was read by myself and I take professional responsibility for the content of this paper. 
-
-\subsection{Acknowledgements}
-
-I would like to gratefully thank The Ohio State University's Generative AI initiative, specifically OTDI (Office for Technology and Digital nnovation), ASC Tech (Arts and Sciences Technology); and The Ximera Foundation for providing a Claude Max subscription.
-
-I acknowledge that some of this work was done on devices belonging to Texas A\&M University.
-
-Helpful discussions about orthogonal polynomial duality and Boltzmann–Gibbs principle occurred at ``Recent Developments in Stochastic Duality'' in Eindhoven, with support from EURANDOM and the NWO grant 613.001.753 ``Duality for interacting particle systems.'' Unfortunately, since it occurred in 2022, I no longer remember who I talked to, but any attendee of that conference should consider themselves appreciated.
- 
-I would also like to thank Patrik Ferrari and Harvey Weinberger for helpful discussions in Edinburgh, at the workshop ``Universality in the Kardar-Parisi-Zhang class and random matrix theory.''
-
-Finally, Dr. Taylor Alison Swift deserves acknowledgements for ``Female Rage: The Musical (TM)'', which helped me remain in academia. 
-
-
+covariance asymptotics as a conjecture. Section~\ref{sec:phase} records the
+asymmetry--exponent phase picture and further numerical observations.
+Section~\ref{sec:disc} discusses open problems. Physical interpretation is confined to
+remarks.
 
 \section{The model, the measure, and the duality}\label{sec:model}
 
@@ -234,7 +239,7 @@ detailed--balance identities of \eqref{eq:rates} for $\nu$.
 \begin{remark}[parameter range and the locked limit]\label{rem:range}
 Although $n$ indexes finite--dimensional representations of $\so_{2n+2}$, the
 finite--$n$ generator of \cite[\S2.1]{REU} extends analytically in $n$ and remains a
-bona fide Markov generator for a range of \underline{negative} $n$: the binding rates
+bona fide Markov generator for a range of \emph{negative} $n$: the binding rates
 $(1,2)\to(3,0)$, $(3,0)\to(1,2)$ are the constraints, both proportional to
 $2-q^{2n-2}(1-q^2)$ and hence vanishing at
 $n_{\mathrm{crit}}=\log\!\big(2q^2/(1-q^2)\big)/(2\log q)$, so the process is stochastic
@@ -261,13 +266,25 @@ particle, set
 \begin{equation}\label{eq:Dfac}
   D^{\mathrm{loc}}(\xi,\eta)=\prod_{(x,i):\,\xi_{i,x}=1}\kappa_1(\eta_{i,x}),
 \end{equation}
-a polynomial in $\eta$ of degree $|\xi|$ (the dual mass). Throughout, $L^2(\nu)$ carries
-the inner product $\langle f,g\rangle_\nu:=\E_\nu[fg]=\int fg\,\dd\nu$. By the product
-structure of $\nu$ and the single--site orthonormality of \eqref{eq:d1}, the family
+a polynomial in $\eta$ of degree $|\xi|$ (the dual mass). By the product structure of
+$\nu$ and the single--site orthonormality of \eqref{eq:d1}, the family
 $\{D^{\mathrm{loc}}(\xi,\cdot)\}$ is orthonormal in $L^2(\nu)$. It is the natural
 basis for the fluctuation fields: mass--one elements are the centred density fields,
 and the different--species mass--two element at one site is the bound--pair mode.
 \end{definition}
+
+\begin{remark}[$D^{\mathrm{loc}}$ is \emph{not} the duality function]\label{rem:norm}
+An earlier version of this draft asserted self--duality with respect to
+\eqref{eq:Dfac}. That is false, for a structural reason: every
+$\int D^{\mathrm{loc}}(\xi,\cdot)^2\dd\nu=1$, and reversibility makes
+$\langle P_tD^{\mathrm{loc}}_\xi,D^{\mathrm{loc}}_{\xi'}\rangle_\nu$ a symmetric
+matrix, so duality with respect to \eqref{eq:Dfac} would force a symmetric dual
+transition kernel --- impossible for the asymmetric, sticky--origin dual particle
+dynamics. (We also verified the failure directly: on two and three sites the
+interlacing $\cL D^{\mathrm{loc}}=D^{\mathrm{loc}}\cL^{\mathsf T}$ fails by $O(1)$
+margins at generic parameters.) The true duality function of \cite{REU} carries
+nonlocal counting factors, as follows.
+\end{remark}
 
 \begin{theorem}[orthogonal $q$--Krawtchouk self--duality]\label{thm:dual}
 For configurations $\eta,\xi$ and $i\in\{1,2\}$ let $N^-_{x-1}(\xi_i)$ be the number
@@ -286,49 +303,32 @@ interlacing $\cL D=D\cL^{\mathsf T}$ holds identically in $(q,\alpha_1,\alpha_2)
 a finite rational identity, which we have verified by computer algebra --- and the
 induction in the proof of \cite[Thm.~3.1, eqs.~(16)--(19)]{REU}, which uses only the
 two--site case and the fugacity--shift covariance of \eqref{eq:Dreu}, extends it to
-any number of sites. This is the $n=\infty$ case of the conjecture of
-\cite[Rmk.~4]{REU}; we claim no more than the verification, the method being that of
-\cite{REU}. In the lineage of orthogonal stochastic dualities from
-$U_q$--representations \cite{Groenevelt,CGRS}, this is the type D instance.
+any number of sites. This settles the $n=\infty$ degeneration of the conjecture of
+\cite[Rmk.~4]{REU} that the duality holds for all $n$. In the lineage of orthogonal
+stochastic dualities from $U_q$--representations \cite{Groenevelt,CGRS}, this is the
+type D instance.
 \end{theorem}
 
-The triangular self--duality of the type D ASEP is prior work: it is the original
-duality of \cite{KLLPZ}, the type D analogue of the Sch\"utz and
-Borodin--Corwin--Sasamoto $q$--exponential dualities \cite{SchutzDual,BCS}. We record
-only the form we use at $n=\infty$.
-
-\begin{corollary}[triangular form at $n=\infty$]\label{cor:tri}
-At $n=\infty$ the type D ASEP is self--dual with respect to the \underline{triangular}
-function
-\begin{equation}\label{eq:Dtri}
-  D^{\mathrm{tri}}(\xi,\eta)\ =\ \bone\{\xi\subseteq\eta\}\,
-  \prod_{i=1,2}\ \prod_{x:\,\xi_{i,x}=1}
-  q^{2\left(x-N^-_{x-1}(\xi_i)+N^+_{x+1}(\eta_i)\right)}.
-\end{equation}
-On configurations $\eta$ with finitely many particles to
-the right --- in particular on the step initial condition and its evolution --- the
-factors of \eqref{eq:Dtri} are uniformly bounded for each fixed dual mass, and
-\eqref{eq:Dtri} is the form of the duality used in \S\ref{sec:tw}.
-\end{corollary}
-\begin{proof}
+\begin{corollary}[triangular degeneration]\label{cor:tri}
 Self--duality with respect to \eqref{eq:Dreu} holds identically in
 $(\alpha_1,\alpha_2)$, hence coefficient--wise in $\alpha_1^{-1},\alpha_2^{-1}$; and
 since the dual generator preserves the particle numbers $(|\xi_1|,|\xi_2|)$, the
 coefficients of $\alpha_1^{-|\xi_1|}\alpha_2^{-|\xi_2|}$, glued across the dual
-sectors, again form a duality matrix. Extracting the leading coefficients as
-$\alpha_i\to0$ yields self--duality with respect to \eqref{eq:Dtri}. (Equivalently,
-the interlacing $\cL D^{\mathrm{tri}}=D^{\mathrm{tri}}\cL^{\mathsf T}$ is a direct
-check, which we have also verified by computer algebra.)
-\end{proof}
+sectors, again form a duality matrix. This extraction yields self--duality with
+respect to the \emph{triangular} function
+\begin{equation}\label{eq:Dtri}
+  D^{\mathrm{tri}}(\xi,\eta)\ =\ \bone\{\xi\subseteq\eta\}\,
+  \prod_{i=1,2}\ \prod_{x:\,\xi_{i,x}=1}
+  q^{2\left(x-N^-_{x-1}(\xi_i)+N^+_{x+1}(\eta_i)\right)},
+\end{equation}
+the type D analogue of the Sch\"utz and Borodin--Corwin--Sasamoto $q$--exponential
+dualities \cite{Schutz,BCS}. On configurations $\eta$ with finitely many particles to
+the right --- in particular on the step initial condition and its evolution --- the
+factors of \eqref{eq:Dtri} are uniformly bounded for each fixed dual mass, and
+\eqref{eq:Dtri} is the form of the duality used in \S\ref{sec:tw}.
+\end{corollary}
 
-The following is \cite[Lem.~2.1]{ACR}, which we restate for an \underline{arbitrary}
-measure $\varpi$ orthogonalising the duality family --- ACR state it for the standard
-reversible measure $\nu$, whereas in \S\ref{sec:ew} we apply it with the
-sector--reweighted $\varpi\ne\nu$ of Proposition~\ref{prop:orth} below. The proof, identical
-to theirs and using only orthogonality and the duality relation (not reversibility of
-$\varpi$), is a single line, included for completeness.
-
-\begin{lemma}[duality covariance; {after \cite[Lem.~2.1]{ACR}}]\label{lem:acr}
+\begin{lemma}[duality covariance; {\cite[Lem.~2.1]{ACR}}]\label{lem:acr}
 Let $\{D(\xi,\cdot)\}$ be a family of duality functions for the process which is
 orthogonal in $L^2(\varpi)$ for some measure $\varpi$,
 $\int D(\xi,\eta)D(\xi',\eta)\dd\varpi=\delta_{\xi,\xi'}a(\xi)$. Then for all
@@ -347,52 +347,54 @@ survives. The interchange of sum and integral is justified by the finite mass of
 $\xi$ (only finitely many $\xi''$ are reachable in the particle--conserving dual).
 \end{proof}
 
-We record the orthogonality of the duality functions in the form used in
-\S\ref{sec:ew}. On a finite lattice $\Lambda$ define the \underline{sector--reweighted}
-blocking measure and norm functions ($N=N(\zeta)$ the particle number, up to
-normalisation)
+\begin{remark}[the exact orthogonality relation]\label{rem:orthstatus}
+The precise orthogonality satisfied by the type D duality functions is the
+two--point, two--species specialisation of \cite[Thm.~3.2]{CFG20}, the
+single--species input cited in \cite[\S3.1]{REU}. On a finite lattice $\Lambda$ of
+$|\Lambda|$ sites define the \emph{sector--reweighted} blocking measure and norm
+functions ($N=N(\zeta)$ the particle number, all up to normalisation)
 \begin{equation}\label{eq:omegadef}
   \varpi_\alpha(\zeta)\ \propto\ \mu_\alpha(\zeta)\,q^{N(N-1)}\,
   \big(\alpha q^{2N-2|\Lambda|};q^2\big)_\infty,\quad
   g_\alpha(\zeta)\ \propto\ q^{2N(N-1)}
   \big(\alpha q^{2N-2|\Lambda|};q^2\big)_\infty\big(\alpha q^{-2N};q^2\big)_\infty,
 \end{equation}
-and let $\bar D$ denote \eqref{eq:Dreu} read with the \underline{process} configuration in
-the $N^-$ slot and the dual in the $N^+$ slot,
+with window $\alpha\in(0,q^{2|\Lambda|})$, and let $\bar D$ denote \eqref{eq:Dreu}
+read with the \emph{process} configuration in the $N^-$ slot and the dual in the
+$N^+$ slot,
 \[
   \bar D(\xi,\eta)=\prod_{i=1,2}\ \prod_{x:\,\xi_{i,x}=\eta_{i,x}=1}
-  \Big(1-\frac{q^{2\left(x-N^-_{x-1}(\eta_i)+N^+_{x+1}(\xi_i)\right)}}{\alpha_i}\Big).
+  \Big(1-\frac{q^{2\left(x-N^-_{x-1}(\eta_i)+N^+_{x+1}(\xi_i)\right)}}{\alpha_i}\Big);
 \]
-
-\begin{proposition}[orthogonality; {\cite[Thm.~3.2]{CFG20}}, {\cite[\S3.1]{REU}}]
-\label{prop:orth}
-For $\alpha_1,\alpha_2\in(0,q^{2|\Lambda|})$, set
-$\varpi:=\varpi_{\alpha_1}\otimes\varpi_{\alpha_2}$. Then $\varpi$ is a reversible
-measure, and the functions $\bar D$ are orthogonal in $L^2(\varpi)$:
+transposing the interlacing of Theorem~\ref{thm:dual}(ii), $\bar D$ is again a
+self--duality function. Then
 \begin{equation}\label{eq:orthexact}
   \sum_\eta \varpi_{\alpha_1}(\eta_1)\,\varpi_{\alpha_2}(\eta_2)\,
   \bar D(\xi,\eta)\,\bar D(\xi',\eta)\ =\ \delta_{\xi,\xi'}\,a(\xi),\qquad
-  a(\xi)=\prod_{i=1,2}\frac{g_{\alpha_i}(\xi_i)}{\varpi_{\alpha_i}(\xi_i)}.
+  a(\xi)=\prod_{i=1,2}\frac{g_{\alpha_i}(\xi_i)}{\varpi_{\alpha_i}(\xi_i)},
 \end{equation}
-This is the two--species product of the single--species $q$--Krawtchouk orthogonality
-\cite[Thm.~3.2]{CFG20}, as noted in \cite[\S3.1]{REU}; being a statement about the
-duality functions and the measure, it is independent of $n$. Consequently
-Lemma~\ref{lem:acr} applies with $(\varpi,\bar D,a)$.
-\end{proposition}
-
-\begin{remark}[orientation, density window, infinite volume]\label{rem:orthstatus}
-Three points on the use of Proposition~\ref{prop:orth} in regime (A). \underline{Orientation:}
-$\bar D$ places the process in the \underline{left} counts $N^-(\eta_i)$, which are a.s.\
-finite under $\nu$ on $\Z$; the opposite orientation \eqref{eq:Dreu} degenerates there
-($q^{2N^+(\eta)}=0$ a.s.), and the fix is to transpose the slots, not the lattice (the
-reflected generator fails the interlacing). \underline{Density window:} under $q=1-c/N^2$ on
-$|\Lambda|=O(N)$ sites the window is asymptotically $\alpha_i<1$, i.e.\ both densities
-below $\tfrac12$; both above follows by particle--hole symmetry, while the mixed case
-$\rho_1<\tfrac12<\rho_2$ is not reached and is deferred (signed--measure version of
-\cite[Thm.~3.2]{CFG20}). \underline{Infinite volume:} the replacement of $\Lambda=[-KN,KN]$
-by $\Z$ in the correlation functions, and the uniformity of the resulting constants,
-is deferred to the future work. In regime (B) we use the triangular duality of
-Corollary~\ref{cor:tri} instead, where none of this enters.
+which we have verified to machine precision for the $n=\infty$ rates on two and
+three sites (off--diagonals and the norm formula). Three observations. (i) The
+reweighting in \eqref{eq:omegadef} depends only on the conserved particle numbers,
+so $\varpi:=\varpi_{\alpha_1}\otimes\varpi_{\alpha_2}$ is again reversible, and
+Lemma~\ref{lem:acr} applies with $(\varpi,\bar D,a)$. (ii) In the orientation
+$\bar D$ the process enters through the \emph{left} counts $N^-(\eta_i)$, which are
+almost surely finite under $\nu$ on $\Z$: the degeneration that affects
+\eqref{eq:Dreu} in infinite volume (where $q^{2N^+(\eta)}=0$ a.s.) does not occur ---
+the resolution is to transpose the slots, not to reflect the lattice, which is
+impossible (the reflected generator fails the interlacing, consistently with the
+reflection corresponding to the non--stochastic continuation $n<n_{\mathrm{crit}}$
+of Remark~\ref{rem:range}). (iii) In the regime (A) scaling, $q=1-c/N^2$ on
+$|\Lambda|=O(N)$ sites, the window is asymptotically $\alpha_i<1$, i.e.\ both
+densities below $\tfrac12$; the case of both densities above $\tfrac12$ follows by
+the particle--hole--plus--reflection symmetry of \eqref{eq:rates} (which flips both
+species), while the mixed case $\rho_1<\tfrac12<\rho_2$ is \emph{not} reached by the
+window and is deferred (e.g.\ via the signed--measure version of the orthogonality
+noted in \cite[Rmk.\ after Thm.~3.2]{CFG20}). The reweighting
+is bounded above and below by constants (Lemma~\ref{lem:sector}). The remaining
+infinite--volume step --- replacing $[-KN,KN]$ by $\Z$ in the correlation functions
+--- is deferred to the final version. In regime (B) we use the triangular duality
+of Corollary~\ref{cor:tri} instead.
 \end{remark}
 
 \noindent Lemma~\ref{lem:acr} reduces every space--time correlation of degree--$k$
@@ -404,58 +406,77 @@ inter--species cross--noise (\S\ref{sec:ew}).
 \section{Exact current decoupling and vanishing transport coefficients}\label{sec:decouple}
 
 The structural fact behind every decoupling result in this paper is elementary and
-exact, holding at the level of the microscopic rates and at \underline{every} $n$: each
-species' current does not see the other. We prove this, with its consequences ---
-autonomous single--species marginals, a diagonal hydrodynamic flux Hessian, and a
-coupling confined to correlated jumps --- in Proposition~\ref{prop:decouple}, and then
-that the two equilibrium cross--transport coefficients vanish identically
+exact, holding at the level of the microscopic rates: at $n=\infty$ each species'
+current does not see the other. We prove this first (Proposition~\ref{prop:decouple}),
+then draw its two consequences --- that each marginal is an autonomous single--species
+ASEP, and that the two equilibrium cross--transport coefficients vanish identically
 (Proposition~\ref{prop:cross}). Everything afterwards is the question of what residual
 coupling can still survive once these channels are closed.
 
 \begin{proposition}[exact current decoupling]\label{prop:decouple}
-For every $n\in\N\cup\{\infty\}$ the microscopic species--$i$ current across a bond
-$(x,x{+}1)$ equals the single--species ASEP current in $\eta_i$ alone,
+At $n=\infty$ the microscopic species--$i$ current across a bond $(x,x{+}1)$ equals the
+single--species ASEP current in $\eta_i$ alone,
 \begin{equation}\label{eq:jdecouple}
   j_i=r_R\,\eta_{i,x}(1-\eta_{i,x+1})-r_L\,(1-\eta_{i,x})\eta_{i,x+1},
-  \qquad r_R=q^{-1}\beta_n,\ \ r_L=q\,\beta_n,\ \ \beta_n=q^{1-2n}+q^{2n-1},
+  \qquad r_R=1,\ r_L=q^2,
 \end{equation}
-with no dependence on the other species' occupancy; at $n=\infty$, after rescaling time
-by $q^{2n}$, the rates become $r_R=1$, $r_L=q^2$ (those of \eqref{eq:rates}).
-Consequently, for every $n$:
+with no dependence on the other species. Consequently
 \begin{enumerate}
-\item[\textup{(a)}] each marginal density field evolves as an \underline{autonomous}
+\item[\textup{(a)}] each marginal density field evolves as an \emph{autonomous}
 single--species ASEP;
-\item[\textup{(b)}] the macroscopic flux $\E_{\nu_\rho}[j_i]=(r_R-r_L)\,\rho_i(1-\rho_i)$
-is a function of $\rho_i$ alone, so all cross derivatives vanish,
+\item[\textup{(b)}] all cross derivatives of the macroscopic flux vanish identically,
 $\partial_{\rho_1}j_2=\partial^2_{\rho_1}j_2=\partial_{\rho_1}\partial_{\rho_2}j_2=0$,
-and the two--species hydrodynamic flux Hessian is diagonal;
+so the two--species hydrodynamic flux Hessian is diagonal;
 \item[\textup{(c)}] the inter--species coupling is carried entirely by correlated
-jumps --- bound--pair translations, swaps, and binding/splitting --- none of which
-alters \eqref{eq:jdecouple}.
+jumps --- bound--pair translations, swaps, and binding/splitting.
 \end{enumerate}
 \end{proposition}
 \begin{proof}
-We compute the signed rate of species--$1$ transfer across $(x,x{+}1)$,
-$j_1=\sum_{\text{transitions}}r(\cdot)\,\Delta\eta_1$, over each species--$2$ occupancy
-of the bond, and show it is independent of that occupancy; species $2$ is symmetric.
+The species--$1$ current across $(x,x{+}1)$ is the signed rate of species--$1$
+transfer, $j_1=\sum_{\text{transitions}}r(\cdot)\,\Delta\eta_{1}$, summed over the bond
+transitions of \eqref{eq:rates}. We collect the rightward part (the four configurations
+with $\eta_{1,x}=1,\ \eta_{1,x+1}=0$) and the leftward part (the four with
+$\eta_{1,x}=0,\ \eta_{1,x+1}=1$), in each case running over every species--$2$
+occupancy of the bond.
 
-\underline{The limit $n=\infty$} \textup{(}rates \eqref{eq:rates}\textup{)}. Rightward:
-$(1,0)\!\to\!(0,1)$, the pair hop $(3,0)\!\to\!(0,3)$, and $(3,2)\!\to\!(2,3)$ (species
-$1$ sliding past the pair) each at rate $1$, and from $(1,2)$ the merge
-$(1,2)\!\to\!(0,3)$ at rate $\eps$ plus the swap $(1,2)\!\to\!(2,1)$ at rate $q^2$, with
-$\eps+q^2=1$; all four occupancies give $r_R=1$. Leftward: $(0,1)\!\to\!(1,0)$,
-$(2,3)\!\to\!(3,2)$, $(2,1)\!\to\!(1,2)$ at rate $q^2$, and from $(0,3)$ the pair hop
-$(0,3)\!\to\!(3,0)$ at rate $q^4$ plus the split $(0,3)\!\to\!(1,2)$ at rate $q^2\eps$,
-with $q^4+q^2\eps=q^2$; all give $r_L=q^2$. (The channels $(2,1)\!\to\!(0,3)$,
-$(0,3)\!\to\!(2,1)$ and the mixed hops $(3,1)\!\leftrightarrow\!(1,3)$ leave $\eta_1$ on
-the bond unchanged.)
+\emph{Rightward.} $(1,0)\!\to\!(0,1)$ at rate $1$; $(3,0)\!\to\!(0,3)$ (pair hop) at
+rate $1$; $(3,2)\!\to\!(2,3)$ (species $1$ sliding past the pair) at rate $1$; and from
+$(1,2)$, species $1$ leaves both by the merge $(1,2)\!\to\!(0,3)$ at rate $\eps$ and by
+the swap $(1,2)\!\to\!(2,1)$ at rate $q^2$, summing to $\eps+q^2=1$. All four give
+rightward rate $1=r_R$, independently of the species--$2$ occupant.
 
-\underline{Finite $n$} \textup{(}the generator of \cite[\S2.1]{REU}, constructed in
-\cite{KLLPZ} for $n=2,3$\textup{)}. Four further channels are present that vanish in the
-rescaled limit: the left merges $(1,2),(2,1)\to(3,0)$ of rate $2-q^{2n-2}(1-q^2)$ and
-the left splits $(3,0)\to(1,2),(2,1)$ of rate $q^{-2}\big(2-q^{2n-2}(1-q^2)\big)$. With
+\emph{Leftward.} $(0,1)\!\to\!(1,0)$ at rate $q^2$; $(2,3)\!\to\!(3,2)$ at rate $q^2$;
+the swap $(2,1)\!\to\!(1,2)$ at rate $q^2$; and from $(0,3)$, species $1$ reaches $x$
+both by the pair hop $(0,3)\!\to\!(3,0)$ at rate $q^4$ and by the split
+$(0,3)\!\to\!(1,2)$ at rate $q^2\eps$, summing to $q^4+q^2\eps=q^4+q^2(1-q^2)=q^2$. All
+four give leftward rate $q^2=r_L$. (The complementary merge/split channels
+$(2,1)\!\to\!(0,3)$, $(0,3)\!\to\!(2,1)$ and the mixed hop
+$(3,1)\!\leftrightarrow\!(1,3)$ leave $\eta_1$ on the bond unchanged and do not
+contribute.) Thus the species--$2$ occupant never changes the species--$1$ transfer
+rate, giving \eqref{eq:jdecouple}; the species--$2$ current is symmetric. Claim (a) is immediate. For (b), the hydrodynamic
+flux is $\E_{\nu_\rho}[j_i]=r_R\rho_i(1-\rho_i)-r_L(1-\rho_i)\rho_i=(1-q^2)\rho_i(1-\rho_i)$,
+a function of $\rho_i$ alone, so every $\rho_j$--derivative with $j\ne i$ vanishes, as
+does $\partial_{\rho_1}\partial_{\rho_2}j_i$. Claim (c) is the residual: the only
+transitions correlating the two species are the bound--pair hops, swaps and
+split/merge events, none of which alters \eqref{eq:jdecouple}.
+\end{proof}
+
+\begin{proposition}[current decoupling at every $n$]\label{prop:decouplen}
+For every finite $n$, with the rates of \cite[\S2.1]{REU} (constructed in \cite{KLLPZ}
+for $n=2,3$), the species--$i$ transfer rates across a bond are
+\[
+  r_R=q^{-1}\beta_n,\qquad r_L=q\,\beta_n,\qquad \beta_n=q^{1-2n}+q^{2n-1},
+\]
+independently of the species--$j$ occupancy, $j\ne i$. Hence each marginal is an
+autonomous ASEP for \emph{every} $n$, and \eqref{eq:rates} is the entrywise
+$q^{2n}$--rescaled $n\to\infty$ limit of the finite--$n$ generator.
+\end{proposition}
+\begin{proof}
+At finite $n$ four channels are present that vanish at $n=\infty$: the left merges
+$(1,2)\to(3,0)$, $(2,1)\to(3,0)$, of rate $2-q^{2n-2}(1-q^2)$, and the left splits
+$(3,0)\to(1,2)$, $(3,0)\to(2,1)$, of rate $q^{-2}\big(2-q^{2n-2}(1-q^2)\big)$. With
 $\sigma_n:=(q^{n-1}-q^{1-n})^2=q^{2n-2}-2+q^{2-2n}$, the species--$1$ rightward rate,
-case by case in the species--$2$ occupancy, reads
+case by case in the species--$2$ bond occupancy, reads
 \begin{align*}
   (1,0)\colon&\ q^{-1}\beta_n=q^{-2n}+q^{2n-2};\\
   (3,0)\colon&\ \underbrace{q^{-2}\sigma_n}_{(3,0)\to(0,3)}
@@ -464,21 +485,12 @@ case by case in the species--$2$ occupancy, reads
     +\underbrace{\sigma_n}_{(1,2)\to(2,1)}\ =\ q^{-2n}+q^{2n-2};\\
   (3,2)\colon&\ q^{-1}\beta_n,
 \end{align*}
-and the leftward rates all equal $q\beta_n=q^{2-2n}+q^{2n}$ (in the $(0,3)$ background,
-the pair hop $q^2\sigma_n$ plus the split $2q^2+q^{2-2n}-q^{4-2n}$; in the $(2,1)$
-background, the swap $\sigma_n$ plus the left merge $2-q^{2n-2}(1-q^2)$). Hence
-$r_R=q^{-1}\beta_n$, $r_L=q\beta_n$ for every $n$, giving \eqref{eq:jdecouple}; the
-entrywise $q^{2n}$--rescaled $n\to\infty$ limit recovers \eqref{eq:rates}. We verified
-the full statement and this limit by computer algebra on the $16\times16$ generator of
+and the leftward rates all equal $q\beta_n=q^{2-2n}+q^{2n}$: in the $(0,3)$
+background, the pair hop $q^2\sigma_n$ plus the split $2q^2+q^{2-2n}-q^{4-2n}$; in
+the $(2,1)$ background, the swap $\sigma_n$ plus the left merge $2-q^{2n-2}(1-q^2)$.
+Species $2$ is symmetric. We have additionally verified the full statement, and the
+rescaled $n\to\infty$ limit, by computer algebra on the $16\times16$ generator of
 \cite[\S2.1]{REU}.
-
-\underline{Consequences.} (a) is immediate from \eqref{eq:jdecouple}. For (b), the
-hydrodynamic flux $\E_{\nu_\rho}[j_i]=(r_R-r_L)\rho_i(1-\rho_i)$ is a function of
-$\rho_i$ alone, so every $\rho_j$--derivative with $j\ne i$ vanishes, as does
-$\partial_{\rho_1}\partial_{\rho_2}j_i$. (c) is the residual: the only transitions
-correlating the two species --- bound--pair hops, swaps, and the merge/split channels
-(including the extra ones present at finite $n$) --- are precisely those absent from
-\eqref{eq:jdecouple}, and by the tally above none alters the marginal rate.
 \end{proof}
 
 For the transport coefficients introduce the bond function
@@ -486,7 +498,7 @@ For the transport coefficients introduce the bond function
   V_x:=\big[\bone_{(3,0)}+q^4\bone_{(0,3)}-q^2\bone_{(1,2)}-q^2\bone_{(2,1)}\big]_{x,x+1},
   \qquad \bone_{(a,b)}=\bone\{\omega_x=a,\omega_{x+1}=b\},
 \end{equation}
-the carr\'e du champ of the only events moving \underline{both} species across the bond
+the carr\'e du champ of the only events moving \emph{both} species across the bond
 (bound--pair hops, sign $+$; swaps, sign $-$).
 
 \begin{proposition}[vanishing cross coefficients]\label{prop:cross}
@@ -518,18 +530,15 @@ Proposition~\ref{prop:cross} recurs three times in \S\ref{sec:ew}.
 
 The dual processes below reduce, after passing to a relative coordinate, to
 one--dimensional walks. We collect the local CLTs they require. Throughout, a
-\underline{driftless finite--range walk} on $\Z$ means a continuous--time, irreducible,
+\emph{driftless finite--range walk} on $\Z$ means a continuous--time, irreducible,
 aperiodic, mean--zero walk with bounded jump range.
 
 \begin{lemma}[free and perturbed kernel bounds]\label{lem:free}
 Let $R^0$ be the homogeneous symmetric nearest--neighbour walk of total rate $a>0$.
-Then $\PP(R^0(t)=r)\le C/\sqrt{1+t}$ for all $t\ge0$, $r\in\Z$, with $C=C(a)$ --- the
-classical local central limit / on--diagonal heat--kernel estimate for the
-continuous--time simple random walk (the special case $m\equiv1$ of \eqref{eq:tildeR}
-below; see also \cite{LawlerLimic}).
+Then $\PP(R^0(t)=r)\le C/\sqrt{1+t}$ for all $t\ge0$, $r\in\Z$, with $C=C(a)$.
 Moreover, let $\widetilde R$ be an irreducible walk on $\Z$ (or on a state space
 graph--isomorphic to $\Z$, such as $\Z\setminus\{0\}$ relabelled) which is
-\underline{reversible} with respect to a measure $m$ with $c_1\le m\le c_2$, has jump range
+\emph{reversible} with respect to a measure $m$ with $c_1\le m\le c_2$, has jump range
 $\le\varrho$ and total exit rates $\le\Lambda$, and whose nearest--neighbour
 conductances are bounded below, $m(x)\,r(x,x+1)\ge\delta>0$ for all $x$. Then
 \begin{equation}\label{eq:tildeR}
@@ -537,15 +546,22 @@ conductances are bounded below, $m(x)\,r(x,x+1)\ge\delta>0$ for all $x$. Then
   \qquad C=C(c_1,c_2,\delta,\Lambda,\varrho).
 \end{equation}
 Every perturbed walk in this paper satisfies the hypotheses: the no--merge relative
-walk on $\Z\setminus\{0\}$ of Lemma~\ref{lem:Rlclt} below and of Lemma~\ref{lem:occ} in \S\ref{sec:cross} is reversible
+walk on $\Z\setminus\{0\}$ of Lemmas~\ref{lem:Rlclt} and \ref{lem:occ} is reversible
 with respect to counting measure (the swap channel is symmetric), with $\delta\ge
 q^2$, so its constants are uniform as $q=q_N\to1$; the full relative walk of
 \S\ref{sec:tw} is reversible with respect to $m(0)=q^{-2}$, $m\equiv1$ otherwise, with
 $\delta=\min(\eps,q^2)>0$ at fixed $q$.
 \end{lemma}
 \begin{proof}
-The bound for $R^0$ is the special case $m\equiv1$ of \eqref{eq:tildeR}, which we now
-prove. The bound is trivial for $t\le1$, so let $t\ge1$. On $\ell^2(m)$
+For $R^0$, Fourier inversion gives
+$\PP(R^0(t)=r)=\frac1{2\pi}\int_{-\pi}^\pi e^{-a t(1-\cos\theta)}e^{-ir\theta}\dd\theta
+\le\frac1{2\pi}\int_{-\pi}^\pi e^{-at(1-\cos\theta)}\dd\theta$. For $t\le1$ this is
+$\le1\le\sqrt2/\sqrt{1+t}$. For $t\ge1$, using $1-\cos\theta\ge\frac{2}{\pi^2}\theta^2$
+on $[-\pi,\pi]$,
+$\int_{-\pi}^\pi e^{-at(1-\cos\theta)}\dd\theta\le\int_{-\infty}^\infty
+e^{-\frac{2a}{\pi^2}t\theta^2}\dd\theta=\pi\sqrt{\tfrac{\pi}{2at}}\le C/\sqrt t$.
+
+For $\widetilde R$, the bound is trivial for $t\le1$, so let $t\ge1$. On $\ell^2(m)$
 the generator is self--adjoint with Dirichlet form
 $\cE(f)=\tfrac12\sum_{x,y}m(x)r(x,y)\big(f(y)-f(x)\big)^2
 \ \ge\ \delta\sum_x\big(f(x+1)-f(x)\big)^2$. On $\Z$ the discrete Nash inequality
@@ -563,37 +579,26 @@ semigroups \cite{CKS}, $\sup_{x,y}p_t(x,y)/m(y)\le Ct^{-1/2}$, and $m\le c_2$ gi
 
 The Edwards--Wilkinson kernel requires, in addition, control of the slow sojourn at the
 origin created by the small split rate. Recall $\eps=1-q^2$ and set
-$\nu_{\mathrm{sp}}:=2q^2\eps$. The relevant relative walk is $R:=X_2-X_1$, the
-difference of the positions $X_1,X_2$ of the two different--species dual particles (the
-pair analysed in \S\ref{sec:kernel}). Off $\{-1,0,1\}$ it agrees with a rate--$(1+q^2)$
-symmetric walk; its origin $R=0$ (the bound pair) is sticky, held for an
-$\Exp(\nu_{\mathrm{sp}})$ time and re--entered only from $\pm1$ at rate $\eps$.
+$\nu_{\mathrm{sp}}:=2q^2\eps$. The relevant relative walk (defined in
+\S\ref{sec:kernel}) agrees with a rate--$(1+q^2)$ symmetric walk off $\{-1,0,1\}$, has a
+sticky origin held for an $\Exp(\nu_{\mathrm{sp}})$ time, and is re--entered at the
+origin only from $\pm1$ at rate $\eps$.
 
 \begin{lemma}[defected marginal local CLT]\label{lem:Rlclt}
 Let $R$ be the walk just described, started at $R(0)=0$. For $\nu_{\mathrm{sp}}t\le K$,
-\begin{equation}\label{eq:Rbound}
+\[
   \PP\big(R(t)=r\big)\ \le\ \frac{C}{\sqrt{1+t}}\ +\ \delta_{r,0}\,e^{-\nu_{\mathrm{sp}}t},
   \qquad C=C(K,q).
-\end{equation}
+\]
 \end{lemma}
 \begin{proof}
 Write $\nu=\nu_{\mathrm{sp}}$, so $\eps=\nu/(2q^2)$, and recall $\nu t\le K$,
 $\nu\le2$; all constants are $C=C(K,q)$. For $t\le1$ the bound is trivial, so let
-$t\ge1$. We argue by cases on whether $r=0$: for $r\ne0$ the claim \eqref{eq:Rbound}
-reads $\PP(R(t)=r)\le C/\sqrt{1+t}$, established below as \eqref{eq:Roff}, and for
-$r=0$ it reads $\PP(R(t)=0)\le e^{-\nu t}+C/\sqrt{1+t}$, established as
-\eqref{eq:Rzero}. We bound $R$ by splitting its path into excursions away from the sticky origin. The
-expected number of these excursions is at most $K$ --- this is where the window
-hypothesis $\nu_{\mathrm{sp}}t\le K$ enters, as quantified in the \underline{Occupation
-of the adjacent set} step below --- while a single excursion is controlled by comparing
-$R$ with two auxiliary walks. The \underline{no--merge}
-walk $\widehat R$ is $R$ with the merge channel deleted: on $\Z\setminus\{0\}$ it agrees
-with $R$, but once it leaves the origin it never returns, so it is a perturbed walk of
-the type of Lemma~\ref{lem:free} and satisfies \eqref{eq:tildeR} with constants uniform
-in $q\to1$. Killing $\widehat R$ at rate $\eps$ while in $\{\pm1\}$ (the merge rate)
-gives a sub--probability walk whose kernel is dominated by that of $\widehat R$, since
-killing only removes mass. A single no--merge excursion of $R$ agrees in law with this
-killed walk, so for $r\ne0$ and any starting point in $\{\pm1\}$,
+$t\ge1$. Three walks appear: $R$ itself; the \emph{no--merge} walk $\widehat R$ on
+$\Z\setminus\{0\}$ (the rates of $R$ with the merge channel removed), which satisfies
+\eqref{eq:tildeR} with constants uniform in $q\to1$; and the walk killed at the
+merges, whose kernel is dominated by that of $\widehat R$, since killing only removes
+mass: for $r\ne0$ and any starting point in $\{\pm1\}$,
 \begin{equation}\label{eq:killdom}
   \PP_{\pm1}\big(R(u)=r,\ \text{no merge in }[0,u]\big)
   =\E_{\pm1}\Big[\bone\{\widehat R(u)=r\}\,e^{-\eps\Lambda_u}\Big]
@@ -601,19 +606,18 @@ killed walk, so for $r\ne0$ and any starting point in $\{\pm1\}$,
 \end{equation}
 $\Lambda_u$ the occupation of $\{\pm1\}$ by $\widehat R$.
 
-\underline{Atom.} On $\{t<\tau_1\}$, $\tau_1\sim\Exp(\nu)$ the first split, the walk has
+\emph{Atom.} On $\{t<\tau_1\}$, $\tau_1\sim\Exp(\nu)$ the first split, the walk has
 never left $0$: this is the term $\delta_{r,0}e^{-\nu t}$.
 
-\underline{Occupation of the adjacent set.} Let
+\emph{Occupation of the adjacent set.} Let
 $g(t):=\int_0^t\PP(R(u)\in\{\pm1\})\dd u$. Exits from $0$ occur at rate $\nu$ while at
-$0$ (the two splits; pair hops do not change $R$), so the expected number of exits from
-$0$ --- equivalently, of excursions --- by time $t$ is
-$\nu\int_0^t\PP(R(u)=0)\dd u\le\nu t\le K$, the window hypothesis. By the strong Markov property
+$0$ (the two splits; pair hops do not change $R$), so the expected number of exits by
+time $t$ is $\nu\int_0^t\PP(R(u)=0)\dd u\le\nu t\le K$. By the strong Markov property
 at each exit and \eqref{eq:killdom}, each excursion contributes to $g$ at most
 $\int_0^tC(1+v)^{-1/2}\dd v\le C\sqrt t$ in expectation, whence
 $g(t)\le(1+K)\,C\sqrt t$.
 
-\underline{Off the origin.} Fix $r\ne0$. On $\{R(t)=r\}$ the time $t$ lies in an excursion,
+\emph{Off the origin.} Fix $r\ne0$. On $\{R(t)=r\}$ the time $t$ lies in an excursion,
 begun at an exit from $0$; the exit times form a point process of intensity
 $\nu\,\bone\{R(u)=0\}\dd u$, and given an exit at $u$ the probability that its
 excursion still runs at time $t$ with $R(t)=r$ is bounded by \eqref{eq:killdom}.
@@ -632,13 +636,9 @@ $C\nu\eps\int_0^t\sqrt u\,(1+t-u)^{-1/2}\dd u\le C\nu\eps\,\sqrt t\cdot2\sqrt t
 =C\nu\eps\,t$, and multiplying by $\sqrt{1+t}$,
 $\nu\eps\,t\sqrt{1+t}\le2\nu\eps t^{3/2}=2(\nu t)\cdot\eps\sqrt t
 =2(\nu t)\cdot\frac{\sqrt\nu\,\sqrt{\nu t}}{2q^2}\le\frac{\sqrt2\,K^{3/2}}{q^2}\le C$,
-so this part too is $\le C(1+t)^{-1/2}$. Adding the exponential and occupation parts,
-we obtain, for every $r\ne0$,
-\begin{equation}\label{eq:Roff}
-  \PP\big(R(t)=r\big)\ \le\ \frac{C}{\sqrt{1+t}}.
-\end{equation}
+so this part too is $\le C(1+t)^{-1/2}$.
 
-\underline{At the origin.} Decomposing $\{R(t)=0\}$ on the last merge before $t$ (or none),
+\emph{At the origin.} Decomposing $\{R(t)=0\}$ on the last merge before $t$ (or none),
 \[
   \PP\big(R(t)=0\big)=e^{-\nu t}
   +\eps\int_0^t\PP\big(R(u)\in\{\pm1\}\big)\,e^{-\nu(t-u)}\dd u
@@ -647,61 +647,21 @@ we obtain, for every $r\ne0$,
 \]
 using the off--origin bound just proved at $r=\pm1$; and
 $\eps\sqrt t\,\sqrt{1+t}\le2\eps t=\nu t/q^2\le K/q^2$ shows
-$C\eps\sqrt t\le C(1+t)^{-1/2}$, i.e.
-\begin{equation}\label{eq:Rzero}
-  \PP\big(R(t)=0\big)\ \le\ e^{-\nu t}+\frac{C}{\sqrt{1+t}}.
-\end{equation}
-
-\underline{Conclusion.} The bound \eqref{eq:Rbound} now follows from the two cases. If
-$r\ne0$ then $\delta_{r,0}=0$ and \eqref{eq:Roff} is exactly \eqref{eq:Rbound}. If
-$r=0$ then $\delta_{r,0}=1$ and
-\eqref{eq:Rzero} is exactly \eqref{eq:Rbound}, its atom $e^{-\nu t}$ being the
-never--left contribution of the \underline{Atom} step. This proves \eqref{eq:Rbound}
-for all $r\in\Z$ at $t\ge1$, and the case $t\le1$ is the trivial bound noted at the
-start.
+$C\eps\sqrt t\le C(1+t)^{-1/2}$. Collecting the three displays gives the claim.
 \end{proof}
 
-The relative coordinate is now controlled; we turn to $S=X_1+X_2$. The Fourier argument
-used for $R^0$ is unavailable, because $S$ and $R$ are driven by the same jumps, so once
-the $R$--path is fixed the increments of $S$ are neither independent nor identically
-distributed. We use anti--concentration instead. The mechanism: the $R$--path, even
-together with all jump times, does not determine $S$. While the two particles are apart,
-a relative step can be realised either by particle $1$ moving or by particle $2$ moving,
-the two realisations changing $S$ in opposite directions; and a bound--pair hop (which
-leaves $R$ fixed) changes $S$ by $\pm2$. Each such choice is an independent coin whose
-two outcomes have probability bounded away from $0$ and $1$. Conditioning on all the data
-\underline{except} these choices, $S(t)$ is a deterministic value plus a sum of $M$
-independent $\pm$ steps; the Kolmogorov--Rogozin inequality (Lemma~\ref{lem:KR}), an
-anti--concentration bound on the largest atom of a sum of independent variables, spreads
-such a sum over a window of width $\sqrt M$, and jumps occur at rate $\ge1$, so
-$M\gtrsim t$. We make this precise; the data conditioned on is named the \underline{unsigned
-skeleton} in the lemma.
-
-\begin{lemma}[Kolmogorov--Rogozin anti--concentration; {\cite[Ch.~III]{Petrov}}]
-\label{lem:KR}
-For an integer--valued random variable $Y$, let $Q(Y):=\sup_{x\in\Z}\PP(Y=x)$ denote
-its largest atom. There is a universal constant $C$ such that, for any independent
-integer--valued $Y_1,\dots,Y_n$,
-\[
-  Q\big(Y_1+\cdots+Y_n\big)\ \le\
-  C\Big(\textstyle\sum_{j=1}^n\big(1-Q(Y_j)\big)\Big)^{-1/2}.
-\]
-In particular, if each $Y_j$ takes two values, each of probability at least $\delta$,
-then $Q\big(Y_1+\cdots+Y_n\big)\le C(\delta n)^{-1/2}$.
-\end{lemma}
+The relative coordinate is now controlled. The sum coordinate is an additive functional
+of the same event stream, so it needs a separate argument: conditionally on the
+unsigned event skeleton, the remaining randomness of $S$ is a sum of independent
+non--degenerate signs, and we recover spreading from a concentration inequality rather
+than from a Fourier estimate.
 
 \begin{lemma}[conditional concentration for the sum coordinate]\label{lem:Slclt}
-Let $S=X_1+X_2$ be the sum coordinate, and write the jumps of the pair $(X_1,X_2)$ at
-times $t_1<t_2<\cdots$, with increments $\Delta R_k:=R(t_k)-R(t_k^-)$ and
-$\Delta S_k:=S(t_k)-S(t_k^-)$. The \underline{unsigned skeleton} is
-\begin{equation}\label{eq:skeleton}
-  \mathfrak S\ :=\ \Big((R(u))_{0\le u\le t}\,,\ \{\,t_k:\Delta R_k=0\,\}\Big),
-\end{equation}
-the path of $R$ together with the times of the pair hops (the $\Delta R=0$ jumps, which
-the $R$--path does not reveal). A jump $t_k$ is \underline{ambiguous} if $\Delta S_k$ is not
-determined by $\mathfrak S$ --- equivalently, two values of $\Delta S_k$ are consistent
-with $\mathfrak S$ --- and $M=M(\mathfrak S)$ is the number of ambiguous jumps in
-$[0,t]$. Then for every $s'\in\Z$,
+Let $S$ be the sum coordinate of \S\ref{sec:kernel}, and let $\mathfrak S$ denote the
+\emph{unsigned skeleton}: the path of $R$ together with the times of the pair hops
+(the events with $\Delta R=0$, which the $R$--path alone does not reveal), but not
+their signs. Let $M=M(\mathfrak S)$ be the number of \emph{ambiguous} events, those
+for which the skeleton admits two values of $\Delta S$. Then for every $s'\in\Z$,
 \[
   \PP\big(S(t)=s'\mid \mathfrak S\big)\ \le\ \frac{C}{\sqrt{1+M}},
 \]
@@ -710,16 +670,16 @@ $\PP(M<t/2)\le e^{-ct}$.
 \end{lemma}
 \begin{proof}
 Given $\mathfrak S$, $S(t)=m(\mathfrak S)+\sum_{j=1}^M\eta_j$ with $m(\mathfrak S)$
-determined by the skeleton and the $\eta_j$ --- the values $\Delta S_k$ at the
-ambiguous jumps --- conditionally independent: on
+determined by the skeleton and the $\eta_j$ conditionally independent: on
 $\{|R|\ge2\}$, and on the outward steps from $\{\pm1\}$, a step $\Delta R=+1$ is
 either ``species $1$ left'' ($\Delta S=-1$, conditional probability $q^2/(1+q^2)$) or
 ``species $2$ right'' ($\Delta S=+1$), and symmetrically for $\Delta R=-1$; a pair
 hop has $\Delta S=\pm2$ with conditional probabilities $(1,q^4)/(1+q^4)$. (Merges,
 splits and swaps determine $\Delta S$ and are unambiguous.) Each $\eta_j$ is
 non--degenerate with both values of probability in $[\delta,1-\delta]$,
-$\delta=\delta(q)>0$, so by Lemma~\ref{lem:KR} applied to the $M$ ambiguous increments,
-$\PP(S(t)=s'\mid\mathfrak S)\le C\big(\sum_{j=1}^M(1-Q(\eta_j))\big)^{-1/2}\wedge1
+$\delta=\delta(q)>0$, so by the Kolmogorov--Rogozin concentration inequality
+\cite[Ch.~III]{Petrov},
+$\PP(S(t)=s'\mid\mathfrak S)\le C\big(\sum_j(1-Q(\eta_j;0))\big)^{-1/2}\wedge1
 \le C(1+\delta M)^{-1/2}$. For the domination: in every state the total rate of
 ambiguous events is $\ge1$ --- rate $2(1+q^2)$ on $\{|R|\ge2\}$, $1+q^2$ (the outward
 steps) at $\{\pm1\}$, and $1+q^4$ (the pair hops) at the origin --- so, conditionally
@@ -731,21 +691,7 @@ The fixed--$q$ analysis of \S\ref{sec:tw} requires, beyond the upper bound
 \eqref{eq:tildeR}, the exact leading occupation asymptotics of the relative walk,
 including the invariant--measure weighting at the defect. The following elementary
 lemma supplies them; its entire content is two exact identities (detailed balance and
-first--passage decomposition) plus the free first--passage transform and the following
-classical Tauberian theorem, which converts the small--$\lambda$ behaviour of a Laplace
-transform into the large--$s$ behaviour of the integral of its density.
-
-\begin{theorem}[Karamata's Tauberian theorem; {\cite[Thm.~1.7.1$'$]{BGT}}, {\cite[\S XIII.5]{Feller2}}]
-\label{thm:karamata}
-Let $p:[0,\infty)\to[0,\infty)$ be locally integrable with Laplace transform
-$\omega(\lambda):=\int_0^\infty e^{-\lambda t}p(t)\dd t<\infty$ for all $\lambda>0$, let
-$\rho\ge0$, and let $L$ be slowly varying at infinity. Then
-\[
-  \omega(\lambda)\ \sim\ \lambda^{-\rho}\,L(1/\lambda)\quad(\lambda\downarrow0)
-  \qquad\Longleftrightarrow\qquad
-  \int_0^s p(t)\dd t\ \sim\ \frac{s^{\rho}\,L(s)}{\Gamma(\rho+1)}\quad(s\to\infty).
-\]
-\end{theorem}
+first--passage decomposition) plus the free first--passage transform.
 
 \begin{lemma}[occupation--time asymptotics]\label{lem:tau}
 Let $X$ be an irreducible, recurrent walk on $\Z$, reversible with respect to a
@@ -781,51 +727,38 @@ $\lambda+2a=a(\varrho+\varrho^{-1})$, i.e.\
 $\varrho(\lambda)=1-\sqrt{\lambda/a}+O(\lambda)$. Hence
 $\sum_rm(r)\E_r[e^{-\lambda T_0}]=\big(2\sqrt{a/\lambda}\big)(1+o(1))$ and
 $G_\lambda(0,0)=\tfrac12\,m(0)\,(a\lambda)^{-1/2}(1+o(1))$. Returning to
-\eqref{eq:Gid}, $G_\lambda(0,r)\sim\tfrac12\,m(r)\,(a\lambda)^{-1/2}$. This is the
-Laplace transform of the nonnegative density $p(t)=\PP_0(X(t)=r)$, with the regularly
-varying form $\omega(\lambda)\sim\lambda^{-\rho}L(1/\lambda)$ of
-Theorem~\ref{thm:karamata} at $\rho=\tfrac12$ and $L\equiv\tfrac12\,m(r)\,a^{-1/2}$.
-Hence $\tau_r(s)\sim s^{1/2}L/\Gamma(\tfrac32)=\tfrac12\,m(r)\,a^{-1/2}\,s^{1/2}/\Gamma(\tfrac32)
-=m(r)\sqrt{s/(\pi a)}$, using $\Gamma(\tfrac32)=\tfrac12\sqrt\pi$.
+\eqref{eq:Gid}, $G_\lambda(0,r)\sim\tfrac12\,m(r)\,(a\lambda)^{-1/2}$. Since
+$\tau_r$ is the integral of a nonnegative function whose Laplace transform is
+regularly varying of index $-\tfrac12$ at $0$, Karamata's Tauberian theorem gives
+$\tau_r(s)\sim\tfrac12\,m(r)\,a^{-1/2}\,s^{1/2}/\Gamma(\tfrac32)
+=m(r)\sqrt{s/(\pi a)}$.
 \end{proof}
 
 \section{The two--particle dual kernel bound}\label{sec:kernel}
 
 The order--two fields of the fluctuation analysis reduce, by Lemma~\ref{lem:acr}, to
-the two--particle dual kernel. A bound pair carries one particle of \underline{each}
+the two--particle dual kernel. A bound pair carries one particle of \emph{each}
 species, so two particles of the same species can never bind; the different--species
 pair is the bind/split/merge process. We treat the two channels.
 
-\begin{lemma}[same--species channel; {\cite{Schutz}}, {\cite{TW08}}]\label{lem:asep}
+\begin{lemma}[same--species channel]\label{lem:asep}
 The same--species two--particle dual kernel obeys $p_t(\xi,\xi')\le C/(1+t)$.
 \end{lemma}
 \begin{proof}
-With no binding available the two same--species duals perform a two--particle ASEP, whose
-Green's function Sch\"utz solves explicitly \cite{Schutz} (in the form below, \cite{TW08}):
-for the single--species rates $r_R=1$, $r_L=q^2$ and $\xi=(x_1,x_2)$, $\xi'=(x_1',x_2')$,
-\begin{equation}\label{eq:schutz2}
-  p_t(\xi,\xi')=\sum_{\sigma\in S_2}\frac1{(2\pi i)^2}\oint\!\!\oint
-  A_\sigma(\zeta_1,\zeta_2)\prod_{i=1}^2
-  \zeta_{\sigma(i)}^{-(x_i'-x_{\sigma(i)})-1}\,e^{t\,\varepsilon(\zeta_i)}\,\dd\zeta_1\dd\zeta_2,
-\end{equation}
-where $\varepsilon(\zeta)=\zeta+q^2\zeta^{-1}-(1+q^2)$ is the single--particle dispersion,
-the contours are small circles about $0$, $A_{\mathrm{id}}\equiv1$, and $A_{(12)}$ is the
-ASEP scattering amplitude, bounded on the contours. The single--variable integral
-\[
-  \phi_t(m)=\frac1{2\pi i}\oint \zeta^{-m-1}e^{t\,\varepsilon(\zeta)}\dd\zeta
-\]
-is the single--particle ASEP transition probability, for which the modified--Bessel
-asymptotic (as for $R^0$ in Lemma~\ref{lem:free}) gives $\sup_m|\phi_t(m)|\le C/\sqrt{1+t}$.
-The $\sigma=\mathrm{id}$ term of \eqref{eq:schutz2} factorises as
-$\phi_t(x_1'-x_1)\,\phi_t(x_2'-x_2)\le C/(1+t)$; the $\sigma=(12)$ term is of the same
-order, since each $\zeta$--integration is evaluated at the single--particle saddle and the
-bounded amplitude $A_{(12)}$ leaves the order $O(t^{-1/2})$ per integration unchanged.
-Hence $p_t(\xi,\xi')\le C/(1+t)$. We record this only for completeness: the cross--noise
-analysis of \S\ref{sec:ew} uses only the different--species channel.
+With no binding move available, the two same--species dual particles perform a
+two--particle ASEP, for which the relative coordinate (a walk on $\Z_{\ge1}$,
+free off the exclusion boundary) and the sum coordinate admit exactly the
+arguments of Lemmas~\ref{lem:free} and \ref{lem:Slclt}: the relative--coordinate
+marginal is bounded by $C/\sqrt{1+t}$ (reversible, uniformly elliptic
+nearest--neighbour after the boundary defect), and conditionally on the unsigned
+skeleton the sum coordinate concentrates no faster than $C/\sqrt{1+t}$, giving the
+product bound. (Alternatively, the bound can be read off the exact Bethe--ansatz
+solution of the two--particle master equation \cite{Schutz}.) The lemma is included
+for completeness: the cross--noise analysis of \S\ref{sec:ew} uses only the
+different--species channel.
 \end{proof}
 
-For the different--species pair with positions $X_1,X_2$ we use the sum coordinate and
-the relative coordinate $R:=X_2-X_1$ of \S\ref{sec:lclt},
+For the different--species pair with positions $X_1,X_2$ set
 \begin{equation}\label{eq:SR}
   S:=X_1+X_2,\qquad R:=X_2-X_1.
 \end{equation}
@@ -856,112 +789,33 @@ into the first term of \eqref{eq:kernel}.
 The bound state propagates in one dimension (whence the $t^{-1/2}$) but is
 exponentially damped at the split rate $\nu_{\mathrm{sp}}\sim4c/N^2$; its time integral
 is finite, $\int_0^\infty e^{-\nu_{\mathrm{sp}}t}t^{-1/2}\dd t=\sqrt{\pi/\nu_{\mathrm{sp}}}
-\sim N/\sqrt c=o(N^2)$. By Corollart~\ref{prop:sym} below it enters the species fields
+\sim N/\sqrt c=o(N^2)$. By Proposition~\ref{prop:sym} below it enters the species fields
 with zero weight, so the departure from the ASEP bound $C/(1+t)$ is invisible to the
 limiting fields and surfaces only in the crossover of \S\ref{sec:cross}.
 \end{remark}
 
 \section{The decoupled Edwards--Wilkinson limit}\label{sec:ew}
 
-We now prove the first decoupling theorem by the standard martingale--problem scheme for
-fluctuation fields (\cite[Ch.~11]{KL}, after Holley--Stroock \cite{HolleyStroock}):
-identify the drift as a Laplacian (D), the noise as white with the
+We now prove the first decoupling theorem by the martingale--problem scheme for
+fluctuation fields: identify the drift as a Laplacian (D), the noise as white with the
 right variance (N), and --- the point at which the two species could have interacted ---
 show the cross--noise between them vanishes (X). The single--species inputs are
 classical; the work is in (X) and in the drift remainder of (D), the only places where
 two dual particles of different species can bind.
 
-Fix densities $\rho_1,\rho_2\in(0,1)$ (equivalently fugacities $\alpha_1,\alpha_2>0$),
-possibly unequal: we do \underline{not} restrict to the \underline{symmetric line} $\rho_1=\rho_2$
-(equal species densities, on which the two species enter symmetrically). For
-$\varphi\in\cS(\R)$, the Schwartz space of rapidly decreasing functions --- with dual
-$\cS'(\R)$, the tempered distributions, in which the fields take values --- define the
-diffusively scaled density fluctuation fields, standard in equilibrium fluctuation
-theory \cite[Ch.~11]{KL},
+Fix $\rho_1,\rho_2\in(0,1)$ (equivalently $\alpha_1,\alpha_2>0$); we do \emph{not}
+require the symmetric line. For $\varphi\in\cS(\R)$ define the fluctuation fields
 \begin{equation}\label{eq:field}
   Y_i^N(\varphi,t)=\frac1{\sqrt N}\sum_{x\in\Z}\varphi\Big(\frac xN\Big)
    \big(\eta_{i,x}(tN^2)-\rho_i\big),\qquad i=1,2.
 \end{equation}
-The blocking measure $\nu$ is spatially inhomogeneous --- its local fugacity
-$t_x=\alpha_i q^{-2x}$ carries a density gradient in $x$ --- but in the
-Edwards--Wilkinson scaling this gradient is negligible. The field \eqref{eq:field} is
-supported on the $O(N)$ sites with $x/N$ in the support of $\varphi$, and since
-$q_N=1-c/N^2$, across such a window the fugacity changes only by a factor
-$q_N^{-2\cdot O(N)}=1+O(1/N)$; the local density thus varies by $O(1/N)$ over the
-window. To leading order $\nu$ is therefore the homogeneous product measure at the
-constant density $\rho_i$, so the coefficients of the limiting equation --- the
-diffusivity $D$ and the compressibility $\chi_i=\rho_i(1-\rho_i)$ --- carry no
-$x$--dependence.
-
-We use two classical inputs, stated here for completeness. The first is the martingale
-decomposition of an additive functional.
-
-\begin{lemma}[Dynkin decomposition; {\cite[App.~1.5]{KL}}]\label{lem:dynkin}
-Let $\eta_t$ be a Markov process with generator $\cL$ and $f,g$ local functions in its
-domain. Then
-\[
-  M^f_t:=f(\eta_t)-f(\eta_0)-\int_0^t(\cL f)(\eta_s)\dd s
-\]
-is a martingale, with predictable cross--bracket
-$\langle M^f,M^g\rangle_t=\int_0^t\Gamma(f,g)(\eta_s)\dd s$, where
-$\Gamma(f,g)=\cL(fg)-f\,\cL g-g\,\cL f$ is the carr\'e du champ (and
-$\langle M^f\rangle_t=\int_0^t\Gamma(f,f)\dd s$).
-\end{lemma}
-
-\noindent The second is the martingale characterisation of the Ornstein--Uhlenbeck
-fluctuation limit. Throughout, $\To$ denotes convergence in distribution (for the
-$\cS'(\R)$--valued fields, weak convergence in $D([0,T];\cS'(\R))$).
-
-\begin{theorem}[Equilibrium fluctuations; {\cite[Ch.~11]{KL}}, after Holley--Stroock \cite{HolleyStroock}]\label{thm:mp}
-Let $(Z^N)_N$ be stationary $\cS'(\R)$--valued processes with Dynkin decomposition
-\[
-  Z^N(\varphi,t)=Z^N(\varphi,0)+\int_0^t\Gamma^N(\varphi,s)\,\dd s+M^N(\varphi,t),
-  \qquad \varphi\in\cS(\R).
-\]
-Suppose that for every $\varphi\in\cS(\R)$ and $T>0$, as $N\to\infty$:
-\begin{itemize}
-\item[\textup{(i)}] $\Gamma^N(\varphi,\cdot)\to D\,Z(\Delta\varphi,\cdot)$ in $L^2$
-  \quad(drift $\to$ Laplacian);
-\item[\textup{(ii)}] $\langle M^N\rangle(\varphi,t)\to 2\chi D\,t\,\|\partial_x\varphi\|_2^2$
-  \quad(bracket $\to$ white noise);
-\end{itemize}
-and that $(Z^N)$ is tight in $D([0,T];\cS'(\R))$. Then $Z^N\To Z$, the \underline{unique}
-stationary solution of the Ornstein--Uhlenbeck equation
-\[
-  \partial_t Z=D\,\partial_x^2 Z+\sqrt{2\chi D}\,\partial_x\xi .
-\]
-Moreover, if a pair $(Z_1^N,Z_2^N)$ satisfies \textup{(i)--(ii)} and has vanishing
-limiting cross--bracket, $\langle M_1^N,M_2^N\rangle(\varphi,t)\to0$, then the limits
-$Z_1,Z_2$ are independent.
-\end{theorem}
-
-\noindent The tightness hypothesis of Theorem~\ref{thm:mp} is the \underline{Aldous--Mitoma
-criterion}, the combination of the following two classical statements.
-
-\begin{theorem}[Mitoma; \cite{Mitoma}]\label{thm:mitoma}
-A sequence $(Z^N)$ of c\`adl\`ag $\cS'(\R)$--valued processes is tight in
-$D([0,T];\cS'(\R))$ if and only if, for every $\varphi\in\cS(\R)$, the real--valued
-sequence $\big(Z^N(\varphi,\cdot)\big)$ is tight in $D([0,T];\R)$.
-\end{theorem}
-
-\begin{proposition}[Aldous's criterion; \cite{Aldous}]\label{prop:aldous}
-A sequence $(\zeta^N)$ of real--valued c\`adl\`ag processes is tight in $D([0,T];\R)$
-provided \textup{(a)} for each $t\in[0,T]$ the family $\{\zeta^N(t)\}_N$ is tight in
-$\R$, and \textup{(b)} for every $\varepsilon>0$,
-\[
-  \lim_{\theta\downarrow0}\ \limsup_{N\to\infty}\
-  \sup_{\substack{\tau\le T\ \mathrm{stopping\ time}\\ \delta\in[0,\theta]}}
-  \PP\big(|\zeta^N(\tau+\delta)-\zeta^N(\tau)|\ge\varepsilon\big)=0 .
-\]
-\end{proposition}
-
-\noindent Thus tightness of $(Z^N)$ reduces, via Theorem~\ref{thm:mitoma}, to checking
-Proposition~\ref{prop:aldous} for each scalar process $Z^N(\varphi,\cdot)$.
+Across the $O(N)$ field window the blocking density tilts by $O(1/N)$, so $\nu$ is
+locally homogeneous at the densities $\rho_i$ and the limiting coefficients are constant.
 
 \begin{theorem}[decoupled Edwards--Wilkinson limit]\label{thm:ewmain}
 Let $\eta_0\sim\nu$, so that the process is stationary. Under $q=q_N=1-c/N^2$, the
 pair $(Y_1^N,Y_2^N)$ is tight in
-$D([0,T];\cS'(\R))^2$ and every limit point $(Y_1,Y_2)$ \underline{decouples}: each $Y_i$ is
+$D([0,T];\cS'(\R))^2$ and every limit point $(Y_1,Y_2)$ \emph{decouples}: each $Y_i$ is
 a stationary solution of the linear stochastic heat equation
 \[
   \partial_t Y_i=D\,\partial_x^2 Y_i+\sqrt{2\chi_i D}\,\partial_x\xi_i,
@@ -970,36 +824,28 @@ with $D=1$ the (common) species diffusivity --- the symmetric--part diffusivity
 $\tfrac12(1+q_N^2)\to1$, produced by the gradient computation of
 Proposition~\ref{prop:drift} --- and $\chi_i=\rho_i(1-\rho_i)$ the
 species--$i$ compressibility,
-and the driving space--time white noises $\xi_1,\xi_2$ have \underline{vanishing
+and the driving space--time white noises $\xi_1,\xi_2$ have \emph{vanishing
 cross--correlation} (the cross bracket $\langle M_1,M_2\rangle$ is zero in the limit);
 there is no coupling between the species in either the drift or the noise. The limit
 law is unique.
 \end{theorem}
 
-\begin{proof}
-By Dynkin's formula (Lemma~\ref{lem:dynkin}) each field is a semimartingale
+By Dynkin's formula \cite[App.~1.5]{KL} each field is a semimartingale
 \begin{equation}\label{eq:dynkin}
   Y_i^N(\varphi,t)=Y_i^N(\varphi,0)+\int_0^t\Gamma_i^N(\varphi,s)\dd s+M_i^N(\varphi,t),
 \end{equation}
 with drift $\Gamma_i^N(\varphi,t)=N^{1/2}\sum_x\varphi'(\tfrac xN)W_{i,x}(\eta(tN^2))$,
 $W_{i,x}$ the instantaneous species--$i$ current across $(x,x{+}1)$, and $M_i^N$ a
-martingale whose predictable brackets are the carr\'e du champ. By the martingale
-characterisation of Theorem~\ref{thm:mp} (applied to each species, and to the pair via
-its cross--bracket clause) the theorem follows once we establish, for each $\varphi,T$:
+martingale whose predictable brackets are the carr\'e du champ. Theorem~\ref{thm:ewmain}
+follows from the martingale--problem scheme \cite[Ch.~11]{KL} once we establish, for
+each $\varphi,T$:
 \begin{itemize}
 \item[\textup{(D)}] $\Gamma_i^N(\varphi,\cdot)\to D\,Y_i(\Delta\varphi,\cdot)$ in $L^2$;
 \item[\textup{(N)}] $\langle M_i^N\rangle(\varphi,t)\to 2\chi_i D\,t\,\|\partial_x\varphi\|_2^2$;
 \item[\textup{(X)}] $\langle M_1^N,M_2^N\rangle(\varphi,t)\to0$;
 \end{itemize}
-together with tightness (by Mitoma's and Aldous's criteria,
-Theorems~\ref{thm:mitoma} and \ref{prop:aldous}) and uniqueness of the linear
-(Ornstein--Uhlenbeck) martingale problem (Theorem~\ref{thm:mp}). These
-are established in the three subsections below: the single--species convergence and the
-diagonal bracket (N) in Lemma~\ref{lem:gauss}, the vanishing cross--bracket (X) in
-Proposition~\ref{prop:conc}, and the drift (D) in Proposition~\ref{prop:drift}. The
-limit is decoupled because (X) removes the noise coupling and (D) is a single--species
-functional.
-\end{proof}
+together with tightness (Aldous--Mitoma) and uniqueness of the linear
+(Ornstein--Uhlenbeck) martingale problem, both classical \cite[Ch.~11]{KL}.
 
 \subsection{Single--species Gaussianity}
 \begin{lemma}\label{lem:gauss}
@@ -1014,8 +860,9 @@ below the KPZ threshold, which under diffusive scaling occurs at asymmetry $N^{-
 Edwards--Wilkinson regime. The equilibrium density fluctuations of a one--species
 exclusion process in this regime converge to the Gaussian Ornstein--Uhlenbeck solution
 of $\partial_tY=D\partial_x^2Y+\sqrt{2\chi_i D}\partial_x\xi$, $\chi_i=\rho_i(1-\rho_i)$
---- the single--field case of Theorem~\ref{thm:mp}, established for orthogonal duality
-systems in \cite{ACR2} --- with the diagonal bracket $2\chi_i D$. (The classical statements concern the homogeneous Bernoulli equilibrium;
+--- the classical one--species equilibrium fluctuation theorem \cite[Ch.~11]{KL},
+established for orthogonal duality systems in \cite{ACR2} --- with the diagonal bracket
+$2\chi_i D$. (The classical statements concern the homogeneous Bernoulli equilibrium;
 under the blocking measure the density tilts by $O(1/N)$ across the field window, and
 the standard comparison --- coupling the dynamics from the tilted and untilted
 equilibria and bounding the discrepancy field in $L^2$ --- transfers the result. We
@@ -1068,48 +915,34 @@ mechanism is the $1+1-1-1$ cancellation of Proposition~\ref{prop:cross} one orde
 higher; it uses only detailed balance, not species exchange, and is therefore
 density--free.
 
-\underline{Support of the $\varpi$--expansion.} The cross--noise analysis expands $V_x$ in the
-orthogonal family $\bar D$ of Proposition~\ref{prop:orth}; we determine which $\xi$ have
-$\langle V_x,\bar D(\xi,\cdot)\rangle_\varpi\ne0$. Write
-$\eta=(\eta^{\mathrm b},\eta^{\mathrm o})$ for the restrictions of $\eta$ to the bond
-$\{x,x+1\}$ and to its complement. On the four configurations supporting $V_x$ the bond
-holds exactly one particle of each species, so the conserved numbers $(N_1,N_2)$ are
-fixed once $\eta^{\mathrm o}$ is, and the sector reweighting in \eqref{eq:omegadef} is a
-common factor $W(\eta^{\mathrm o})$; using the bond detailed--balance weights
-\eqref{eq:dbrel}, for any function $f$,
-\begin{equation}\label{eq:Vorthid}
-  \langle V_x,f\rangle_\varpi=\nu(3,0)\sum_{\eta^{\mathrm o}}W(\eta^{\mathrm o})\,
-  S_f(\eta^{\mathrm o}),\qquad
-  S_f:=f(3,0)+f(0,3)-f(1,2)-f(2,1),
-\end{equation}
-the four values of $f$ taken at fixed $\eta^{\mathrm o}$.
-
-Take $f=\bar D(\xi,\cdot)$. By \eqref{eq:Dreu} it is a product, over the dual particles of
-$\xi$, of factors $1-\alpha_i^{-1}\bone\{\eta_{i,w}=1\}\,q^{2(w-N^-_{w-1}(\eta_i))}$, one
-per species--$i$ particle at $w$. A particle at $w\notin\{x,x+1\}$ contributes a factor
-independent of $\eta^{\mathrm b}$ on the support: trivially for $w<x$, and for $w>x+1$
-because $N^-_{w-1}(\eta_i)$ counts the bond's species--$i$ population, which is $1$
-throughout. For a particle at $w\in\{x,x+1\}$ of species $i$: since the bond holds one
-species--$i$ particle, $\eta_{i,x}\eta_{i,x+1}=0$ on the support, so the only other
-bond--dependence, the factor $q^{-2\eta_{i,x}}$ occurring when $w=x+1$, equals $1$
-wherever $\bone\{\eta_{i,x+1}=1\}$; the factor therefore reduces on the support to
-$1-c_w\,\bone\{\eta_{i,w}=1\}$ with $c_w$ constant given $\eta^{\mathrm o}$. Hence, on the
-support and at fixed $\eta^{\mathrm o}$, $\bar D(\xi,\cdot)$ is a constant times a product
-of the indicators $\bone\{\eta_{i,w}=1\}$ over the bond particles $(i,w)$ of $\xi$.
-The functional $f\mapsto S_f$ of \eqref{eq:Vorthid} annihilates: the constant $1$
-($1+1-1-1=0$); each single indicator (the four rows of the table above, each with signed
-sum $0$); and any product of two \underline{same--species} bond indicators (identically $0$ on
-the support, as $\eta_{i,x}\eta_{i,x+1}=0$). The sole monomial with $S_f\ne0$ is the
-cross product $\bone\{\eta_{1,\cdot}=1\}\bone\{\eta_{2,\cdot}=1\}$ of two
-different--species bond indicators. Therefore
-\[
-  \langle V_x,\bar D(\xi,\cdot)\rangle_\varpi=0
-  \quad\text{unless $\xi$ places one particle of each species on $\{x,x+1\}$;}
-\]
-in particular it vanishes for all $|\xi|\le1$, the mass--$\le1$ orthogonality used below.
-Numerically (four sites, machine precision) the surviving coefficients are moreover
-dressed only by off--bond particles strictly to the \underline{left} of the bond; we use this
-one--sidedness only in Lemma~\ref{lem:eps}.
+\emph{Orthogonality and support in the exact pairing.} The expansion of $V_x$ used
+below is in the family $\bar D$ with the pairing
+$\langle\cdot,\cdot\rangle_\varpi$ of Remark~\ref{rem:orthstatus}; since the
+mass--one functions $\bar D$ are nonlocal, the polynomial statement above does not by
+itself locate the expansion, and we check directly. The key structural fact: on the
+four support configurations of $V_x$ the bond carries exactly one particle of each
+species, so the particle numbers $(N_1,N_2)$ --- hence the sector--reweighting
+factors of \eqref{eq:omegadef} --- agree on all four, and the master identity
+$\E_\varpi[V_xf]=\sum_r\widetilde\varpi(r)\,\nu(3,0)\big[f(3,0)+f(0,3)-f(1,2)-f(2,1)\big](r)$
+persists, with $\widetilde\varpi$ the reweighted measure on the configuration $r$
+off the bond and the bracket evaluated at fixed $r$. The factor of
+$\bar D(\xi,\cdot)$ attached to a dual particle at $w$ depends on $\eta$ through
+$\bone\{\eta_{i,w}=1\}$ and $q^{-2N^-_{w-1}(\eta_i)}$: for $w<x$ it is independent of
+the bond; for $w>x+1$ its bond dependence is
+$q^{-2(\eta_{i,x}+\eta_{i,x+1})}\equiv q^{-2}$ on the support of $V_x$; and for
+$w\in\{x,x+1\}$ its bond part is $\bone\{\eta_{i,x}\}$ resp.\
+$\bone\{\eta_{i,x+1}\}q^{-2\eta_{i,x}}$, with values $(1,0,1,0)$, $(1,0,0,1)$ resp.\
+$(0,1,0,1)$, $(0,1,1,0)$ on the four configurations, whose alternating sums vanish.
+Hence $\langle V_x,\bar D(\xi,\cdot)\rangle_\varpi=0$ whenever $\xi$ has at most one
+dual particle on the bond --- in particular for all $|\xi|\le1$ --- and also when
+the two bond particles are of the same species (the product of their indicators
+vanishes on the support of $V_x$). The expansion of $V_x$ is therefore supported on
+$\xi$ consisting of one different--species dual pair on the bond, possibly dressed
+by further particles off the bond; numerically (four sites, machine precision) the
+dressing is moreover one--sided --- every coefficient with a dual particle strictly
+to the \emph{right} of the bond vanishes, reflecting the nested structure of the
+family \eqref{eq:orthexact}, in which the factor of the rightmost dual particle is
+conditionally centred given the configuration to its left.
 \end{proof}
 
 \begin{lemma}[equal--time variance]\label{lem:eqvar}
@@ -1123,12 +956,12 @@ are bounded, so the double sum is $\le C\sum_x\varphi'(\tfrac xN)^4\le CN$ (a Ri
 sum). The prefactor $N^{-2}$ gives the claim.
 \end{proof}
 
-The expansion of Proposition~\ref{prop:orth} controls correlations under the
+The expansion of Remark~\ref{rem:orthstatus} controls correlations under the
 reweighted measure $\varpi$; the following comparison transfers them to $\nu$.
 
 \begin{lemma}[sector comparison]\label{lem:sector}
 On $\Lambda=[-KN,KN]$ with $q=1-c/N^2$ and $\alpha_1,\alpha_2$ fixed in $(0,1)$, the
-measures $\nu$ and $\varpi$ of Proposition~\ref{prop:orth} have the same conditional
+measures $\nu$ and $\varpi$ of Remark~\ref{rem:orthstatus} have the same conditional
 laws given the conserved pair $(N_1,N_2)$, and their sector weights are comparable:
 $M:=\sup_{N_1,N_2}\nu(N_1,N_2)/\varpi(N_1,N_2)\le C(c,K,\alpha)$, uniformly in $N$.
 Consequently, for all $f,h\in L^2$ and $t\ge0$,
@@ -1138,9 +971,7 @@ Consequently, for all $f,h\in L^2$ and $t\ge0$,
 \]
 \end{lemma}
 \begin{proof}
-The two measures differ by the factor $h_1(N_1)h_2(N_2)$ (times constants), where
-$h_i(N):=q^{N(N-1)}\big(\alpha_i q^{2N-2|\Lambda|};q^2\big)_\infty$ is the sector
-reweighting of \eqref{eq:omegadef}, so the conditionals agree,
+The two measures differ by the factor $h_1(N_1)h_2(N_2)$ of \eqref{eq:omegadef}
 (times constants), so the conditionals agree, and the ratio of sector weights is
 controlled by $h_i$: $q^{N(N-1)}\ge q^{|\Lambda|^2}=e^{-4cK^2(1+o(1))}$, and
 $1\ge(\alpha q^{2N-2|\Lambda|};q^2)_\infty\ge(\alpha';q^2)_\infty>0$ with
@@ -1237,7 +1068,7 @@ $\gamma=1-q^2$ and $\nabla f_x=f_{x+1}-f_x$, as
 \end{equation}
 The first term is a discrete gradient; the second carries the prefactor
 $\gamma=O(N^{-2})$. The merge channel, in which species~$1$ binds onto a species--$2$
-site, does \underline{not} introduce an $\eta_2$--dependence: by
+site, does \emph{not} introduce an $\eta_2$--dependence: by
 Proposition~\ref{prop:decouple} the species--$2$ occupant never alters the species--$1$
 transfer rate (the merge rate $\eps$ and the swap rate $q^2$ combine to the same $1$ as
 the hop onto an empty site). Thus the drift involves only the autonomous single--species
@@ -1248,7 +1079,7 @@ The bound--pair mode
   B_z:=(\eta_{1,z}-\rho_1)(\eta_{2,z}-\rho_2)
 \end{equation}
 is the one near--conserved order--two object (it relaxes only at the split rate
-$\sim\eps$); it does \underline{not} enter the drift \eqref{eq:Wgrad}. We nonetheless record
+$\sim\eps$); it does \emph{not} enter the drift \eqref{eq:Wgrad}. We nonetheless record
 the following orthogonality, which makes the absence of any slow contribution explicit.
 
 \begin{corollary}[current orthogonal to the bound--pair mode]\label{prop:sym}
@@ -1266,10 +1097,12 @@ and symmetrically for $W_{2,x}$.
 \end{proof}
 
 \begin{remark}[no off--symmetric--line obstruction]\label{rem:offline}
-Because the overlap vanishes at \underline{every} $(\rho_1,\rho_2)$ (Corollary~\ref{prop:sym}),
+Because the overlap vanishes at \emph{every} $(\rho_1,\rho_2)$ (Corollary~\ref{prop:sym}),
 the bound--pair mode never couples to the species current: there is no slow third
 hydrodynamic field, and hence no obstruction to the decoupling, off the symmetric line
-either.
+either. (A naive expansion of $W_{1,x}$ that misreads
+the merge channel as an $\eta_2$--dependence produces a spurious overlap
+$\propto(\rho_1-\rho_2)$; \eqref{eq:Wgrad} shows it vanishes identically.)
 \end{remark}
 
 \begin{proposition}[drift]\label{prop:drift}
@@ -1285,14 +1118,14 @@ with
   \Gamma_1^{N,\mathrm{grad}}=N^{1/2}\sum_x\varphi'(\tfrac xN)(-\nabla\eta_{1,x}),\qquad
   \Gamma_1^{N,\mathrm{cor}}=N^{1/2}\sum_x\varphi'(\tfrac xN)\,g_x,\quad g_x:=\eta_{1,x+1}(1-\eta_{1,x}).
 \]
-\underline{Gradient term.} A summation by parts gives
+\emph{Gradient term.} A summation by parts gives
 $\Gamma_1^{N,\mathrm{grad}}=N^{1/2}\sum_x(\nabla\varphi')(\tfrac xN)\,\eta_{1,x}
  =N^{-1/2}\sum_x\varphi''(\tfrac xN)(\eta_{1,x}-\rho_1)+o(1)=D\,Y_1^N(\Delta\varphi)+o(1)$
 in $L^2$, $D$ the symmetric--part diffusivity; this is the standard gradient
 computation \cite[Ch.~11]{KL}. Since the symmetric part of each species is simple
 symmetric exclusion --- a gradient system --- $D$ is density--independent, hence the same
 constant for both species and at every $(\rho_1,\rho_2)$.
-\underline{Correction term.} Write $g_x=\bar g+(g_x-\bar g)$, $\bar g=\rho_1(1-\rho_1)$. The mean
+\emph{Correction term.} Write $g_x=\bar g+(g_x-\bar g)$, $\bar g=\rho_1(1-\rho_1)$. The mean
 part $\gamma N^{1/2}\bar g\sum_x\varphi'(\tfrac xN)$ is the Euler flux
 $\partial_x[\gamma\rho_1(1-\rho_1)]$, of order $O(\gamma)\to0$ in the EW window. For the
 fluctuating part, write $F:=\gamma N^{1/2}\sum_x\varphi'(\tfrac xN)(g_x-\bar g)$; by
@@ -1301,7 +1134,7 @@ Cauchy--Schwarz in time and stationarity,
   \E\Big[\Big(\int_0^t F(\eta(sN^2))\dd s\Big)^2\Big]
   \ \le\ t\int_0^t\E\big[F(\eta(sN^2))^2\big]\dd s\ =\ t^2\,\E_\nu[F^2],
 \]
-an \underline{equal--time} second moment. Since $\nu$ is a product measure and $g_x-\bar g$
+an \emph{equal--time} second moment. Since $\nu$ is a product measure and $g_x-\bar g$
 is a centred function of $\{\eta_{1,x},\eta_{1,x+1}\}$, the covariance
 $\E_\nu[(g_x-\bar g)(g_y-\bar g)]$ vanishes unless $|x-y|\le1$, so
 $\E_\nu[F^2]=\gamma^2N\sum_{x,y}\varphi'\varphi'\,\E_\nu[(g_x-\bar g)(g_y-\bar g)]
@@ -1318,115 +1151,14 @@ fields of Theorem~\ref{thm:ewmain}, unique by \cite[Ch.~11]{KL}. \hfill$\square$
 
 \section{The initial--condition crossover}\label{sec:cross}
 
-By Theorem~\ref{thm:ewmain} the limiting \underline{dynamics} is decoupled --- the two fields
-solve independent stochastic heat equations, coupled in neither drift nor noise. A
-residual inter--species correlation nevertheless survives in the scaling limit; since it
-cannot come from the evolution, it must come from the initial data --- here the block of
-bound pairs, whose two species start perfectly correlated. This section computes that
-limiting correlation. Run the different--species dual of \S\ref{sec:kernel} from a bound pair at
+By Theorem~\ref{thm:ewmain} the two limiting fields are decoupled, so the coupling the
+model exhibits is not in the limiting dynamics. We locate it in the initial data and
+compute it. Run the different--species dual of \S\ref{sec:kernel} from a bound pair at
 the origin, with $q=1-c/T$, observed at time $T$. Write $S,R$ as in \eqref{eq:SR}.
-Initially the two dual particles coincide as the bound pair (state $3$, so $R=0$); they
-hop together until the binding breaks --- a \underline{split}, which deposits a species--$1$
-and a species--$2$ particle on adjacent sites, so that $R$ leaves $0$. The \underline{first
-split time} $\tau$ is the time of this event.
-
-The result of this section is the following; its three ingredients are established in the
-lemmas below.
-
-\begin{theorem}[regime-A crossover from the block initial condition]\label{thm:cross}
-Fix $c>0$ and set $q=1-c/T$. As $T\to\infty$, the rescaled dual pair $(X_1,X_2)/\sqrt{2T}$
-converges in distribution to a pair $(G_1,G_2)$ with standard normal marginals and
-cross--correlation
-\[
-  \Corr(G_1,G_2)=\frac{1-e^{-4c}}{4c}\in(0,1),
-\]
-decreasing from $1$ as $c\to0$ to $\sim1/c$ as $c\to\infty$. The joint law is \underline{not}
-Gaussian: it is the mixture of Proposition~\ref{prop:twophase}, a bivariate normal of
-correlation $U$ with $U\sim\min(\Exp(4c),1)$ --- an atom of mass $e^{-4c}$ at $1$, where
-$G_1=G_2$. By Lemma~\ref{lem:crossbridge}, $(G_1,G_2)$ is the limiting joint law of the
-two species' $q$--Laplace current observables from the block initial condition.
-\end{theorem}
-\begin{proof}
-The convergence and mixture structure are Proposition~\ref{prop:twophase}; the
-cross--correlation is Theorem~\ref{thm:closed}; the identification with the two species'
-$q$--Laplace observables is Lemma~\ref{lem:crossbridge}.
-\end{proof}
-
-The positive parts of the limiting mixture carry a second closed form. Its proof
-uses two classical facts about the standard bivariate normal.
-
-\begin{proposition}[Bessel--Struve correlation of the limiting mixture]\label{prop:struve}
-For the limiting mixture $(G_1,G_2)$ of Theorem~\ref{thm:cross}, with $G_i^+=\max(G_i,0)$,
-\[
-  \Corr(G_1^+,G_2^+)=\frac{\pi}{8(\pi-1)c}\big[1-2e^{-4c}+I_0(4c)-L_0(4c)\big],
-\]
-$I_0$ the modified Bessel and $L_0$ the modified Struve function; it tends to $1$ as
-$c\to0$ and decays as $1/c$ as $c\to\infty$.
-\end{proposition}
-\begin{proof}
-Each $G_i\sim N(0,1)$ (Theorem~\ref{thm:cross}), so $\E[G_i^+]=1/\sqrt{2\pi}$,
-$\Var(G_i^+)=\tfrac12-\tfrac1{2\pi}$, and
-$\Corr(G_1^+,G_2^+)=\big(\E[g(U)]-\tfrac1{2\pi}\big)\big/\big(\tfrac12-\tfrac1{2\pi}\big)$,
-where $g(u)=\E[Z_1^+Z_2^+]$ is the positive--part covariance of a correlation--$u$
-bivariate normal and $U\sim\min(\Exp(4c),1)$ (Theorem~\ref{thm:cross}). By
-Lemma~\ref{lem:price}, $g'(u)=\tfrac14+\tfrac{\arcsin u}{2\pi}$ and $g(0)=\tfrac1{2\pi}$,
-so $\E[g(U)]-\tfrac1{2\pi}=\int_0^1 g'(s)\,\PP(U>s)\dd s
-=\tfrac1{2\pi}\int_0^1\big(\tfrac\pi2+\arcsin s\big)e^{-4cs}\dd s$. Integrating by parts and
-using $\int_0^1 e^{-4cs}(1-s^2)^{-1/2}\dd s=\int_0^{\pi/2}e^{-4c\sin\theta}\dd\theta
-=\tfrac\pi2\big(I_0(4c)-L_0(4c)\big)$ (DLMF 11.5.2) gives the stated form; the limits as
-$c\to0,\infty$ follow from $I_0(z)-L_0(z)=\tfrac2{\pi z}+O(z^{-3})$.
-\end{proof}
-
-This is a feature of the limiting mixture, not a process observable: unlike the
-full--position correlation $(1-e^{-4c})/(4c)$, which by Lemma~\ref{lem:crossbridge} is the
-two species' $q$--Laplace current correlation, the positive part $G_i^+$ has no
-identified process--level counterpart. It is matched by Monte Carlo (\S\ref{sec:numerics}).
-
-That the dual pair $(X_1,X_2)$ captures the two species' fluctuations at all is the
-content of the following identity, the block--initial--condition analogue of
-Lemma~\ref{lem:tridual}.
-
-\begin{lemma}[the dual pair computes the species cross--correlation]\label{lem:crossbridge}
-Let $\eta^0$ be the block initial condition (bound pairs on $\{x\le0\}$), and let
-$(X_1,X_2)$ be the different--species dual started from the bound pair. For every
-$q\in(0,1)$ and $s\ge0$, the joint $q$--Laplace observable of the two species is a
-hitting probability of the dual pair,
-\begin{equation}\label{eq:crossbridge}
-  \E_{\eta^0}\Big[\textstyle\prod_{i=1,2}\eta_{i,a}(s)\,
-     q^{2\left(a+N^+_{a+1}(\eta_i(s))\right)}\Big]
-   \;=\; q^{2k}\,\PP_{(a,a)}\big(X_1(s)\le0,\ X_2(s)\le0\big),
-\end{equation}
-with $k$ an explicit constant fixed by the block boundary.
-\end{lemma}
-\begin{proof}
-Write $\xi^{\mathrm{bp}}$ for the dual configuration with one particle of each species at
-$a$. Evaluating the triangular duality function of Corollary~\ref{cor:tri} there leaves
-only the factors at the occupied site, and $N^-_{a-1}(\xi^{\mathrm{bp}}_i)=0$, so
-$D^{\mathrm{tri}}(\xi^{\mathrm{bp}},\eta)=\prod_i\eta_{i,a}\,q^{2(a+N^+_{a+1}(\eta_i))}$;
-the left side of \eqref{eq:crossbridge} is thus
-$\E_{\eta^0}[D^{\mathrm{tri}}(\xi^{\mathrm{bp}},\eta_s)]$. By the self--duality of
-Corollary~\ref{cor:tri} this equals $\E_{\xi^{\mathrm{bp}}}[D^{\mathrm{tri}}(\xi_s,\eta^0)]$,
-with $\xi_s=(X_1(s),X_2(s))$ the dual pair run from $\xi^{\mathrm{bp}}$. Since $\eta^0$ is
-a full block of bound pairs on $\{x\le0\}$, $\bone\{\xi_s\subseteq\eta^0\}=\bone\{X_1,X_2\le0\}$;
-and on that event the exponent of each surviving factor,
-$x-N^-_{x-1}(\xi_{s,i})+N^+_{x+1}(\eta^0_i)$, is independent of the particle position,
-because the block contributes $N^+_{x+1}(\eta^0_i)=(\text{boundary})-x$, cancelling the
-$x$, and $N^-_{x-1}(\xi_{s,i})=0$. The weight is therefore a constant $q^{2k}$ on
-$\{X_1,X_2\le0\}$, whence
-$\E_{\xi^{\mathrm{bp}}}[D^{\mathrm{tri}}(\xi_s,\eta^0)]=q^{2k}\,\PP_{(a,a)}(X_1,X_2\le0)$,
-which is \eqref{eq:crossbridge}. We verified the identity, with this constant, to machine
-precision for $L\le6$.
-\end{proof}
-
-In the regime--(A) scaling $q=1-c/T$, $s=T$, identity \eqref{eq:crossbridge} expresses the
-two species' limiting cross--correlation through the dual pair, which
-Proposition~\ref{prop:twophase} and Theorem~\ref{thm:closed} then compute:
-$\rho(c)=\lim_T\Corr(X_1,X_2)$.
 
 \begin{lemma}[split time]\label{lem:split}
-The first split time $\tau$ is $\Exp(\nu_{\mathrm{sp}})$, with split rate
-$\nu_{\mathrm{sp}}=2q^2\eps$ (recall $\eps=1-q^2$); and $\nu_{\mathrm{sp}}T\to4c$,
-$\tau/T\To V\sim\Exp(4c)$, $\PP(\tau>T)\to e^{-4c}$.
+The first split time $\tau$ is $\Exp(\nu_{\mathrm{sp}})$, $\nu_{\mathrm{sp}}=2q^2\eps$,
+and $\nu_{\mathrm{sp}}T\to4c$, $\tau/T\To V\sim\Exp(4c)$, $\PP(\tau>T)\to e^{-4c}$.
 \end{lemma}
 \begin{proof}
 While bound the pair undergoes only the rate $1$ and $q^4$ hops (which preserve the
@@ -1457,21 +1189,17 @@ initial bound pair is symmetric); consequently
 \begin{equation}\label{eq:symm}
   \E[R(t)]=0,\qquad \Cov\big(S(t),R(t)\big)=0\qquad(\forall t\ge0).
 \end{equation}
-Moreover, on the event $A_T:=\{\tau\le T,\ \text{no re--binding}\}$ --- on which, after
-the split, $R$ performs the no--merge walk --- the adjacent--set occupation
-$\Lambda_T:=\int_\tau^T\bone\{|R(t)|=1\}\dd t$ has conditional expectation
-$\E[\Lambda_T\mid A_T]=O(\sqrt T)$; in particular $\Lambda_T=O_\PP(\sqrt T)$. (Throughout,
-$Y_T=O_\PP(a_T)$ means the family $Y_T/a_T$ is tight --- for every $\varepsilon>0$ there is
-$M$ with $\sup_T\PP(|Y_T|>M a_T)\le\varepsilon$ --- and $Y_T=o_\PP(a_T)$ means
-$Y_T/a_T\to0$ in probability.)
+Moreover, on the event $A_T:=\{\tau\le T,\ \text{no re--binding}\}$, the occupation
+$\Lambda_T:=\int_\tau^T\bone\{|R(t)|=1\}\dd t$ of the adjacent set obeys
+$\E[\Lambda_T]=O(\sqrt T)$.
 \end{lemma}
 \begin{proof}
 The identities \eqref{eq:symm} follow from $X_i=(S\mp R)/2$ and the invariance of the
 law of the process under $R\mapsto-R$. After the split and with no merge, $R$ is a
 continuous--time walk on $\Z\setminus\{0\}$ of total rate $\le2(1+q^2)$, symmetric on
 $\{|R|\ge2\}$; by Lemma~\ref{lem:free} its time--$t$ marginal is $\le C/\sqrt{1+t}$
-uniformly, so the expected occupation of $\{\pm1\}$ up to $T$ under this no--merge law
---- which is $\E[\Lambda_T\mid A_T]$ --- is $\int_0^T C/\sqrt{1+t}\dd t=O(\sqrt T)$.
+uniformly, so the expected occupation of $\{\pm1\}$ up to $T$ is
+$\int_0^T C/\sqrt{1+t}\dd t=O(\sqrt T)$.
 \end{proof}
 
 \begin{proposition}[two--phase functional CLT]\label{prop:twophase}
@@ -1480,25 +1208,22 @@ Conditionally on $\tau/T\to u\in[0,1]$ and on $A_T$,
   \frac1{\sqrt{2T}}\big(X_1(T),X_2(T)\big)\To
   \big(\sqrt u\,\xi_0+\sqrt{1-u}\,\xi_1,\ \sqrt u\,\xi_0+\sqrt{1-u}\,\xi_2\big),
 \]
-with $\xi_0,\xi_1,\xi_2$ i.i.d.\ $N(0,1)$, a standard bivariate normal of correlation $u$.
-Since $U:=\min(\tau/T,1)\To\min(\Exp(4c),1)$ (Lemma~\ref{lem:split}), the limiting law of
-$(X_1,X_2)/\sqrt{2T}$ is that of
-$\big(\sqrt U\,\xi_0+\sqrt{1-U}\,\xi_1,\ \sqrt U\,\xi_0+\sqrt{1-U}\,\xi_2\big)$ with
-$U\sim\min(\Exp(4c),1)$ drawn independently of $\xi_0,\xi_1,\xi_2$.
+with $\xi_0,\xi_1,\xi_2$ i.i.d.\ $N(0,1)$ --- a standard bivariate normal of correlation
+$u$. Mixing over $\tau/T\To U=\min(\Exp(4c),1)$ gives the limiting law of
+$(X_1,X_2)/\sqrt{2T}$.
 \end{proposition}
 \begin{proof}
 (Conditioning on $A_T$ is innocuous: $\PP(A_T^c\mid\tau\le T)\to0$ by
 Lemma~\ref{lem:rebind}, so the conditioned and unconditioned post--split laws agree
 to vanishing total variation; we may therefore compute with the no--merge rates.)
-
-\underline{Pre--split.} On $[0,\tau]$ the common pair position $D$ is a walk of right rate
+\emph{Pre--split.} On $[0,\tau]$ the common pair position $D$ is a walk of right rate
 $1$ and left rate $q^4$, hence variance rate $1+q^4\to2$ and drift $1-q^4=O(c/T)$. By
 Donsker's invariance principle with $\tau\approx uT$, $D(\tau)/\sqrt{2T}\To\sqrt u\,\xi_0$
 (the drift contributes $(1-q^4)\tau/\sqrt{2T}=O(c\sqrt u/\sqrt T)\to0$). Since
 $S(\tau)=2D(\tau)+O(1)$ and $R(\tau)=O(1)$, the split deposits
 $S(\tau)/\sqrt{2T}\To2\sqrt u\,\xi_0$ and $R(\tau)/\sqrt{2T}\to0$.
 
-\underline{Post--split.} Write $\bar S(s)=S(\tau{+}s)-S(\tau)$, $\bar R(s)=R(\tau{+}s)-R(\tau)$;
+\emph{Post--split.} Write $\bar S(s)=S(\tau{+}s)-S(\tau)$, $\bar R(s)=R(\tau{+}s)-R(\tau)$;
 each is a compensated jump process. Reading the rates of \S\ref{sec:kernel}, the
 instantaneous drifts vanish for $R$ on $\{|R|\ge2\}$ and equal $2\eps$ for $S$, while on
 $\{|R|=1\}$ they are $O(\eps)$ for $R$ and $\eps$ for $S$ (the deficit $2\eps\to\eps$ is
@@ -1528,34 +1253,27 @@ The jumps are bounded by $2$, so the martingale functional CLT
 (\sqrt{2(1-u)}\,\eta_S,\sqrt{2(1-u)}\,\eta_R)$ with $\eta_S,\eta_R$ i.i.d.\ $N(0,1)$,
 independent of $\cF_\tau$ (hence of $\xi_0$) by the strong Markov property at $\tau$.
 
-\underline{Recombination.} Adding the two phases,
+\emph{Recombination.} Adding the two phases,
 $S(T)/\sqrt{2T}\To2\sqrt u\,\xi_0+\sqrt{2(1-u)}\,\eta_S$ and
 $R(T)/\sqrt{2T}\To\sqrt{2(1-u)}\,\eta_R$. Setting $\xi_1=(\eta_S-\eta_R)/\sqrt2$,
 $\xi_2=(\eta_S+\eta_R)/\sqrt2$ (an orthogonal change of variables, so $\xi_0,\xi_1,\xi_2$
-are i.i.d.\ $N(0,1)$) and using $X_i=(S\mp R)/2$ gives the claim. Averaging over
-$U=\min(\tau/T,1)\To\min(\Exp(4c),1)$ (Lemma~\ref{lem:split}) gives the unconditional limit.
+are i.i.d.\ $N(0,1)$) and using $X_i=(S\mp R)/2$ gives the claim. Integrating against
+$\tau/T\To U$ of Lemma~\ref{lem:split} yields the $U$--mixture.
 \end{proof}
 
-We use two classical facts about the standard bivariate normal.
-
-\begin{lemma}[Price's theorem and Sheppard's orthant formula; {\cite{Price}}, {\cite{Sheppard}}]
-\label{lem:price}
-Let $(Z_1,Z_2)$ be standard bivariate normal with correlation $u\in[-1,1]$, and write
-$Z_i^+:=\max(Z_i,0)$. Then
-\begin{equation}\label{eq:price}
-  \frac{\dd}{\dd u}\,\E\big[Z_1^+Z_2^+\big]=\PP\big(Z_1>0,\,Z_2>0\big)
-  =\frac14+\frac{\arcsin u}{2\pi}.
-\end{equation}
-The first equality is Price's theorem (for $f(z_1,z_2)=z_1^+z_2^+$, whose mixed second
-derivative is $\bone\{z_1>0,\,z_2>0\}$); the second is Sheppard's orthant formula.
-\end{lemma}
-
-\begin{theorem}[closed form for the crossover correlation]\label{thm:closed}
-As $T\to\infty$, $\Corr(X_1,X_2)\to(1-e^{-4c})/(4c)$, decreasing from $1$ as $c\to0$ to a
-$1/c$ tail as $c\to\infty$.
+\begin{theorem}[closed forms for the crossover]\label{thm:closed}
+With $U$ as above and $g(u)=\E[Z_1^+Z_2^+]$ the positive--part covariance of a standard
+bivariate normal of correlation $u$,
+\[
+  \Corr(X_1,X_2)\ \longrightarrow\ \frac{1-e^{-4c}}{4c},\qquad
+  \Corr(X_1^+,X_2^+)\ \longrightarrow\
+  \frac{\pi}{8(\pi-1)c}\big[1-2e^{-4c}+I_0(4c)-L_0(4c)\big],
+\]
+with $I_0$ the modified Bessel and $L_0$ the modified Struve function. Both tend to $1$
+as $c\to0$ and decay as $1/c$ as $c\to\infty$.
 \end{theorem}
 \begin{proof}
-By the exact identity $\Cov(S,R)=0$,
+\emph{Full position.} By the exact identity $\Cov(S,R)=0$,
 $\Corr(X_1,X_2)=(\Var S-\Var R)/(\Var S+\Var R)$. The per--state increment second
 moments of $S,R$ satisfy $a_r+c_r=4(1+q^2)$ for every internal state $r$ (a direct
 check of the rates), so $\Var S+\Var R=4(1+q^2)\sum_r\tau_r=4(1+q^2)T$ up to the
@@ -1567,15 +1285,47 @@ $\Var S-\Var R=4(1+q^4)\tau_0-4q^2(\tau_{+1}+\tau_{-1})$. In the scaling limit t
 bound--state occupation $\tau_0$ is the first--split time (re--binding negligible,
 Lemma~\ref{lem:rebind}), $\E[\tau_0]/T\to(1-e^{-4c})/(4c)$, and the $\{|r|=1\}$
 occupations are $o(T)$; hence $\Corr\to(1-e^{-4c})/(4c)$.
+
+\emph{One--sided observable.} Each marginal $Z_i^u\sim N(0,1)$ in
+Proposition~\ref{prop:twophase}, so $\E[Z_i^+]=1/\sqrt{2\pi}$ and
+$\Var(Z_i^+)=\tfrac12-\tfrac1{2\pi}$ are $u$--independent, and (by uniform
+integrability --- the fourth moments of $X_i/\sqrt{2T}$ are bounded --- together with
+$\PP(A_T^c)\to0$ and Cauchy--Schwarz to remove the conditioning,
+Proposition~\ref{prop:twophase})
+$\Corr(X_1^+,X_2^+)\to(\E[g(U)]-\tfrac1{2\pi})/(\tfrac12-\tfrac1{2\pi})$. By Price's
+theorem \cite{Price}, $g'(u)=\partial_u\E[Z_1^+Z_2^+]=\PP(Z_1>0,Z_2>0)$, and Sheppard's
+orthant formula \cite{Sheppard} gives $\PP(Z_1>0,Z_2>0)=\tfrac14+\tfrac{\arcsin u}{2\pi}
+=\tfrac1{2\pi}(\tfrac\pi2+\arcsin u)$, with $g(0)=\tfrac1{2\pi}$. Writing
+$g(U)=g(0)+\int_0^U g'$ and $\PP(U>s)=e^{-4cs}$,
+\[
+  \E[g(U)]-\tfrac1{2\pi}=\int_0^1 g'(s)e^{-4cs}\dd s
+  =\frac1{2\pi}\int_0^1\Big(\frac\pi2+\arcsin s\Big)e^{-4cs}\dd s.
+\]
+Integrating by parts and using
+$\int_0^1 e^{-4cs}(1-s^2)^{-1/2}\dd s=\int_0^{\pi/2}e^{-4c\sin\theta}\dd\theta
+=\tfrac\pi2[I_0(4c)-L_0(4c)]$ (DLMF 11.5.2) yields the stated form. As $c\to\infty$,
+$I_0(z)-L_0(z)=\tfrac2{\pi z}+O(z^{-3})$ gives the $1/c$ tail; as $c\to0$ both expressions
+tend to $1$.
 \end{proof}
 
+\begin{remark}\label{rem:icmeaning}
+By Theorem~\ref{thm:ewmain} the limiting fields are decoupled, so the crossover is an
+initial--condition effect, not a transport coefficient: from a block of bound pairs
+($Y_1(\cdot,0)\equiv Y_2(\cdot,0)$) the two decoupled flows decorrelate, the residual
+correlation measured by the $O(c)$ splits the run permits. In this picture $\rho(c)$ is
+the fading memory of a common origin --- the two species released by a single split
+start out at the same place and are then carried apart by two independent flows, so the
+correlation surviving at time $T$ records only how many such shared splits the run
+allowed. This is consistent with $C_{12}\equiv0$ and $\sigma_{12}=0$
+(Proposition~\ref{prop:cross}).
+\end{remark}
 
 \section{The Tracy--Widom regime}\label{sec:tw}
 
 Now fix $q\in(0,1)$ and study the integrated currents $N_1(s),N_2(s)$ across the origin
 from the step initial condition at a single time $s$, with standardised currents
 $\cO^i=(N_i-\E N_i)/\sigma_i$, $\sigma_i\asymp s^{1/3}$. The marginal statements hold
-for \underline{every} $n$ by Proposition~\ref{prop:decouple}, via the time--changed
+for \emph{every} $n$ by Proposition~\ref{prop:decouplen}, via the time--changed
 generator $\Lt^{(n)}=\beta_n^{-1}\cL^{(n)}$, under which the single--species rates
 are the $n$--free $q^{\mp1}$. The joint statement (Theorem~\ref{thm:cov}) uses the
 duality and is proved at $n=\infty$; it extends verbatim to $n=2,3$, where the
@@ -1588,7 +1338,7 @@ For every $n\in\N\cup\{\infty\}$ and each species, $\cO^i_s\To F_2$, the GUE
 Tracy--Widom law.
 \end{theorem}
 \begin{proof}
-By Proposition~\ref{prop:decouple}(a), each species' current
+By Propositions~\ref{prop:decouple}(a) and \ref{prop:decouplen}, each species' current
 is an autonomous single--species ASEP --- with rates $r_R=1,r_L=q^2$ at $n=\infty$ and
 $q^{\mp1}\beta_n$ at finite $n$, the factor $\beta_n$ a pure time change removed by
 the standardisation. The step block (state $3$ on $\{x\le0\}$, empty on $\{x>0\}$)
@@ -1645,7 +1395,7 @@ autonomous free walk.
 \end{proof}
 
 The identities \eqref{eq:tri1}--\eqref{eq:tri2} show precisely what the two--particle
-dual computes: the currents enter through the \underline{$q$--deformed} weights
+dual computes: the currents enter through the \emph{$q$--deformed} weights
 $q^{2N^+}$, not linearly. Summing the telescope
 \begin{equation}\label{eq:telescope}
   q^{2N^+_{a+1}(\eta_i)}-q^{2N^+_{a}(\eta_i)}
@@ -1723,7 +1473,8 @@ $(1+q^4)\tau_0-q^2(\tau_{+1}+\tau_{-1})$, $\tau_r=\int_0^s\PP(\mathfrak r(t)=r)\
 since (exactly as in the proof of Theorem~\ref{thm:closed}) the per--state increment
 second moments of $\mathfrak s=X_1+X_2$ and $\mathfrak r$ coincide off contact
 ($a_r=c_r$ for $|r|\ge2$) while at contact $a_0-c_0=4(1+q^4)$,
-$a_{\pm1}-c_{\pm1}=-4q^2$. 
+$a_{\pm1}-c_{\pm1}=-4q^2$. Two corrections to an earlier version of this draft are
+required here, and we record them precisely.
 
 \begin{proposition}[contact occupations of the relative walk]\label{prop:occ}
 The relative walk $\mathfrak r$ is reversible with respect to the measure
@@ -1754,6 +1505,27 @@ by $\sqrt s$ is $1.875$ at $s=3000$ against the predicted limit $1.892$, the def
 decaying as $s^{-1/2}$.
 \end{proof}
 
+\begin{remark}[the leading constant is open]\label{rem:covconst}
+An earlier version of this draft asserted the exact identity
+$\Cov(N_1,N_2)=(1+q^4)\tau_0-q^2(\tau_{+1}+\tau_{-1})$ together with the claim that the
+three occupations share a common leading coefficient, concluding
+$\Cov\sim(1-q^2)^2c'\sqrt s$. Both steps fail. First, the occupations do \emph{not}
+share a coefficient: by Proposition~\ref{prop:occ} the combination carries the weight
+$q^{-2}(1-q^4)$, not $(1-q^2)^2$ --- the bound state's $q^{-2}$ overweighting is
+precisely the residual trace of the binding interaction, and it changes the order of
+vanishing as $q\to1$ from quadratic to linear in $1-q^2$. Second, the identity itself
+cannot hold with the occupations of a bound--started walk: forward Monte Carlo of the
+full lattice dynamics at $q=\tfrac12$ ($4.5\times10^4$ trials, \S\ref{sec:numerics})
+gives $\Cov(N_1,N_2)=(0.099\pm0.003)\sqrt s$, whereas
+$(1+q^4)\tau_0-q^2(\tau_{+1}+\tau_{-1})\sim1.89\sqrt s$ and the earlier claimed form
+evaluates to $0.28\sqrt s$. The structural reason is now transparent from
+Lemma~\ref{lem:tridual}: the two--particle dual computes the \emph{$q$--deformed}
+currents \eqref{eq:qcov}, not the linear ones, so any occupation formula for
+$\Cov(N_1,N_2)$ necessarily carries the nontrivial $q^{2N^+}$ weighting. Identifying
+$c(q)$ in Conjecture~\ref{conj:cov} is open; the $\sqrt s$ scaling itself is
+confirmed numerically over $s\in[50,3.3\times10^4]$.
+\end{remark}
+
 \begin{remark}[why there is no ballistic term]\label{rem:noballistic}
 The step block is deterministic and species--$i$ particles enter $\{x>0\}$ only across
 the bond $(0,1)$, so $\delta N_i=\delta J_i$ with $J_i$ the single--bond integrated
@@ -1766,7 +1538,7 @@ equilibrium Green--Kubo cross--mobility $\sigma_{12}\cdot s$, which vanishes by
 Proposition~\ref{prop:cross}. So $\Cov(N_1,N_2)$ carries no $O(s)$ ballistic part, and
 the surviving $\sqrt s$ is the transient contact contribution evaluated above by duality.
 The forward decomposition thus explains the absence of an $O(s)$ term but does not
-\underline{by itself} yield the constant: $M_i$ and $A_i$ each have $\Theta(s)$ variance and
+\emph{by itself} yield the constant: $M_i$ and $A_i$ each have $\Theta(s)$ variance and
 their cancellation to the $O(\sqrt s)$ remainder is a transport--coefficient near
 cancellation, in contrast to the exact, term--by--term off--contact identity
 $a_r=c_r$ supplied by the duality.
@@ -1782,14 +1554,7 @@ Proposition~\ref{prop:occ}; a proof would require joint control of the full
 $q$--moment tower, and even then says nothing about higher joint cumulants.
 \end{remark}
 
-\section{Phase picture, numerical evidence, and discussion}\label{sec:summary}
-
-This concluding section, unlike \S\S\ref{sec:ew}--\ref{sec:tw}, is not rigorous: it
-places the results in a single phase picture (\S\ref{sec:phase}), corroborates them by
-simulation (\S\ref{sec:numerics}), and discusses their scope and the open problems
-(\S\ref{sec:disc}).
-
-\subsection{The asymmetry--exponent phase picture}\label{sec:phase}
+\section{The asymmetry--exponent phase picture}\label{sec:phase}
 
 The two regimes are endpoints of a one--parameter family of scalings, and the
 following observations --- established at the level of the explicit rate algebra and
@@ -1829,22 +1594,22 @@ hydrodynamics or macroscopic fluctuation theory literature.
 We record three further numerical observations, consistent across $n$ (and into the
 negative--$n$ window of Remark~\ref{rem:range}):
 \begin{itemize}
-\item \underline{Crossover time.} At fixed $q$ near $1$ the Tracy--Widom statistics emerge only
+\item \emph{Crossover time.} At fixed $q$ near $1$ the Tracy--Widom statistics emerge only
 past $t_{\mathrm{cross}}\sim(1-q)^{-3/2}$; observed earlier the marginal looks Gaussian
 (the $\alpha\ge1$ behaviour at finite time). At $q=\tfrac12$ the law is clean by
 $T\sim10^3$ (skewness $\to-0.21$, the $F_2$ value).
-\item \underline{Subleading variance.} $\Var(N_i)=A\,s^{2/3}+B\,s^{1/2}+\cdots$, a
+\item \emph{Subleading variance.} $\Var(N_i)=A\,s^{2/3}+B\,s^{1/2}+\cdots$, a
 relative--mode (Popkov--Sch\"utz--type) correction; the standardised remainder
 $\sigma_{\mathrm{extra}}^2\asymp s^{-1/6}$ decays at the same rate as the cross
 correlation ($\sigma_{\mathrm{extra}}\approx0.39$ vs $0.36$ at $n=2$ vs $13$,
 $T=3.3\times10^4$).
-\item \underline{Multipoint uncorrelatedness.} The cross--species height functions are
+\item \emph{Multipoint uncorrelatedness.} The cross--species height functions are
 uncorrelated at all spatial separations ($n=2$, $q=\tfrac12$, $T=3.3\times10^4$), so
 the decoupling extends from the integrated current to the spatial process, and it is
 $n$--independent at that level.
 \end{itemize}
 
-\subsection{Numerical evidence}\label{sec:numerics}
+\section{Numerical evidence}\label{sec:numerics}
 
 We summarise the Monte Carlo simulations that corroborate the theorems and the
 phase picture. Lattice simulations use the exact $n=\infty$ rate table \eqref{eq:rates}
@@ -1852,7 +1617,7 @@ from a block initial condition of bound pairs; dual computations use the two-- a
 few--particle generators directly. All runs store only currents and scalars (not lattice
 states), with $5\times10^4$ trials unless noted.
 
-\paragraph{The Edwards--Wilkinson regime.}
+\subsection{The Edwards--Wilkinson regime}
 The single--species current standard deviation fits the EW law $\mathrm{std}(N_1)\sim
 T^{1/4}$ across $T\in[100,10^4]$ (local slopes $0.22$--$0.28$, fit exponent $0.244$),
 excluding the $T^{1/2}$ that a bound--pair third field would produce, consistent with
@@ -1864,20 +1629,17 @@ cross--mobility) and $C_{12}=0$ within error, confirming that $\rho(c)$ is neith
 static nor a dynamic transport coefficient.
 
 \begin{figure}[h]\centering
-\includegraphics[alt={a graph of the Bessel Struve function plotted against data, and another graph showing the tail. The data matches well.}]{corr_Xplus_c.png}
-
-\includegraphics[alt={a graph of the predicted two partial correlation from the q Krawtchouk duality plotted against data, and another graph showing the tail. The data matches well}]{rho_c_duality.jpg}
-
-\caption{The initial--condition crossover. Left: the one--sided correlation
-$\Corr(X_1^+,X_2^+)$ (Proposition~\ref{prop:struve}, Bessel--Struve closed form, curve)
-against two--particle Monte Carlo (dots), with the $\tfrac{\pi}{8(\pi-1)}c^{-1}$ tail.
-Right: the full--position correlation $\Corr(X_1,X_2)\to(1-e^{-4c})/(4c)$
-(Theorem~\ref{thm:closed}) against Monte Carlo. Both run from perfectly correlated data
-($\Corr\to1$ as $c\to0$) to the decoupled $1/c$ tail.}
+\includegraphics[width=0.49\textwidth]{corr_Xplus_c.png}\hfill
+\includegraphics[width=0.49\textwidth]{rho_c_duality.jpg}
+\caption{The initial--condition crossover of Theorem~\ref{thm:closed}. Left: the
+one--sided observable $\Corr(X_1^+,X_2^+)$ (Bessel--Struve closed form, curve) against
+two--particle Monte Carlo (dots), with the $\tfrac{\pi}{8(\pi-1)}c^{-1}$ tail. Right: the
+full--position observable $\Corr(X_1,X_2)\to(1-e^{-4c})/(4c)$ against Monte Carlo. Both
+run from perfectly correlated data ($\Corr\to1$ as $c\to0$) to the decoupled $1/c$ tail.}
 \label{fig:rho}
 \end{figure}
 
-\paragraph{The Tracy--Widom regime.}
+\subsection{The Tracy--Widom regime}
 The covariance scales as $\Cov(N_1,N_2)\sim T^{1/2}$ (Conjecture~\ref{conj:cov}), confirmed
 by exact augmented--matrix occupation--time computation ($\tau_0\sim T^{0.505}$,
 $\Cov\sim T^{0.504}$ at $q=\tfrac12$) and by forward simulation
@@ -1887,10 +1649,9 @@ in agreement with the $n=\infty$ data of Figure~\ref{fig:cov} ($\approx0.105\sqr
 over $T\in[10^2,10^4]$); the same run reproduces the Borodin--Corwin--Sasamoto
 variance $2^{-8/3}(\gamma T)^{2/3}\Var(\chi_2)$, $\gamma=1-q^2$, to within $10\%$, and
 exact integration of the relative--walk master equation gives
-$\tau_0/\tau_1\to q^{-2}$ as in Proposition~\ref{prop:occ}. The measured prefactor lies
-well below the contact--occupation combination of Proposition~\ref{prop:occ}
-($\approx1.89$ at $q=\tfrac12$), confirming that $\Cov(N_1,N_2)$ is not given by that
-combination but carries a nontrivial front factor. The marginals converge to $F_2$ (Figure~\ref{fig:cov},
+$\tau_0/\tau_1\to q^{-2}$ as in Proposition~\ref{prop:occ}. Both theoretical
+candidate prefactors of Remark~\ref{rem:covconst} are excluded, so the constant
+carries a nontrivial front factor. The marginals converge to $F_2$ (Figure~\ref{fig:cov},
 middle: CDF/histogram; skewness $\to-0.21$, excess kurtosis $\to0.09$, the GUE
 Tracy--Widom values), and the limit is $n$--independent (Figure~\ref{fig:cov}, right:
 $n=2$ and $n=13$ collapse onto $F_2$). The standardised correlation accordingly decays,
@@ -1898,10 +1659,9 @@ $\Corr(N_1,N_2)\sim s^{-1/6}\to0$, the asymptotic decoupling of
 Conjecture~\ref{conj:cov}.
 
 \begin{figure}[h]\centering
-\includegraphics[width=0.50\textwidth, alt={plots of the covariance an variance of the normal distributions as a function of time. The variance is increasing in time but the correlation is decreasing in time. The values n equals 2,13 and infinity are plotted. The n equals 13 and n equals infinity plots are similar. The n equals 2 plot is much lower. }]{cov_scaling_typeD.png}
-\includegraphics[width=0.50\textwidth, alt={Two histogram plots at time equals 33000, one for n equals 2 and the other for n equals 13. They match the Tracy-Widom distribution.}]{histogram_vs_tw_T33000.png}
-\includegraphics[width=0.50\textwidth, alt={Three plots of the probability distribution function at time equals 20000, one for n equals 2 and the other for n equals 13 and the other is Tracy Widom. They match very well..}]{n2_vs_n13_vs_tw_T20000.png}
-
+\includegraphics[width=0.32\textwidth]{cov_scaling_typeD.png}\hfill
+\includegraphics[width=0.32\textwidth]{histogram_vs_tw_T33000.png}\hfill
+\includegraphics[width=0.32\textwidth]{n2_vs_n13_vs_tw_T20000.png}
 \caption{The Tracy--Widom regime. Left: $\Cov(N_1,N_2)\sim T^{1/2}$, the uncorrelatedness
 of Conjecture~\ref{conj:cov}. Middle: the marginal current against the GUE Tracy--Widom law
 $F_2$ at $T=3.3\times10^4$. Right: $n$--independence --- the standardised marginals at
@@ -1909,7 +1669,7 @@ $n=2$ and $n=13$ collapse onto $F_2$.}
 \label{fig:cov}
 \end{figure}
 
-\subsection{Discussion}\label{sec:disc}
+\section{Discussion}\label{sec:disc}
 
 The type D bound pair is a slow, near--conserved internal mode, yet in both scaling
 regimes the species decouple in the limit, for one structural reason
@@ -1927,16 +1687,16 @@ windows: at $\alpha=1$ the split rate is
 $O(\eps)\to0$, $\tau_0=\Theta(T)$, the crossover $O(1)$; at $\alpha=0$ the split rate
 is $\Theta(1)$, $\tau_0=\Theta(\sqrt T)$, the correlation sub--leading.
 
-We emphasise the scope: both results are statements of \underline{decoupling}. In regime~(A)
+We emphasise the scope: both results are statements of \emph{decoupling}. In regime~(A)
 the Gaussian limiting fields are uncoupled in drift and noise; in regime~(B) the two
 currents decouple exactly at the level of the joint $q$--Laplace observable, and ---
 conjecturally, with exact numerical scaling --- are asymptotically uncorrelated. We
-do not address the finer question of whether the regime~(B) limit is a \underline{product}
+do not address the finer question of whether the regime~(B) limit is a \emph{product}
 (joint) law; the higher--order joint structure of the two currents, the linear
 covariance asymptotics of Conjecture~\ref{conj:cov}, and its constant $c(q)$ are
 facets of one open problem: the joint $q$--moment tower beyond two dual particles.
 
-The Edwards--Wilkinson decoupling holds at \underline{arbitrary} densities $(\rho_1,\rho_2)$,
+The Edwards--Wilkinson decoupling holds at \emph{arbitrary} densities $(\rho_1,\rho_2)$,
 not only on the symmetric line (Theorem~\ref{thm:ewmain}): every ingredient is
 density--free --- the current decoupling (Proposition~\ref{prop:decouple}), the
 cross--noise cancellation $\E_\nu[V_x]=0$ (Proposition~\ref{prop:cross}), the
@@ -1952,306 +1712,76 @@ Proposition~\ref{prop:twophase} the natural tool.
 \paragraph{Status.} The $n=\infty$ self--duality is Theorem~\ref{thm:dual}(ii)
 (two--site interlacing verified by computer algebra, extended to all $L$ by the
 induction of \cite{REU}). The computer--algebra and numerical verifications cited in
-Theorem~\ref{thm:dual}, Propositions~\ref{prop:decouple} and \ref{prop:orth},
-Lemmas~\ref{lem:orth}, \ref{lem:eps}, \ref{lem:tridual} and \ref{lem:crossbridge}, and
-\S\ref{sec:numerics} are reproduced by scripts. In regime (A): Propositions~\ref{prop:cross},
+Theorem~\ref{thm:dual}, Proposition~\ref{prop:decouplen}, Remark~\ref{rem:orthstatus},
+Lemmas~\ref{lem:orth}, \ref{lem:eps} and \ref{lem:tridual}, and \S\ref{sec:numerics}
+are reproduced by scripts to be included as ancillary files. In regime (A): Propositions~\ref{prop:cross},
 \ref{prop:drift}, Corollary~\ref{prop:sym}, Lemmas~\ref{lem:orth}, \ref{lem:eqvar},
 \ref{lem:free}--\ref{lem:tau}, \ref{lem:asep}, \ref{lem:split}, \ref{lem:rebind},
 Theorems~\ref{thm:kernel}, \ref{thm:closed} and Proposition~\ref{prop:twophase} are
-complete and self--contained; Proposition~\ref{prop:conc} rests on the orthogonality
-of Proposition~\ref{prop:orth} (proved via \cite{CFG20}) and is complete modulo
+complete and self--contained; Proposition~\ref{prop:conc} rests on the exact,
+machine--verified orthogonality relation \eqref{eq:orthexact} and is complete modulo
 Lemma~\ref{lem:eps} (the dressed--mass estimate, perturbative and numerically
 supported) and the infinite--volume step recorded in Remark~\ref{rem:orthstatus}; Theorem~\ref{thm:ewmain} is complete modulo the classical
 single--species WASEP fluctuation result (used for the drift via
 Proposition~\ref{prop:decouple} and the diagonal noise) and the classical
 tightness/uniqueness \cite{KL}. In regime
 (B): Theorem~\ref{thm:marg} (marginals, every $n$, via
-Proposition~\ref{prop:decouple}) is complete; Theorem~\ref{thm:cov} ($q$--Laplace
+Proposition~\ref{prop:decouplen}) is complete; Theorem~\ref{thm:cov} ($q$--Laplace
 decoupling) is complete at $n=\infty$ --- the triangular reduction is
 Lemma~\ref{lem:tridual} --- extends to $n=2,3$ via \cite{REU}, and for other finite
 $n$ rests on the duality conjecture of \cite[Rmk.~4]{REU}; the linear--current
-statement is Conjecture~\ref{conj:cov}, its constant open. Section~\ref{sec:phase} is numerical/exploratory and frames the rigorous
+statement is Conjecture~\ref{conj:cov}, its constant open
+(Remark~\ref{rem:covconst}). Section~\ref{sec:phase} is numerical/exploratory and frames the rigorous
 results within the $(\alpha,q,n)$ picture.
 
-
-% Merged bibliography: 30 original + 36 multi-species/NLFHD + 5 combinatorics + 2 umbilic-point + 1 multicomponent-KPZ condensates = 74 entries.
-% Alphabetized by first-author surname; ties broken by year, then co-author/title.
-% Note: "van Beijeren" is filed under V (move to B if you prefer the Dutch convention).
 \begin{thebibliography}{99}
-
-\bibitem{AggarwalBorodin} A.~Aggarwal, A.~Borodin, \emph{Colored line ensembles for
-stochastic vertex models}, preprint (2024); arXiv:2402.06868.
-
-\bibitem{ACH} A.~Aggarwal, I.~Corwin, M.~Hegde, \emph{Scaling limit of the colored
-ASEP and stochastic six-vertex models}, preprint (2024); arXiv:2403.01341.
-
-\bibitem{ANP} A.~Aggarwal, M.~Nicoletti, L.~Petrov, \emph{Colored interacting
-particle systems on the ring: stationary measures from the Yang--Baxter equation},
-Compos.~Math.~\textbf{161} (2025), no.~8, 1855--1922; arXiv:2309.11865.
-
-\bibitem{Aldous} D.~J.~Aldous, \emph{Stopping times and tightness},
-Ann.~Probab.~\textbf{6} (1978), 335--340.
-
 \bibitem{ACR} M.~Ayala, G.~Carinci, F.~Redig, \emph{Quantitative Boltzmann--Gibbs
 principles via orthogonal polynomial duality}, J.~Stat.~Phys.~\textbf{171} (2018),
 980--999; arXiv:1712.08492.
-
 \bibitem{ACR2} M.~Ayala, G.~Carinci, F.~Redig, \emph{Higher order fluctuation fields and
 orthogonal duality polynomials}, Electron.~J.~Probab.~\textbf{26} (2021), 1--35;
 arXiv:2004.08412.
-
-\bibitem{AyalaZimmer} M.~Ayala, J.~Zimmer, \emph{Hydrodynamic limits and
-non-equilibrium fluctuations for the symmetric inclusion process with long jumps},
-Ann.~Henri Poincar\'e (2025), online first; arXiv:2410.21933.
-
-\bibitem{BalazsSeppalainen} M.~Bal\'azs, T.~Sepp\"al\"ainen, \emph{Order of current
-variance and diffusivity in the asymmetric simple exclusion process}, Ann.~of
-Math.~(2) \textbf{171} (2010), 1237--1265; arXiv:math/0608400.
-
-\bibitem{BGT} N.~H.~Bingham, C.~M.~Goldie, J.~L.~Teugels, \emph{Regular Variation},
-Encyclopedia of Mathematics and its Applications \textbf{27}, Cambridge Univ.\ Press,
-1987.
-
 \bibitem{REU} D.~Blyschak, O.~Burke, J.~Kuan, D.~Li, S.~Ustilovsky, Z.~Zhou,
 \emph{Orthogonal polynomial duality of a two--species asymmetric exclusion process},
 J.~Stat.~Phys.~\textbf{190} (2023), Paper No.~101; arXiv:2209.11114.
-
 \bibitem{BCS} A.~Borodin, I.~Corwin, T.~Sasamoto, \emph{From duality to determinants for
 $q$--TASEP and ASEP}, Ann.~Probab.~\textbf{42} (2014), 2314--2382; arXiv:1207.5035.
-
-\bibitem{BorodinWheeler} A.~Borodin, M.~Wheeler, \emph{Coloured stochastic vertex
-models and their spectral theory}, Ast\'erisque \textbf{437} (2022); arXiv:1808.01866.
-
-\bibitem{BEPS} E.~Brodsky, E.~R.~Engel, C.~Panish, L.~Stolberg, \emph{Comparative
-analyses of the type D ASEP: stochastic fusion and crystal bases}, arXiv:2407.21015.
-
-\bibitem{ButelmannMF} I.~Butelmann, G.~R.~Moreno Flores, \emph{Scaling limit of
-stationary coupled Sasamoto--Spohn models}, Electron.~J.~Probab.~\textbf{27}
-(2022), paper no.~130; arXiv:2112.13810.
-
-\bibitem{CGMO} G.~Cannizzaro, P.~Gon\c{c}alves, R.~Misturini, A.~Occelli, \emph{From
-ABC to KPZ}, Probab.~Theory Related Fields \textbf{191} (2025), 361--420;
-arXiv:2304.02344.
-
-\bibitem{CCGO} G.~Cannizzaro, P.~Cardoso, L.~Gr\"afner, A.~Occelli, \emph{Equilibrium
-fluctuations for a multi-species particle system with long jumps}, preprint (2026);
-arXiv:2604.03777.
-
-\bibitem{CdGW} L.~Cantini, J.~de Gier, M.~Wheeler, \emph{Matrix product formula
-for Macdonald polynomials}, J.~Phys.~A: Math.~Theor.~\textbf{48} (2015), no.~38,
-384001; arXiv:1505.00287.
-
-\bibitem{CGRS} G.~Carinci, C.~Giardin\`a, F.~Redig, T.~Sasamoto, \emph{A generalized
-asymmetric exclusion process with $U_q(\sutwo)$ stochastic duality}, Probab.~Theory
-Related Fields \textbf{166} (2016), 887--933; arXiv:1407.3367.
-
 \bibitem{CFG20} G.~Carinci, C.~Franceschini, W.~Groenevelt, \emph{$q$-orthogonal
 dualities for asymmetric particle systems}, Electron.~J.~Probab.~\textbf{26} (2021),
 1--38; arXiv:2003.07837.
-
 \bibitem{CKS} E.~A.~Carlen, S.~Kusuoka, D.~W.~Stroock, \emph{Upper bounds for symmetric
 Markov transition functions}, Ann.~Inst.~H.~Poincar\'e Probab.~Statist.~\textbf{23}
 (1987), suppl., 245--287.
-
-\bibitem{CasiniFG} F.~Casini, R.~Frassek, C.~Giardin\`a, \emph{Duality for the
-multispecies stirring process with open boundaries}, J.~Phys.~A: Math.~Theor.~\textbf{57}
-(2024), no.~29, 295001; arXiv:2312.15532.
-
-\bibitem{CasiniGR} F.~Casini, C.~Giardin\`a, F.~Redig, \emph{Density fluctuations
-for the multi-species stirring process}, J.~Theoret.~Probab.~\textbf{37} (2024),
-no.~4, 3317--3354; arXiv:2307.05111.
-
-\bibitem{CdGHSU} Z.~Chen, J.~de Gier, I.~Hiki, T.~Sasamoto, M.~Usui, \emph{Limiting
-current distribution for a two-species asymmetric exclusion process},
-Comm.~Math.~Phys.~\textbf{395} (2022), no.~1, 59--142; arXiv:2104.00026.
-
-\bibitem{CorteelWilliams} S.~Corteel, L.~K.~Williams, \emph{Tableaux combinatorics
-for the asymmetric exclusion process and Askey--Wilson polynomials}, Duke
-Math.~J.~\textbf{159} (2011), no.~3, 385--415; arXiv:0910.1858.
-
-\bibitem{DaCunhaSasada} H.~Da Cunha, M.~Sasada, \emph{Stationary fluctuations for an
-exclusion process with mass and energy conservation}, preprint (2026); arXiv:2606.01937.
-
-\bibitem{DDSMS} S.~G.~Das, A.~Dhar, K.~Saito, C.~B.~Mendl, H.~Spohn, \emph{Numerical
-test of hydrodynamic fluctuation theory in the Fermi--Pasta--Ulam chain},
-Phys.~Rev.~E \textbf{90} (2014), 012124; arXiv:1404.7081.
-
-\bibitem{dNBD} J.~De Nardis, D.~Bernard, B.~Doyon, \emph{Hydrodynamic diffusion in
-integrable systems}, Phys.~Rev.~Lett.~\textbf{121} (2018), 160603; arXiv:1807.02414.
-
-\bibitem{DEHP} B.~Derrida, M.~R.~Evans, V.~Hakim, V.~Pasquier, \emph{Exact solution
-of a 1D asymmetric exclusion model using a matrix formulation}, J.~Phys.~A:
-Math.~Gen.~\textbf{26} (1993), 1493--1517.
-
-\bibitem{Doyon} B.~Doyon, \emph{Lecture notes on generalised hydrodynamics},
-SciPost Phys.~Lect.~Notes \textbf{18} (2020); arXiv:1912.08496.
-
-\bibitem{DPSY} B.~Doyon, G.~Perfetto, T.~Sasamoto, T.~Yoshimura, \emph{Ballistic
-macroscopic fluctuation theory}, SciPost Phys.~\textbf{15} (2023), no.~4, 136;
-arXiv:2206.14167.
-
-\bibitem{EW} S.~F.~Edwards, D.~R.~Wilkinson, \emph{The surface statistics of a granular
-aggregate}, Proc.~R.~Soc.~Lond.~Ser.~A \textbf{381} (1982), no.~1780, 17--31.
-
+\bibitem{CGRS} G.~Carinci, C.~Giardin\`a, F.~Redig, T.~Sasamoto, \emph{A generalized
+asymmetric exclusion process with $U_q(\sutwo)$ stochastic duality}, Probab.~Theory
+Related Fields \textbf{166} (2016), 887--933; arXiv:1407.3367.
 \bibitem{EK} S.~N.~Ethier, T.~G.~Kurtz, \emph{Markov Processes: Characterization and
 Convergence}, Wiley, 1986.
-
-\bibitem{Feller2} W.~Feller, \emph{An Introduction to Probability Theory and Its
-Applications}, Vol.~II, 2nd ed., Wiley, 1971.
-
-\bibitem{FerrariKipnis} P.~A.~Ferrari, C.~Kipnis, \emph{Second class particles in
-the rarefaction fan}, Ann.~Inst.~H.~Poincar\'e Probab.~Statist.~\textbf{31}
-(1995), no.~1, 143--154.
-
-\bibitem{FerrariMartin} P.~A.~Ferrari, J.~B.~Martin, \emph{Stationary distributions
-of multi-type totally asymmetric exclusion processes}, Ann.~Probab.~\textbf{35}
-(2007), no.~3, 807--832; arXiv:math/0501291.
-
-\bibitem{FSS} P.~L.~Ferrari, T.~Sasamoto, H.~Spohn, \emph{Coupled
-Kardar--Parisi--Zhang equations in one dimension}, J.~Stat.~Phys.~\textbf{153}
-(2013), 377--399; arXiv:1306.5643.
-
-\bibitem{FerrariNejjar} P.~L.~Ferrari, P.~Nejjar, \emph{Anomalous shock
-fluctuations in TASEP and last passage percolation models}, Probab.~Theory
-Related Fields \textbf{161} (2015), 61--109; arXiv:1306.3336.
-
-\bibitem{FKZ} C.~Franceschini, J.~Kuan, Z.~Zhou, \emph{Orthogonal polynomial duality
-and unitary symmetries of multi-species ASEP$(q,\theta)$ and higher-spin vertex
-models via $\ast$-bialgebra structure of higher rank quantum groups},
-Comm.~Math.~Phys.~\textbf{405} (2024), no.~4, Paper No.~96; arXiv:2209.03531.
-
-\bibitem{FunakiHoshino} T.~Funaki, M.~Hoshino, \emph{A coupled KPZ equation, its
-two types of approximations and existence of global solutions},
-J.~Funct.~Anal.~\textbf{273} (2017), 1165--1204; arXiv:1611.00498.
-
 \bibitem{GJ} P.~Gon\c{c}alves, M.~Jara, \emph{Nonlinear fluctuations of weakly asymmetric
 interacting particle systems}, Arch.~Ration.~Mech.~Anal.~\textbf{212} (2014), 597--644;
 arXiv:1309.5120.
-
 \bibitem{GJS} P.~Gon\c{c}alves, M.~Jara, M.~Simon, \emph{Second order Boltzmann--Gibbs
 principle for polynomial functions and applications}, J.~Stat.~Phys.~\textbf{166} (2017),
 90--113; arXiv:1507.06076.
-
 \bibitem{Groenevelt} W.~Groenevelt, \emph{Orthogonal stochastic duality functions from Lie
 algebra representations}, J.~Stat.~Phys.~\textbf{174} (2019), 97--119; arXiv:1709.05997.
-
-\bibitem{GroeneveltWagenaar} W.~Groenevelt, C.~Wagenaar, \emph{A generalized dynamic
-asymmetric exclusion process: orthogonal dualities and degenerations},
-J.~Phys.~A: Math.~Theor.~\textbf{57} (2024), no.~37, 375202; arXiv:2306.12318.
-
-\bibitem{GP} M.~Gubinelli, N.~Perkowski, \emph{Energy solutions of KPZ are unique},
-J.~Amer.~Math.~Soc.~\textbf{31} (2018), 427--471; arXiv:1508.07764.
-
-\bibitem{HolleyStroock} R.~Holley, D.~Stroock, \emph{Generalized Ornstein--Uhlenbeck
-processes and infinite particle branching Brownian motions},
-Publ.~Res.~Inst.~Math.~Sci.~\textbf{14} (1978), 741--788.
-
-\bibitem{KPZ} M.~Kardar, G.~Parisi, Y.-C.~Zhang, \emph{Dynamic scaling of growing
-interfaces}, Phys.~Rev.~Lett.~\textbf{56} (1986), 889--892.
-
+\bibitem{KLLPZ} J.~Kuan, M.~Landry, A.~Lin, A.~Park, Z.~Zhou, \emph{Interacting particle
+systems with type D symmetry and duality}, arXiv:2011.13473.
 \bibitem{KL} C.~Kipnis, C.~Landim, \emph{Scaling Limits of Interacting Particle Systems},
 Grundlehren \textbf{320}, Springer, 1999.
-
-\bibitem{KLLPZ} J.~Kuan, M.~Landry, A.~Lin, A.~Park, Z.~Zhou, \emph{Interacting particle
-systems with type D symmetry and duality}, Houston J.~Math.~\textbf{48} (2022), no.~3,
-499--538; arXiv:2011.13473.
-
-\bibitem{KuanZhou} J.~Kuan, Z.~Zhou, \emph{Asymptotics of two-point correlations in
-the multi-species $q$-TAZRP}, Braz.~J.~Probab.~Stat.~\textbf{38} (2024), no.~3,
-339--346; arXiv:2305.00321.
-
-\bibitem{KMO} A.~Kuniba, S.~Maruyama, M.~Okado, \emph{Multispecies TASEP and
-combinatorial $R$}, J.~Phys.~A: Math.~Theor.~\textbf{48} (2015), no.~34, 34FT02;
-arXiv:1506.04490.
-
-\bibitem{KupiainenMarcozzi} A.~Kupiainen, M.~Marcozzi, \emph{Renormalization of
-generalized KPZ equation}, J.~Stat.~Phys.~\textbf{166} (2017), 876--902;
-arXiv:1604.08712.
-
 \bibitem{LawlerLimic} G.~F.~Lawler, V.~Limic, \emph{Random Walk: A Modern Introduction},
 Cambridge Stud.~Adv.~Math.~\textbf{123}, Cambridge Univ.~Press, 2010.
-
-\bibitem{Martin} J.~B.~Martin, \emph{Stationary distributions of the multi-type
-ASEP}, Electron.~J.~Probab.~\textbf{25} (2020), paper no.~43; arXiv:1810.10650.
-
-\bibitem{MendlSpohn} C.~B.~Mendl, H.~Spohn, \emph{Dynamic correlators of
-Fermi--Pasta--Ulam chains and nonlinear fluctuating hydrodynamics},
-Phys.~Rev.~Lett.~\textbf{111} (2013), 230601; arXiv:1305.1209.
-
-\bibitem{Mitoma} I.~Mitoma, \emph{Tightness of probabilities on
-$C([0,1];\mathcal S')$ and $D([0,1];\mathcal S')$}, Ann.~Probab.~\textbf{11} (1983),
-989--999.
-
-\bibitem{NejjarMixing} P.~Nejjar, \emph{KPZ statistics of second class particles in
-ASEP via mixing}, Comm.~Math.~Phys.~\textbf{378} (2020), no.~1, 601--623;
-arXiv:1911.09426.
-
-\bibitem{NejjarHard} P.~Nejjar, \emph{GUE $\times$ GUE limit law at hard shocks in
-ASEP}, Ann.~Appl.~Probab.~\textbf{31} (2021), no.~1, 321--350; arXiv:1906.07711.
-
 \bibitem{Petrov} V.~V.~Petrov, \emph{Sums of Independent Random Variables}, Springer, 1975.
-
-\bibitem{PSSS} V.~Popkov, A.~Schadschneider, J.~Schmidt, G.~M.~Sch\"utz,
-\emph{Fibonacci family of dynamical universality classes},
-Proc.~Natl.~Acad.~Sci.~USA \textbf{112} (2015), no.~41, 12645--12650; arXiv:1505.04461.
-
-\bibitem{PSS} V.~Popkov, J.~Schmidt, G.~M.~Sch\"utz, \emph{Universality classes in
-two-component driven diffusive systems}, J.~Stat.~Phys.~\textbf{160} (2015),
-835--860; arXiv:1410.8026.
-
 \bibitem{Price} R.~Price, \emph{A useful theorem for nonlinear devices having Gaussian
 inputs}, IRE Trans.~Inform.~Theory \textbf{4} (1958), 69--72.
-
 \bibitem{RSL} E.~Rohr, K.~Sellakumaran Latha, A.~Yin, \emph{A type D asymmetric simple
 exclusion process generated by an explicit central element of
-$\mathcal U_q(\so_{10})$}, Houston J.~Math.~\textbf{50} (2024), no.~2, 237--257;
-arXiv:2307.15660.
-
-\bibitem{RDKKS} D.~Roy, A.~Dhar, K.~Khanin, M.~Kulkarni, H.~Spohn, \emph{Universality
-in coupled stochastic Burgers systems with degenerate flux Jacobian},
-J.~Stat.~Mech.~(2024), 033209; arXiv:2401.06399.
-
-\bibitem{SKP} J.~Schmidt, \v Z.~Krajnik, V.~Popkov, \emph{Universality in driven
-systems with a multiply-degenerate umbilic point}, J.~Stat.~Mech.~(2026), 033202;
-arXiv:2601.04116.
-
-\bibitem{SchutzDual} G.~M.~Sch\"utz, \emph{Duality relations for asymmetric exclusion
-processes}, J.~Stat.~Phys.~\textbf{86} (1997), 1265--1287.
-
+$\mathcal U_q(\so_{10})$}, arXiv:2307.15660.
 \bibitem{Schutz} G.~M.~Sch\"utz, \emph{Exact solution of the master equation for the
 asymmetric exclusion process}, J.~Stat.~Phys.~\textbf{88} (1997), 427--445.
-
 \bibitem{Sheppard} W.~F.~Sheppard, \emph{On the application of the theory of error to cases
 of normal distribution and normal correlation}, Phil.~Trans.~R.~Soc.~A \textbf{192}
 (1899), 101--167.
-
-\bibitem{Spohn14} H.~Spohn, \emph{Nonlinear fluctuating hydrodynamics for
-anharmonic chains}, J.~Stat.~Phys.~\textbf{154} (2014), 1191--1227; arXiv:1305.6412.
-
-\bibitem{SpohnStoltz} H.~Spohn, G.~Stoltz, \emph{Nonlinear fluctuating
-hydrodynamics in one dimension: the case of two conserved fields},
-J.~Stat.~Phys.~\textbf{160} (2015), 861--884; arXiv:1410.7896.
-
-\bibitem{SpohnReview} H.~Spohn, \emph{Fluctuating hydrodynamics approach to
-equilibrium time correlations for anharmonic chains}, in \emph{Thermal Transport
-in Low Dimensions}, Lecture Notes in Phys.~\textbf{921}, Springer, 2016,
-pp.~107--158; arXiv:1505.05987.
-
-\bibitem{TW08} C.~A.~Tracy, H.~Widom, \emph{Integral formulas for the asymmetric simple
-exclusion process}, Comm.~Math.~Phys.~\textbf{279} (2008), 815--844; arXiv:0704.2633.
-
-\bibitem{vanBeijeren} H.~van Beijeren, \emph{Exact results for anomalous transport
-in one-dimensional Hamiltonian systems}, Phys.~Rev.~Lett.~\textbf{108} (2012),
-180601; arXiv:1106.3298.
-
-\bibitem{Wagenaar} C.~Wagenaar, \emph{Dynamic generalizations of the asymmetric
-inclusion process, asymmetric Brownian energy process and their dualities},
-J.~Stat.~Phys.~\textbf{193} (2026), no.~2, Art.~13; arXiv:2502.12709.
-
-\bibitem{WCS} H.~Weinberger, P.~Comaron, M.~H.~Szyma\'nska, \emph{Multicomponent
-Kardar--Parisi--Zhang universality in degenerate coupled condensates},
-Commun.~Phys.~\textbf{8} (2025), Art.~324; arXiv:2411.07095.
-
 \end{thebibliography}
 
 \end{document}
