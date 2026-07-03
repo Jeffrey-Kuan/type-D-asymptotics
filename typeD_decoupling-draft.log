@@ -1,10 +1,9 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.12.10)  3 JUL 2026 13:48
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.12.10)  12 JUN 2026 13:29
 entering extended mode
  restricted \write18 enabled.
- file:line:error style messages enabled.
  %&-line parsing enabled.
-**typeD_decoupling-draft-rev2.tex
-(./typeD_decoupling-draft-rev2.tex
+**typeD_decoupling-draft.tex
+(./typeD_decoupling-draft.tex
 LaTeX2e <2025-11-01>
 L3 programming layer <2025-11-14>
 (/usr/local/texlive/2025/texmf-dist/tex/latex/base/article.cls
@@ -323,27 +322,27 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count315
 )
-(./typeD_decoupling-draft-rev2.aux)
-\openout1 = `typeD_decoupling-draft-rev2.aux'.
+(./typeD_decoupling-draft.aux)
+\openout1 = `typeD_decoupling-draft.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -401,220 +400,153 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-Package hyperref Info: Link coloring OFF on input line 35.
+Package hyperref Info: Link coloring OFF on input line 36.
 
-(./typeD_decoupling-draft-rev2.out) (./typeD_decoupling-draft-rev2.out)
+(./typeD_decoupling-draft.out) (./typeD_decoupling-draft.out)
 \@outlinefile=\write3
-\openout3 = `typeD_decoupling-draft-rev2.out'.
+\openout3 = `typeD_decoupling-draft.out'.
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 37.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 38.
 
 
 (/usr/local/texlive/2025/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 37.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 38.
 
 
 (/usr/local/texlive/2025/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-(./typeD_decoupling-draft-rev2.toc [1
-
-{/usr/local/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map}])
-\tf@toc=\write4
-\openout4 = `typeD_decoupling-draft-rev2.toc'.
-
-LaTeX Font Info:    Trying to load font information for U+euf on input line 68.
+LaTeX Font Info:    Trying to load font information for U+euf on input line 41.
 
 
 (/usr/local/texlive/2025/texmf-dist/tex/latex/amsfonts/ueuf.fd
 File: ueuf.fd 2013/01/14 v3.01 Euler Fraktur
-) [2{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.e
-nc}] [3] [4]
-[5]
-Overfull \hbox (6.15074pt too wide) in paragraph at lines 314--322
-[]\OT1/cmr/m/n/10.95 Self--duality with re-spect to [] holds iden-ti-cally in $
-(\OML/cmm/m/it/10.95 []; []\OT1/cmr/m/n/10.95 )$, hence coefficient--wise in 
-$\OML/cmm/m/it/10.95 []; []$\OT1/cmr/m/n/10.95 ;
+)
+(./typeD_decoupling-draft.toc [1
+
+{/usr/local/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/loc
+al/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}])
+\tf@toc=\write4
+\openout4 = `typeD_decoupling-draft.toc'.
+
+ [2] [3] [4]
+Overfull \hbox (6.33221pt too wide) in paragraph at lines 313--319
+[]\OT1/cmr/bx/n/10.95 Corollary 2.7 \OT1/cmr/m/n/10.95 (tri-an-gu-lar de-gen-er
+-a-tion)\OT1/cmr/bx/n/10.95 . \OT1/cmr/m/it/10.95 Self--duality with re-spect t
+o [] holds iden-ti-cally in $\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 []; []\O
+T1/cmr/m/n/10.95 )$\OT1/cmr/m/it/10.95 ,
  []
 
-[6] [7] [8] [9] [10] [11] [12] [13] [14]
-Overfull \hbox (1.99794pt too wide) in paragraph at lines 911--914
-\OT1/cmr/m/n/10.95 The sec-ond is the mar-tin-gale char-ac-ter-i-sa-tion of the
- Ornstein--Uhlenbeck fluc-tu-a-tion limit. Through-
+[5] [6]
+Overfull \hbox (41.29451pt too wide) in paragraph at lines 435--441
+[]\OT1/cmr/m/n/10.95 The species--$1$ cur-rent across $(\OML/cmm/m/it/10.95 x; 
+x[]\OT1/cmr/m/n/10.95 1)$ is the signed rate of species--$1$ trans-fer, $\OML/c
+mm/m/it/10.95 j[] \OT1/cmr/m/n/10.95 = [][] \OML/cmm/m/it/10.95 r\OT1/cmr/m/n/1
+0.95 (\OMS/cmsy/m/n/10.95 ^^A\OT1/cmr/m/n/10.95 ) ^^A\OML/cmm/m/it/10.95 ^^Q[]$
+\OT1/cmr/m/n/10.95 ,
  []
 
-
-Overfull \hbox (30.83412pt too wide) in paragraph at lines 932--936
-\OT1/cmr/m/it/10.95 Moreover, if a pair $\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.9
-5 Z[]; Z[]\OT1/cmr/m/n/10.95 )$ \OT1/cmr/m/it/10.95 sat-is-fies \OT1/cmr/m/n/10
-.95 (i)--(ii) \OT1/cmr/m/it/10.95 and has van-ish-ing lim-it-ing cross--bracket
-, $\OMS/cmsy/m/n/10.95 h\OML/cmm/m/it/10.95 M[]; M[]\OMS/cmsy/m/n/10.95 i\OT1/c
-mr/m/n/10.95 (\OML/cmm/m/it/10.95 '; t\OT1/cmr/m/n/10.95 ) \OMS/cmsy/m/n/10.95 
-!
+[7] [8]
+Overfull \hbox (26.34625pt too wide) in paragraph at lines 556--563
+[]\OT1/cmr/m/n/10.95 For $\OML/cmm/m/it/10.95 R[]$\OT1/cmr/m/n/10.95 , Fourier 
+in-ver-sion gives $\U/msb/m/n/10.95 P\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 R[
+]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 t\OT1/cmr/m/n/10.95 ) = \OML/cmm/m/it/
+10.95 r\OT1/cmr/m/n/10.95 ) = [] [][] \OML/cmm/m/it/10.95 e[]e[] \OT1/cmr/m/n/1
+0.95 d\OML/cmm/m/it/10.95 ^^R \OMS/cmsy/m/n/10.95 ^^T [] [][] \OML/cmm/m/it/10.
+95 e[] \OT1/cmr/m/n/10.95 d\OML/cmm/m/it/10.95 ^^R$\OT1/cmr/m/n/10.95 .
  []
 
-[15] [16] [17]
-Overfull \hbox (13.99644pt too wide) in paragraph at lines 1141--1157
-\OML/cmm/m/it/10.95 q[] \OT1/cmr/m/n/10.95 = \OML/cmm/m/it/10.95 e[]$\OT1/cmr/m
-/n/10.95 , and $1 \OMS/cmsy/m/n/10.95 ^^U \OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.
-95 q[]\OT1/cmr/m/n/10.95 ; \OML/cmm/m/it/10.95 q[]\OT1/cmr/m/n/10.95 )[] \OMS/
-cmsy/m/n/10.95 ^^U \OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 []\OT1/cmr/m/n/10.9
-5 ; \OML/cmm/m/it/10.95 q[]\OT1/cmr/m/n/10.95 )[] \OML/cmm/m/it/10.95 > \OT1/cm
-r/m/n/10.95 0$ with $\OML/cmm/m/it/10.95 [] \OT1/cmr/m/n/10.95 = \OML/cmm/m/it
-/10.95 q[] \OT1/cmr/m/n/10.95 = \OML/cmm/m/it/10.95 e[] \OMS/cmsy/m/n/10.95 ^
-^T
+[9] [10] [11] [12] [13] [14] [15] [16]
+Overfull \hbox (18.54816pt too wide) in paragraph at lines 1120--1133
+\OT1/cmr/m/it/10.95 Gradient term. \OT1/cmr/m/n/10.95 A sum-ma-tion by parts gi
+ves $^^@[] = \OML/cmm/m/it/10.95 N[] [][]\OT1/cmr/m/n/10.95 (\OMS/cmsy/m/n/10.9
+5 r\OML/cmm/m/it/10.95 '[]\OT1/cmr/m/n/10.95 )([]) \OML/cmm/m/it/10.95 ^^Q[] \O
+T1/cmr/m/n/10.95 = \OML/cmm/m/it/10.95 N[] [][] '[]\OT1/cmr/m/n/10.95 ([])(\OML
+/cmm/m/it/10.95 ^^Q[] \OMS/cmsy/m/n/10.95 ^^@
  []
 
-[18]
-Overfull \hbox (1.65787pt too wide) in paragraph at lines 1179--1183
-[]\OT1/cmr/bx/n/10.95 Proposition 6.11 \OT1/cmr/m/n/10.95 ($\OML/cmm/m/it/10.95
- L[]$ \OT1/cmr/m/n/10.95 con-cen-tra-tion of the cross bracket)\OT1/cmr/bx/n/10
-.95 . $\U/msb/m/n/10.95 E[]\OT1/cmr/m/n/10.95 [\OMS/cmsy/m/n/10.95 h\OML/cmm/m/
-it/10.95 M[]; M[]\OMS/cmsy/m/n/10.95 i\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 '
-; t\OT1/cmr/m/n/10.95 )[]] \OMS/cmsy/m/n/10.95 ^^T \OML/cmm/m/it/10.95 C\OT1/cm
-r/m/n/10.95 (\OML/cmm/m/it/10.95 '; c\OT1/cmr/m/n/10.95 ) \OML/cmm/m/it/10.95 t
- []N[] \OT1/cmr/m/n/10.95 +
- []
-
-[19]
-Overfull \hbox (17.82281pt too wide) in paragraph at lines 1287--1300
-$[]$ \OT1/cmr/m/n/10.95 A sum-ma-tion by parts gives $^^@[] = \OML/cmm/m/it/10.
-95 N[] [][]\OT1/cmr/m/n/10.95 (\OMS/cmsy/m/n/10.95 r\OML/cmm/m/it/10.95 '[]\OT1
-/cmr/m/n/10.95 )([]) \OML/cmm/m/it/10.95 ^^Q[] \OT1/cmr/m/n/10.95 = \OML/cmm/m/
-it/10.95 N[] [][] '[]\OT1/cmr/m/n/10.95 ([])(\OML/cmm/m/it/10.95 ^^Q[] \OMS/cms
-y/m/n/10.95 ^^@
- []
-
-[20] [21]
-Overfull \hbox (8.05415pt too wide) in paragraph at lines 1367--1378
-[]\OT1/cmr/m/n/10.95 Each $\OML/cmm/m/it/10.95 G[] \OMS/cmsy/m/n/10.95 ^^X \OML
-/cmm/m/it/10.95 N\OT1/cmr/m/n/10.95 (0\OML/cmm/m/it/10.95 ; \OT1/cmr/m/n/10.95 
-1)$ (The-o-rem []7.1[]), so $\U/msb/m/n/10.95 E\OT1/cmr/m/n/10.95 [\OML/cmm/m/i
-t/10.95 G[]\OT1/cmr/m/n/10.95 ] = 1\OML/cmm/m/it/10.95 =[]$\OT1/cmr/m/n/10.95 ,
- $[](\OML/cmm/m/it/10.95 G[]\OT1/cmr/m/n/10.95 ) = [] \OMS/cmsy/m/n/10.95 ^^@ [
-]$\OT1/cmr/m/n/10.95 , and $[](\OML/cmm/m/it/10.95 G[]; G[]\OT1/cmr/m/n/10.95 )
- =
- []
-
-[22]
-Overfull \hbox (14.01178pt too wide) in paragraph at lines 1482--1488
-[]\OT1/cmr/m/n/10.95 ([](4\OML/cmm/m/it/10.95 c\OT1/cmr/m/n/10.95 )\OML/cmm/m/i
-t/10.95 ; \OT1/cmr/m/n/10.95 1)$ \OT1/cmr/m/it/10.95 (Lemma []7.4[]), the lim-i
-t-ing law of $\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 X[]; X[]\OT1/cmr/m/n/10.9
-5 )\OML/cmm/m/it/10.95 =[]$ \OT1/cmr/m/it/10.95 is that of $[][] \OML/cmm/m/it/
-10.95 ^^X[] \OT1/cmr/m/n/10.95 + [] \OML/cmm/m/it/10.95 ^^X[];  [] ^^X[] \OT1/c
-mr/m/n/10.95 +
- []
-
-[23]
-Overfull \hbox (30.46164pt too wide) in paragraph at lines 1525--1530
+[17] [18]
+Overfull \hbox (24.98663pt too wide) in paragraph at lines 1250--1255
 \OT1/cmr/m/n/10.95 The jumps are bounded by $2$, so the mar-tin-gale func-tiona
 l CLT [[], Thm. 7.1.4] gives $([]\OML/cmm/m/it/10.95 ; []\OT1/cmr/m/n/10.95 )(\
 OML/cmm/m/it/10.95 T[]^^\\OT1/cmr/m/n/10.95 )\OML/cmm/m/it/10.95 =[] \OMS/cmsy/
 m/n/10.95 )
  []
 
-[24]
+[19]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1605.
+(hyperref)                removing `math shift' on input line 1355.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1605.
+(hyperref)                removing `math shift' on input line 1355.
 
-[25]
-Overfull \hbox (22.4164pt too wide) in paragraph at lines 1665--1674
+[20]
+Overfull \hbox (22.4164pt too wide) in paragraph at lines 1415--1424
 \OT1/cmr/m/it/10.95 ac-tion is re-moved. In par-tic-u-lar the two cur-rents de-
 cou-ple in the $\OML/cmm/m/it/10.95 q$\OT1/cmr/m/it/10.95 --Laplace sense: $[] 
 []\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 q[]; q[]\OT1/cmr/m/n/10.95 )(\OML/cmm
 /m/it/10.95 s\OT1/cmr/m/n/10.95 )[] \OMS/cmsy/m/n/10.95 ^^T
  []
 
-[26] [27] [28]
-<corr_Xplus_c.png, id=793, 939.51pt x 375.804pt>
+[21] [22] [23]
+<corr_Xplus_c.png, id=589, 939.51pt x 375.804pt>
 File: corr_Xplus_c.png Graphic file (type png)
 <use corr_Xplus_c.png>
-Package pdftex.def Info: corr_Xplus_c.png  used on input line 1867.
-(pdftex.def)             Requested size: 939.5077pt x 375.80309pt.
-
-Overfull \hbox (469.75269pt too wide) in paragraph at lines 1867--1868
- [][] 
- []
-
-<rho_c_duality.jpg, id=795, 931.17116pt x 355.23485pt>
+Package pdftex.def Info: corr_Xplus_c.png  used on input line 1632.
+(pdftex.def)             Requested size: 230.18253pt x 92.06992pt.
+<rho_c_duality.jpg, id=591, 931.17116pt x 355.23485pt>
 File: rho_c_duality.jpg Graphic file (type jpg)
 <use rho_c_duality.jpg>
-Package pdftex.def Info: rho_c_duality.jpg  used on input line 1869.
-(pdftex.def)             Requested size: 931.1689pt x 355.23398pt.
-
-Overfull \hbox (461.41388pt too wide) in paragraph at lines 1869--1870
- [][] 
- []
-
-
-LaTeX Warning: Float too large for page by 163.87656pt on input line 1878.
+Package pdftex.def Info: rho_c_duality.jpg  used on input line 1633.
+(pdftex.def)             Requested size: 230.18253pt x 87.81113pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<cov_scaling_typeD.png, id=808, 867.24pt x 332.442pt>
+[24]
+<cov_scaling_typeD.png, id=608, 867.24pt x 332.442pt>
 File: cov_scaling_typeD.png Graphic file (type png)
 <use cov_scaling_typeD.png>
-Package pdftex.def Info: cov_scaling_typeD.png  used on input line 1901.
-(pdftex.def)             Requested size: 234.8775pt x 90.03445pt.
-<histogram_vs_tw_T33000.png, id=809, 1011.78pt x 361.35pt>
+Package pdftex.def Info: cov_scaling_typeD.png  used on input line 1662.
+(pdftex.def)             Requested size: 150.32504pt x 57.62022pt.
+<histogram_vs_tw_T33000.png, id=609, 1011.78pt x 361.35pt>
 File: histogram_vs_tw_T33000.png Graphic file (type png)
 <use histogram_vs_tw_T33000.png>
-Package pdftex.def Info: histogram_vs_tw_T33000.png  used on input line 1902.
-(pdftex.def)             Requested size: 234.8775pt x 83.88068pt.
-<n2_vs_n13_vs_tw_T20000.png, id=810, 578.16pt x 361.35pt>
+Package pdftex.def Info: histogram_vs_tw_T33000.png  used on input line 1663.
+(pdftex.def)             Requested size: 150.32504pt x 53.68738pt.
+<n2_vs_n13_vs_tw_T20000.png, id=610, 578.16pt x 361.35pt>
 File: n2_vs_n13_vs_tw_T20000.png Graphic file (type png)
 <use n2_vs_n13_vs_tw_T20000.png>
-Package pdftex.def Info: n2_vs_n13_vs_tw_T20000.png  used on input line 1903.
-(pdftex.def)             Requested size: 234.8775pt x 146.79808pt.
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[29] [30] [31]
-Underfull \hbox (badness 1259) in paragraph at lines 2079--2081
-[]\OT1/cmr/m/n/10.95 J. De Nardis, D. Bernard, B. Doyon, \OT1/cmr/m/it/10.95 Hy
--dro-dy-namic dif-fu-sion in in-te-grable sys-tems\OT1/cmr/m/n/10.95 ,
- []
-
-
-Underfull \hbox (badness 3250) in paragraph at lines 2093--2095
-[]\OT1/cmr/m/n/10.95 S. F. Ed-wards, D. R. Wilkin-son, \OT1/cmr/m/it/10.95 The 
-sur-face statis-tics of a gran-u-lar ag-gre-gate\OT1/cmr/m/n/10.95 ,
- []
-
-[32]
-Underfull \hbox (badness 7012) in paragraph at lines 2171--2173
+Package pdftex.def Info: n2_vs_n13_vs_tw_T20000.png  used on input line 1664.
+(pdftex.def)             Requested size: 150.32504pt x 93.94878pt.
+ [25 <./corr_Xplus_c.png> <./rho_c_duality.jpg> <./cov_scaling_typeD.png> <./hi
+stogram_vs_tw_T33000.png> <./n2_vs_n13_vs_tw_T20000.png>] [26]
+Underfull \hbox (badness 7012) in paragraph at lines 1772--1774
 []\OT1/cmr/m/n/10.95 G. F. Lawler, V. Limic, \OT1/cmr/m/it/10.95 Ran-dom Walk: 
 A Mod-ern In-tro-duc-tion\OT1/cmr/m/n/10.95 , Cam-bridge
  []
 
-[33] [34] [35 <./corr_Xplus_c.png> <./rho_c_duality.jpg>] [36 <./cov_scaling_ty
-peD.png> <./histogram_vs_tw_T33000.png> <./n2_vs_n13_vs_tw_T20000.png>]
-(./typeD_decoupling-draft-rev2.aux)
+[27] (./typeD_decoupling-draft.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2025-11-14>
  ***********
-Package rerunfilecheck Info: File `typeD_decoupling-draft-rev2.out' has not cha
-nged.
-(rerunfilecheck)             Checksum: 308CC109D4CFFA6E383B0ACED25A81E9;4632.
+Package rerunfilecheck Info: File `typeD_decoupling-draft.out' has not changed.
+
+(rerunfilecheck)             Checksum: 70CAA7F2F542F5B399DA4970F3ED0F64;4359.
  ) 
 Here is how much of TeX's memory you used:
- 11467 strings out of 467538
- 174250 string characters out of 5419545
- 611991 words of memory out of 5000000
- 39995 multiletter control sequences out of 15000+600000
- 643306 words of font info for 98 fonts, out of 8000000 for 9000
+ 11309 strings out of 467538
+ 172388 string characters out of 5419545
+ 612817 words of memory out of 5000000
+ 39920 multiletter control sequences out of 15000+600000
+ 643682 words of font info for 99 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,15n,79p,764b,609s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,15n,79p,601b,609s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
 </usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><
@@ -625,25 +557,26 @@ sr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr
 ocal/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/loc
 al/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local
 /texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/t
-exlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texl
-ive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive
-/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/20
-25/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/local/texlive/2025
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2025/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2025/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2025/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2025/texmf-
-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2025/texmf-d
-ist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2025/texmf-di
-st/fonts/type1/public/amsfonts/euler/eufm10.pfb></usr/local/texlive/2025/texmf-
-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2025/te
-xmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/202
-5/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb></usr/local/texlive/2025/
-texmf-dist/fonts/type1/public/cm-super/sfti1095.pfb>
-Output written on typeD_decoupling-draft-rev2.pdf (36 pages, 929710 bytes).
+exlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texl
+ive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive
+/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/20
+25/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2025/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/local/texlive/2025/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2025/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2025/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2025/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2025/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2025/texmf-dist
+/fonts/type1/public/amsfonts/euler/eufm10.pfb></usr/local/texlive/2025/texmf-di
+st/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2025/texm
+f-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2025/
+texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2025/te
+xmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb></usr/local/texlive/2025/texm
+f-dist/fonts/type1/public/cm-super/sfti1095.pfb>
+Output written on typeD_decoupling-draft.pdf (27 pages, 889390 bytes).
 PDF statistics:
- 1068 PDF objects out of 1200 (max. 8388607)
- 958 compressed objects within 10 object streams
- 234 named destinations out of 1000 (max. 500000)
- 218 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 831 PDF objects out of 1000 (max. 8388607)
+ 731 compressed objects within 8 object streams
+ 152 named destinations out of 1000 (max. 500000)
+ 210 words of extra memory for PDF output out of 10000 (max. 10000000)
 

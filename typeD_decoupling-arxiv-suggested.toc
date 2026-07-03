@@ -1,0 +1,27 @@
+\contentsline {section}{\numberline {1}Introduction}{1}{section.1}%
+\contentsline {subsection}{\numberline {1.1}The model}{2}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Results}{2}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}Relation to previous work}{3}{subsection.1.3}%
+\contentsline {subsection}{\numberline {1.4}Organisation}{3}{subsection.1.4}%
+\contentsline {subsection}{\numberline {1.5}Generative AI statement}{3}{subsection.1.5}%
+\contentsline {subsection}{\numberline {1.6}Acknowledgements}{4}{subsection.1.6}%
+\contentsline {section}{\numberline {2}The model, the measure, and the duality}{4}{section.2}%
+\contentsline {subsection}{\numberline {2.1}The orthogonal $q$--Krawtchouk self--duality}{5}{subsection.2.1}%
+\contentsline {section}{\numberline {3}Exact current decoupling and vanishing transport coefficients}{7}{section.3}%
+\contentsline {section}{\numberline {4}Local central limit theorems for the dual coordinates}{9}{section.4}%
+\contentsline {section}{\numberline {5}The two--particle dual kernel bound}{13}{section.5}%
+\contentsline {section}{\numberline {6}The decoupled Edwards--Wilkinson limit}{14}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Single--species Gaussianity}{16}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}The cross noise}{16}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}The drift}{19}{subsection.6.3}%
+\contentsline {section}{\numberline {7}The initial--condition crossover}{20}{section.7}%
+\contentsline {section}{\numberline {8}The Tracy--Widom regime}{23}{section.8}%
+\contentsline {subsection}{\numberline {8.1}Marginals}{24}{subsection.8.1}%
+\contentsline {subsection}{\numberline {8.2}Triangular duality and $q$--Laplace decoupling}{24}{subsection.8.2}%
+\contentsline {section}{\numberline {9}Phase picture, numerical evidence, and discussion}{27}{section.9}%
+\contentsline {subsection}{\numberline {9.1}The asymmetry--exponent phase picture}{27}{subsection.9.1}%
+\contentsline {subsection}{\numberline {9.2}Numerical evidence}{28}{subsection.9.2}%
+\contentsline {paragraph}{The Edwards--Wilkinson regime.}{28}{section*.2}%
+\contentsline {paragraph}{The Tracy--Widom regime.}{28}{section*.3}%
+\contentsline {subsection}{\numberline {9.3}Discussion}{28}{subsection.9.3}%
+\contentsline {paragraph}{Status.}{29}{section*.4}%

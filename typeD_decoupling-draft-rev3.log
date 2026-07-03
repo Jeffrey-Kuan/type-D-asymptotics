@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.12.10)  3 JUL 2026 13:48
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.12.10)  3 JUL 2026 18:02
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**typeD_decoupling-draft-rev2.tex
-(./typeD_decoupling-draft-rev2.tex
+**typeD_decoupling-draft-rev3.tex
+(./typeD_decoupling-draft-rev3.tex
 LaTeX2e <2025-11-01>
 L3 programming layer <2025-11-14>
 (/usr/local/texlive/2025/texmf-dist/tex/latex/base/article.cls
@@ -323,8 +323,8 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count315
 )
-(./typeD_decoupling-draft-rev2.aux)
-\openout1 = `typeD_decoupling-draft-rev2.aux'.
+(./typeD_decoupling-draft-rev3.aux)
+\openout1 = `typeD_decoupling-draft-rev3.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 35.
 LaTeX Font Info:    ... okay on input line 35.
@@ -403,50 +403,52 @@ e
 ))
 Package hyperref Info: Link coloring OFF on input line 35.
 
-(./typeD_decoupling-draft-rev2.out) (./typeD_decoupling-draft-rev2.out)
+(./typeD_decoupling-draft-rev3.out) (./typeD_decoupling-draft-rev3.out)
 \@outlinefile=\write3
-\openout3 = `typeD_decoupling-draft-rev2.out'.
+\openout3 = `typeD_decoupling-draft-rev3.out'.
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 37.
+
+[1
+
+{/usr/local/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+LaTeX Font Info:    Trying to load font information for U+msa on input line 42.
 
 
 (/usr/local/texlive/2025/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 37.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 42.
 
 
 (/usr/local/texlive/2025/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-(./typeD_decoupling-draft-rev2.toc [1
-
-{/usr/local/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map}])
+(./typeD_decoupling-draft-rev3.toc [2])
 \tf@toc=\write4
-\openout4 = `typeD_decoupling-draft-rev2.toc'.
+\openout4 = `typeD_decoupling-draft-rev3.toc'.
 
-LaTeX Font Info:    Trying to load font information for U+euf on input line 68.
+LaTeX Font Info:    Trying to load font information for U+euf on input line 75.
 
 
 (/usr/local/texlive/2025/texmf-dist/tex/latex/amsfonts/ueuf.fd
 File: ueuf.fd 2013/01/14 v3.01 Euler Fraktur
-) [2{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.e
-nc}] [3] [4]
-[5]
-Overfull \hbox (6.15074pt too wide) in paragraph at lines 314--322
+) [3{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.e
+nc}] [4] [5]
+[6] [7]
+Overfull \hbox (6.15074pt too wide) in paragraph at lines 351--359
 []\OT1/cmr/m/n/10.95 Self--duality with re-spect to [] holds iden-ti-cally in $
 (\OML/cmm/m/it/10.95 []; []\OT1/cmr/m/n/10.95 )$, hence coefficient--wise in 
 $\OML/cmm/m/it/10.95 []; []$\OT1/cmr/m/n/10.95 ;
  []
 
-[6] [7] [8] [9] [10] [11] [12] [13] [14]
-Overfull \hbox (1.99794pt too wide) in paragraph at lines 911--914
+[8] [9] [10] [11] [12] [13] [14] [15]
+Overfull \hbox (1.99794pt too wide) in paragraph at lines 950--953
 \OT1/cmr/m/n/10.95 The sec-ond is the mar-tin-gale char-ac-ter-i-sa-tion of the
  Ornstein--Uhlenbeck fluc-tu-a-tion limit. Through-
  []
 
-
-Overfull \hbox (30.83412pt too wide) in paragraph at lines 932--936
+[16]
+Overfull \hbox (30.83412pt too wide) in paragraph at lines 971--975
 \OT1/cmr/m/it/10.95 Moreover, if a pair $\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.9
 5 Z[]; Z[]\OT1/cmr/m/n/10.95 )$ \OT1/cmr/m/it/10.95 sat-is-fies \OT1/cmr/m/n/10
 .95 (i)--(ii) \OT1/cmr/m/it/10.95 and has van-ish-ing lim-it-ing cross--bracket
@@ -455,8 +457,8 @@ mr/m/n/10.95 (\OML/cmm/m/it/10.95 '; t\OT1/cmr/m/n/10.95 ) \OMS/cmsy/m/n/10.95
 !
  []
 
-[15] [16] [17]
-Overfull \hbox (13.99644pt too wide) in paragraph at lines 1141--1157
+[17] [18] [19]
+Overfull \hbox (13.99644pt too wide) in paragraph at lines 1180--1196
 \OML/cmm/m/it/10.95 q[] \OT1/cmr/m/n/10.95 = \OML/cmm/m/it/10.95 e[]$\OT1/cmr/m
 /n/10.95 , and $1 \OMS/cmsy/m/n/10.95 ^^U \OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.
 95 q[]\OT1/cmr/m/n/10.95 ; \OML/cmm/m/it/10.95 q[]\OT1/cmr/m/n/10.95 )[] \OMS/
@@ -467,8 +469,8 @@ r/m/n/10.95 0$ with $\OML/cmm/m/it/10.95 [] \OT1/cmr/m/n/10.95 = \OML/cmm/m/it
 ^T
  []
 
-[18]
-Overfull \hbox (1.65787pt too wide) in paragraph at lines 1179--1183
+
+Overfull \hbox (1.65787pt too wide) in paragraph at lines 1218--1222
 []\OT1/cmr/bx/n/10.95 Proposition 6.11 \OT1/cmr/m/n/10.95 ($\OML/cmm/m/it/10.95
  L[]$ \OT1/cmr/m/n/10.95 con-cen-tra-tion of the cross bracket)\OT1/cmr/bx/n/10
 .95 . $\U/msb/m/n/10.95 E[]\OT1/cmr/m/n/10.95 [\OMS/cmsy/m/n/10.95 h\OML/cmm/m/
@@ -478,8 +480,8 @@ r/m/n/10.95 (\OML/cmm/m/it/10.95 '; c\OT1/cmr/m/n/10.95 ) \OML/cmm/m/it/10.95 t
  []N[] \OT1/cmr/m/n/10.95 +
  []
 
-[19]
-Overfull \hbox (17.82281pt too wide) in paragraph at lines 1287--1300
+[20] [21]
+Overfull \hbox (17.82281pt too wide) in paragraph at lines 1326--1339
 $[]$ \OT1/cmr/m/n/10.95 A sum-ma-tion by parts gives $^^@[] = \OML/cmm/m/it/10.
 95 N[] [][]\OT1/cmr/m/n/10.95 (\OMS/cmsy/m/n/10.95 r\OML/cmm/m/it/10.95 '[]\OT1
 /cmr/m/n/10.95 )([]) \OML/cmm/m/it/10.95 ^^Q[] \OT1/cmr/m/n/10.95 = \OML/cmm/m/
@@ -487,8 +489,8 @@ it/10.95 N[] [][] '[]\OT1/cmr/m/n/10.95 ([])(\OML/cmm/m/it/10.95 ^^Q[] \OMS/cms
 y/m/n/10.95 ^^@
  []
 
-[20] [21]
-Overfull \hbox (8.05415pt too wide) in paragraph at lines 1367--1378
+[22]
+Overfull \hbox (8.05415pt too wide) in paragraph at lines 1406--1417
 []\OT1/cmr/m/n/10.95 Each $\OML/cmm/m/it/10.95 G[] \OMS/cmsy/m/n/10.95 ^^X \OML
 /cmm/m/it/10.95 N\OT1/cmr/m/n/10.95 (0\OML/cmm/m/it/10.95 ; \OT1/cmr/m/n/10.95 
 1)$ (The-o-rem []7.1[]), so $\U/msb/m/n/10.95 E\OT1/cmr/m/n/10.95 [\OML/cmm/m/i
@@ -498,8 +500,8 @@ t/10.95 G[]\OT1/cmr/m/n/10.95 ] = 1\OML/cmm/m/it/10.95 =[]$\OT1/cmr/m/n/10.95 ,
  =
  []
 
-[22]
-Overfull \hbox (14.01178pt too wide) in paragraph at lines 1482--1488
+[23]
+Overfull \hbox (14.01178pt too wide) in paragraph at lines 1521--1527
 []\OT1/cmr/m/n/10.95 ([](4\OML/cmm/m/it/10.95 c\OT1/cmr/m/n/10.95 )\OML/cmm/m/i
 t/10.95 ; \OT1/cmr/m/n/10.95 1)$ \OT1/cmr/m/it/10.95 (Lemma []7.4[]), the lim-i
 t-ing law of $\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 X[]; X[]\OT1/cmr/m/n/10.9
@@ -508,113 +510,117 @@ t-ing law of $\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 X[]; X[]\OT1/cmr/m/n/10.9
 mr/m/n/10.95 +
  []
 
-[23]
-Overfull \hbox (30.46164pt too wide) in paragraph at lines 1525--1530
+[24]
+Overfull \hbox (30.46164pt too wide) in paragraph at lines 1564--1569
 \OT1/cmr/m/n/10.95 The jumps are bounded by $2$, so the mar-tin-gale func-tiona
 l CLT [[], Thm. 7.1.4] gives $([]\OML/cmm/m/it/10.95 ; []\OT1/cmr/m/n/10.95 )(\
 OML/cmm/m/it/10.95 T[]^^\\OT1/cmr/m/n/10.95 )\OML/cmm/m/it/10.95 =[] \OMS/cmsy/
 m/n/10.95 )
  []
 
-[24]
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1605.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1605.
-
 [25]
-Overfull \hbox (22.4164pt too wide) in paragraph at lines 1665--1674
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 1644.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 1644.
+
+[26]
+Overfull \hbox (22.4164pt too wide) in paragraph at lines 1704--1713
 \OT1/cmr/m/it/10.95 ac-tion is re-moved. In par-tic-u-lar the two cur-rents de-
 cou-ple in the $\OML/cmm/m/it/10.95 q$\OT1/cmr/m/it/10.95 --Laplace sense: $[] 
 []\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 q[]; q[]\OT1/cmr/m/n/10.95 )(\OML/cmm
 /m/it/10.95 s\OT1/cmr/m/n/10.95 )[] \OMS/cmsy/m/n/10.95 ^^T
  []
 
-[26] [27] [28]
-<corr_Xplus_c.png, id=793, 939.51pt x 375.804pt>
+[27] [28] [29]
+<corr_Xplus_c.png, id=807, 939.51pt x 375.804pt>
 File: corr_Xplus_c.png Graphic file (type png)
 <use corr_Xplus_c.png>
-Package pdftex.def Info: corr_Xplus_c.png  used on input line 1867.
+Package pdftex.def Info: corr_Xplus_c.png  used on input line 1906.
 (pdftex.def)             Requested size: 939.5077pt x 375.80309pt.
 
-Overfull \hbox (469.75269pt too wide) in paragraph at lines 1867--1868
+Overfull \hbox (469.75269pt too wide) in paragraph at lines 1906--1907
  [][] 
  []
 
-<rho_c_duality.jpg, id=795, 931.17116pt x 355.23485pt>
+<rho_c_duality.jpg, id=809, 931.17116pt x 355.23485pt>
 File: rho_c_duality.jpg Graphic file (type jpg)
 <use rho_c_duality.jpg>
-Package pdftex.def Info: rho_c_duality.jpg  used on input line 1869.
+Package pdftex.def Info: rho_c_duality.jpg  used on input line 1908.
 (pdftex.def)             Requested size: 931.1689pt x 355.23398pt.
 
-Overfull \hbox (461.41388pt too wide) in paragraph at lines 1869--1870
+Overfull \hbox (461.41388pt too wide) in paragraph at lines 1908--1909
  [][] 
  []
 
 
-LaTeX Warning: Float too large for page by 163.87656pt on input line 1878.
+LaTeX Warning: Float too large for page by 163.87656pt on input line 1917.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<cov_scaling_typeD.png, id=808, 867.24pt x 332.442pt>
+<cov_scaling_typeD.png, id=822, 867.24pt x 332.442pt>
 File: cov_scaling_typeD.png Graphic file (type png)
 <use cov_scaling_typeD.png>
-Package pdftex.def Info: cov_scaling_typeD.png  used on input line 1901.
+Package pdftex.def Info: cov_scaling_typeD.png  used on input line 1940.
 (pdftex.def)             Requested size: 234.8775pt x 90.03445pt.
-<histogram_vs_tw_T33000.png, id=809, 1011.78pt x 361.35pt>
+<histogram_vs_tw_T33000.png, id=823, 1011.78pt x 361.35pt>
 File: histogram_vs_tw_T33000.png Graphic file (type png)
 <use histogram_vs_tw_T33000.png>
-Package pdftex.def Info: histogram_vs_tw_T33000.png  used on input line 1902.
+Package pdftex.def Info: histogram_vs_tw_T33000.png  used on input line 1941.
 (pdftex.def)             Requested size: 234.8775pt x 83.88068pt.
-<n2_vs_n13_vs_tw_T20000.png, id=810, 578.16pt x 361.35pt>
+<n2_vs_n13_vs_tw_T20000.png, id=824, 578.16pt x 361.35pt>
 File: n2_vs_n13_vs_tw_T20000.png Graphic file (type png)
 <use n2_vs_n13_vs_tw_T20000.png>
-Package pdftex.def Info: n2_vs_n13_vs_tw_T20000.png  used on input line 1903.
+Package pdftex.def Info: n2_vs_n13_vs_tw_T20000.png  used on input line 1942.
 (pdftex.def)             Requested size: 234.8775pt x 146.79808pt.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[29] [30] [31]
-Underfull \hbox (badness 1259) in paragraph at lines 2079--2081
+[30] [31] [32]
+Underfull \hbox (badness 1259) in paragraph at lines 2118--2120
 []\OT1/cmr/m/n/10.95 J. De Nardis, D. Bernard, B. Doyon, \OT1/cmr/m/it/10.95 Hy
 -dro-dy-namic dif-fu-sion in in-te-grable sys-tems\OT1/cmr/m/n/10.95 ,
  []
 
 
-Underfull \hbox (badness 3250) in paragraph at lines 2093--2095
+Underfull \hbox (badness 3250) in paragraph at lines 2132--2134
 []\OT1/cmr/m/n/10.95 S. F. Ed-wards, D. R. Wilkin-son, \OT1/cmr/m/it/10.95 The 
 sur-face statis-tics of a gran-u-lar ag-gre-gate\OT1/cmr/m/n/10.95 ,
  []
 
-[32]
-Underfull \hbox (badness 7012) in paragraph at lines 2171--2173
+[33]
+Underfull \hbox (badness 7012) in paragraph at lines 2210--2212
 []\OT1/cmr/m/n/10.95 G. F. Lawler, V. Limic, \OT1/cmr/m/it/10.95 Ran-dom Walk: 
 A Mod-ern In-tro-duc-tion\OT1/cmr/m/n/10.95 , Cam-bridge
  []
 
-[33] [34] [35 <./corr_Xplus_c.png> <./rho_c_duality.jpg>] [36 <./cov_scaling_ty
+[34] [35] [36 <./corr_Xplus_c.png> <./rho_c_duality.jpg>] [37 <./cov_scaling_ty
 peD.png> <./histogram_vs_tw_T33000.png> <./n2_vs_n13_vs_tw_T20000.png>]
-(./typeD_decoupling-draft-rev2.aux)
+(./typeD_decoupling-draft-rev3.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2025-11-14>
  ***********
-Package rerunfilecheck Info: File `typeD_decoupling-draft-rev2.out' has not cha
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+Package rerunfilecheck Info: File `typeD_decoupling-draft-rev3.out' has not cha
 nged.
 (rerunfilecheck)             Checksum: 308CC109D4CFFA6E383B0ACED25A81E9;4632.
  ) 
 Here is how much of TeX's memory you used:
- 11467 strings out of 467538
- 174250 string characters out of 5419545
- 611991 words of memory out of 5000000
- 39995 multiletter control sequences out of 15000+600000
+ 11472 strings out of 467538
+ 174302 string characters out of 5419545
+ 615065 words of memory out of 5000000
+ 39997 multiletter control sequences out of 15000+600000
  643306 words of font info for 98 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,15n,79p,764b,609s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,15n,79p,764b,672s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
 </usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><
@@ -640,10 +646,10 @@ dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2025/te
 xmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/202
 5/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb></usr/local/texlive/2025/
 texmf-dist/fonts/type1/public/cm-super/sfti1095.pfb>
-Output written on typeD_decoupling-draft-rev2.pdf (36 pages, 929710 bytes).
+Output written on typeD_decoupling-draft-rev3.pdf (37 pages, 933153 bytes).
 PDF statistics:
- 1068 PDF objects out of 1200 (max. 8388607)
- 958 compressed objects within 10 object streams
- 234 named destinations out of 1000 (max. 500000)
+ 1086 PDF objects out of 1200 (max. 8388607)
+ 975 compressed objects within 10 object streams
+ 237 named destinations out of 1000 (max. 500000)
  218 words of extra memory for PDF output out of 10000 (max. 10000000)
 
