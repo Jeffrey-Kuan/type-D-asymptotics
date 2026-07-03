@@ -1,0 +1,129 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.12.10)  15 JUN 2026 00:23
+entering extended mode
+ restricted \write18 enabled.
+ file:line:error style messages enabled.
+ %&-line parsing enabled.
+**Fable5.tex
+(./Fable5.tex
+LaTeX2e <2025-11-01>
+L3 programming layer <2025-11-14>
+(/usr/local/texlive/2025/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2025/01/22 v1.4n Standard LaTeX document class
+(/usr/local/texlive/2025/texmf-dist/tex/latex/base/size10.clo
+File: size10.clo 2025/01/22 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count275
+\c@section=\count276
+\c@subsection=\count277
+\c@subsubsection=\count278
+\c@paragraph=\count279
+\c@subparagraph=\count280
+\c@figure=\count281
+\c@table=\count282
+\abovecaptionskip=\skip49
+\belowcaptionskip=\skip50
+\bibindent=\dimen148
+)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/preprint/fullpage.sty
+Package: fullpage 1999/02/23 1.1 (PWD)
+\FP@margin=\skip51
+)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/psnfss/helvet.sty
+Package: helvet 2020/03/25 PSNFSS-v9.3 (WaS) 
+
+(/usr/local/texlive/2025/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
+\KV@toks@=\toks17
+))
+LaTeX Font Info:    Trying to load font information for OT1+phv on input line 1
+1.
+
+(/usr/local/texlive/2025/texmf-dist/tex/latex/psnfss/ot1phv.fd
+File: ot1phv.fd 2020/03/25 scalable font definitions for OT1/phv.
+)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count283
+)
+(./Fable5.aux)
+\openout1 = `Fable5.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 13.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 13.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 13.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 30.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 30.
+ [1
+
+{/usr/local/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/loc
+al/texlive/2025/texmf-dist/fonts/enc/dvips/base/8r.enc}]
+Underfull \hbox (badness 10000) in paragraph at lines 38--42
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 38--42
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 38--42
+
+ []
+
+LaTeX Font Info:    Trying to load font information for TS1+phv on input line 4
+6.
+(/usr/local/texlive/2025/texmf-dist/tex/latex/psnfss/ts1phv.fd
+File: ts1phv.fd 2020/03/25 scalable font definitions for TS1/phv.
+) [2] [3]
+LaTeX Font Info:    Font shape `OT1/phv/m/it' in size <10> not available
+(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 115.
+
+[4] (./Fable5.aux)
+ ***********
+LaTeX2e <2025-11-01>
+L3 programming layer <2025-11-14>
+ ***********
+ ) 
+Here is how much of TeX's memory you used:
+ 678 strings out of 467538
+ 12120 string characters out of 5419545
+ 445730 words of memory out of 5000000
+ 29623 multiletter control sequences out of 15000+600000
+ 646834 words of font info for 69 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 42i,6n,51p,1193b,224s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb
+></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><
+/usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></u
+sr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/
+local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/l
+ocal/texlive/2025/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/local/te
+xlive/2025/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2
+025/texmf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb>
+Output written on Fable5.pdf (4 pages, 86955 bytes).
+PDF statistics:
+ 58 PDF objects out of 1000 (max. 8388607)
+ 35 compressed objects within 1 object stream
+ 0 named destinations out of 1000 (max. 500000)
+ 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+
